@@ -1,20 +1,7 @@
 // ============================================
-// BIBLE API - Free Bible API (no key required)
+// BIBLE API - Working with bible-api.com
 // ============================================
 
-// Bible API endpoints
-const API_BASE = 'https://api.bible.org/v1';
-
-// Bible IDs for different versions
-// From https://api.bible.org/v1/bibles
-const BIBLE_IDS = {
-    'NKJV': 'de4e12af7f28f599-02',   // New King James Version
-    'NIV': '0529b3b3d5d4c9b7-01',     // New International Version
-    'KJV': '06125adad2d5898a-01',     // King James Version
-    'ESV': 'f061b6d2e7d8b6e5-01'      // English Standard Version
-};
-
-// Bible book names and chapter counts (for navigation)
 const BIBLE_BOOKS = {
     'Genesis': 50, 'Exodus': 40, 'Leviticus': 27, 'Numbers': 36, 'Deuteronomy': 34,
     'Joshua': 24, 'Judges': 21, 'Ruth': 4, '1 Samuel': 31, '2 Samuel': 24,
@@ -34,30 +21,27 @@ const BIBLE_BOOKS = {
     'Jude': 1, 'Revelation': 22
 };
 
-// Book name abbreviations for API
-const BOOK_ABBREVIATIONS = {
-    'Genesis': 'GEN', 'Exodus': 'EXO', 'Leviticus': 'LEV', 'Numbers': 'NUM',
-    'Deuteronomy': 'DEU', 'Joshua': 'JOS', 'Judges': 'JDG', 'Ruth': 'RUT',
-    '1 Samuel': '1SA', '2 Samuel': '2SA', '1 Kings': '1KI', '2 Kings': '2KI',
-    '1 Chronicles': '1CH', '2 Chronicles': '2CH', 'Ezra': 'EZR', 'Nehemiah': 'NEH',
-    'Esther': 'EST', 'Job': 'JOB', 'Psalms': 'PSA', 'Proverbs': 'PRO',
-    'Ecclesiastes': 'ECC', 'Song of Solomon': 'SNG', 'Isaiah': 'ISA', 'Jeremiah': 'JER',
-    'Lamentations': 'LAM', 'Ezekiel': 'EZK', 'Daniel': 'DAN', 'Hosea': 'HOS',
-    'Joel': 'JOL', 'Amos': 'AMO', 'Obadiah': 'OBA', 'Jonah': 'JON',
-    'Micah': 'MIC', 'Nahum': 'NAM', 'Habakkuk': 'HAB', 'Zephaniah': 'ZEP',
-    'Haggai': 'HAG', 'Zechariah': 'ZEC', 'Malachi': 'MAL',
-    'Matthew': 'MAT', 'Mark': 'MRK', 'Luke': 'LUK', 'John': 'JHN',
-    'Acts': 'ACT', 'Romans': 'ROM', '1 Corinthians': '1CO', '2 Corinthians': '2CO',
-    'Galatians': 'GAL', 'Ephesians': 'EPH', 'Philippians': 'PHP', 'Colossians': 'COL',
-    '1 Thessalonians': '1TH', '2 Thessalonians': '2TH', '1 Timothy': '1TI', '2 Timothy': '2TI',
-    'Titus': 'TIT', 'Philemon': 'PHM', 'Hebrews': 'HEB', 'James': 'JAS',
-    '1 Peter': '1PE', '2 Peter': '2PE', '1 John': '1JN', '2 John': '2JN',
-    '3 John': '3JN', 'Jude': 'JUD', 'Revelation': 'REV'
+// API expects these abbreviations
+const BOOK_IDS = {
+    'Genesis': 'gen', 'Exodus': 'exo', 'Leviticus': 'lev', 'Numbers': 'num',
+    'Deuteronomy': 'deu', 'Joshua': 'jos', 'Judges': 'jdg', 'Ruth': 'rut',
+    '1 Samuel': '1sa', '2 Samuel': '2sa', '1 Kings': '1ki', '2 Kings': '2ki',
+    '1 Chronicles': '1ch', '2 Chronicles': '2ch', 'Ezra': 'ezr', 'Nehemiah': 'neh',
+    'Esther': 'est', 'Job': 'job', 'Psalms': 'psa', 'Proverbs': 'pro',
+    'Ecclesiastes': 'ecc', 'Song of Solomon': 'sng', 'Isaiah': 'isa', 'Jeremiah': 'jer',
+    'Lamentations': 'lam', 'Ezekiel': 'ezk', 'Daniel': 'dan', 'Hosea': 'hos',
+    'Joel': 'jol', 'Amos': 'amo', 'Obadiah': 'oba', 'Jonah': 'jon',
+    'Micah': 'mic', 'Nahum': 'nam', 'Habakkuk': 'hab', 'Zephaniah': 'zep',
+    'Haggai': 'hag', 'Zechariah': 'zec', 'Malachi': 'mal',
+    'Matthew': 'mat', 'Mark': 'mrk', 'Luke': 'luk', 'John': 'jhn',
+    'Acts': 'act', 'Romans': 'rom', '1 Corinthians': '1co', '2 Corinthians': '2co',
+    'Galatians': 'gal', 'Ephesians': 'eph', 'Philippians': 'php', 'Colossians': 'col',
+    '1 Thessalonians': '1th', '2 Thessalonians': '2th', '1 Timothy': '1ti', '2 Timothy': '2ti',
+    'Titus': 'tit', 'Philemon': 'phm', 'Hebrews': 'heb', 'James': 'jas',
+    '1 Peter': '1pe', '2 Peter': '2pe', '1 John': '1jn', '2 John': '2jn',
+    '3 John': '3jn', 'Jude': 'jud', 'Revelation': 'rev'
 };
 
-/**
- * Get all Bible books with chapter counts
- */
 export function getBibleBooks() {
     return Object.keys(BIBLE_BOOKS).map(name => ({
         name,
@@ -65,109 +49,82 @@ export function getBibleBooks() {
     }));
 }
 
-/**
- * Get total chapters for a book
- */
 export function getTotalChapters(book) {
     return BIBLE_BOOKS[book] || 30;
 }
 
-/**
- * Get the Bible ID for a version
- */
-function getBibleId(version) {
-    return BIBLE_IDS[version] || BIBLE_IDS['NKJV'];
-}
-
-/**
- * Get book abbreviation
- */
-function getBookAbbreviation(book) {
-    return BOOK_ABBREVIATIONS[book] || book.toUpperCase();
-}
-
-/**
- * Fetch chapters for a book (returns list of chapter numbers)
- */
-export async function fetchBookChapters(book, version = 'NKJV') {
-    const bibleId = getBibleId(version);
-    const bookId = getBookAbbreviation(book);
+export async function fetchChapterVerses(book, chapter, version = 'KJV') {
+    // Get the API-friendly book ID
+    const bookId = BOOK_IDS[book];
     
-    try {
-        const response = await fetch(
-            `${API_BASE}/bibles/${bibleId}/books/${bookId}/chapters`
-        );
-        const data = await response.json();
-        if (data.data) {
-            return data.data.map(ch => ch.number);
-        }
-        return Array.from({length: BIBLE_BOOKS[book] || 30}, (_, i) => i + 1);
-    } catch (error) {
-        console.warn('Error fetching chapters, using fallback:', error);
-        return Array.from({length: BIBLE_BOOKS[book] || 30}, (_, i) => i + 1);
-    }
-}
-
-/**
- * Fetch verses for a chapter
- */
-export async function fetchChapterVerses(book, chapter, version = 'NKJV') {
-    const bibleId = getBibleId(version);
-    const bookId = getBookAbbreviation(book);
-    
-    try {
-        // Format: GEN.1
-        const chapterId = `${bookId}.${chapter}`;
-        const response = await fetch(
-            `${API_BASE}/bibles/${bibleId}/chapters/${chapterId}/verses`
-        );
-        const data = await response.json();
-        
-        if (data.data) {
-            return data.data.map(v => ({
-                verse: v.reference.split(':')[1] || v.number,
-                text: v.text
-            }));
-        }
-        return getFallbackVerses(book, chapter, version);
-    } catch (error) {
-        console.warn('Error fetching verses, using fallback:', error);
-        return getFallbackVerses(book, chapter, version);
-    }
-}
-
-/**
- * Fallback verses if API fails
- */
-function getFallbackVerses(book, chapter, version) {
-    const count = Math.min(BIBLE_BOOKS[book] || 30, 20);
-    return Array.from({length: count}, (_, i) => ({
-        verse: i + 1,
-        text: `${book} ${chapter}:${i + 1} (${version}) — Please check your internet connection and try again.`
-    }));
-}
-
-/**
- * Search Bible
- */
-export async function searchBible(query, version = 'NKJV') {
-    if (!query || query.trim().length < 2) {
+    if (!bookId) {
+        console.error('Book not found:', book);
         return [];
     }
     
-    const bibleId = getBibleId(version);
+    try {
+        const url = `https://bible-api.com/${bookId}+${chapter}?translation=${version.toLowerCase()}`;
+        console.log('📡 Fetching:', url);
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            console.error('API Error:', response.status);
+            return [];
+        }
+        
+        const data = await response.json();
+        console.log('📡 Data received:', data);
+        
+        // Check if we got verses
+        if (data && data.verses && data.verses.length > 0) {
+            return data.verses.map(v => ({
+                verse: v.verse,
+                text: v.text.trim()
+            }));
+        }
+        
+        // If no verses, try alternative format (some books need different formatting)
+        // For books with numbers like "1 Timothy", the API might need "1timothy"
+        const altBookId = bookId.replace(' ', '').toLowerCase();
+        if (altBookId !== bookId) {
+            const altUrl = `https://bible-api.com/${altBookId}+${chapter}?translation=${version.toLowerCase()}`;
+            console.log('📡 Trying alternative:', altUrl);
+            
+            const altResponse = await fetch(altUrl);
+            if (altResponse.ok) {
+                const altData = await altResponse.json();
+                if (altData && altData.verses) {
+                    return altData.verses.map(v => ({
+                        verse: v.verse,
+                        text: v.text.trim()
+                    }));
+                }
+            }
+        }
+        
+        return [];
+    } catch (error) {
+        console.error('Error fetching verses:', error);
+        return [];
+    }
+}
+
+export async function searchBible(query, version = 'KJV') {
+    if (!query || query.trim().length < 2) return [];
     
     try {
-        const response = await fetch(
-            `${API_BASE}/bibles/${bibleId}/search?query=${encodeURIComponent(query)}&limit=20`
-        );
+        const url = `https://bible-api.com/search?query=${encodeURIComponent(query)}&translation=${version.toLowerCase()}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) return [];
+        
         const data = await response.json();
         
-        if (data.data) {
-            return data.data.map(result => ({
-                reference: result.reference,
-                text: result.text,
-                verseId: result.id
+        if (data && data.results) {
+            return data.results.slice(0, 20).map(r => ({
+                reference: `${r.book} ${r.chapter}:${r.verse}`,
+                text: r.text
             }));
         }
         return [];
@@ -177,68 +134,9 @@ export async function searchBible(query, version = 'NKJV') {
     }
 }
 
-/**
- * Get a single verse by reference (e.g., "John 3:16")
- */
-export async function fetchVerse(reference, version = 'NKJV') {
-    const bibleId = getBibleId(version);
-    
-    try {
-        const response = await fetch(
-            `${API_BASE}/bibles/${bibleId}/verses/${encodeURIComponent(reference)}`
-        );
-        const data = await response.json();
-        if (data.data) {
-            return {
-                reference: data.data.reference,
-                text: data.data.text
-            };
-        }
-        return null;
-    } catch (error) {
-        console.warn('Error fetching verse:', error);
-        return null;
-    }
-}
-
-/**
- * Get a random verse
- */
-export async function fetchRandomVerse(version = 'NKJV') {
-    const bibleId = getBibleId(version);
-    
-    try {
-        const response = await fetch(
-            `${API_BASE}/bibles/${bibleId}/verses/random`
-        );
-        const data = await response.json();
-        if (data.data) {
-            return {
-                reference: data.data.reference,
-                text: data.data.text
-            };
-        }
-        return null;
-    } catch (error) {
-        console.warn('Error fetching random verse:', error);
-        return null;
-    }
-}
-
-/**
- * Get available Bible versions
- */
-export function getAvailableVersions() {
-    return Object.keys(BIBLE_IDS);
-}
-
 export default {
     getBibleBooks,
     getTotalChapters,
-    fetchBookChapters,
     fetchChapterVerses,
-    searchBible,
-    fetchVerse,
-    fetchRandomVerse,
-    getAvailableVersions
+    searchBible
 };

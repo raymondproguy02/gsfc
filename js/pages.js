@@ -271,218 +271,172 @@ export function renderLessons(container, props) {
 }
 
 // ============================================
-// BIBLE PAGE - With Real API
+// BIBLE PAGE - Clean Like a Real Bible App
 // ============================================
 export async function renderBible(container, props) {
     console.log('📖 renderBible called!');
-    
+
     const { onVerseSelect, showToast } = props;
-    const bibleData = Storage.get('gsc-bible-state', { 
-        version: 'NKJV', 
-        book: 'John', 
-        chapter: 1 
+    const bibleData = Storage.get('gsc-bible-state', {
+        version: 'KJV',
+        book: 'John',
+        chapter: 1,
+        tab: 'all' // 'all', 'ot', 'nt'
     });
+
+    // OT Books (39)
+    const OT_BOOKS = [
+        'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
+        'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel',
+        '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles',
+        'Ezra', 'Nehemiah', 'Esther', 'Job', 'Psalms', 'Proverbs',
+        'Ecclesiastes', 'Song of Solomon', 'Isaiah', 'Jeremiah',
+        'Lamentations', 'Ezekiel', 'Daniel', 'Hosea', 'Joel',
+        'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk',
+        'Zephaniah', 'Haggai', 'Zechariah', 'Malachi'
+    ];
+
+    // NT Books (27)
+    const NT_BOOKS = [
+        'Matthew', 'Mark', 'Luke', 'John', 'Acts',
+        'Romans', '1 Corinthians', '2 Corinthians', 'Galatians',
+        'Ephesians', 'Philippians', 'Colossians', '1 Thessalonians',
+        '2 Thessalonians', '1 Timothy', '2 Timothy', 'Titus',
+        'Philemon', 'Hebrews', 'James', '1 Peter', '2 Peter',
+        '1 John', '2 John', '3 John', 'Jude', 'Revelation'
+    ];
+
+    const ALL_BOOKS = [...OT_BOOKS, ...NT_BOOKS];
+
+    function getFilteredBooks(tab) {
+        if (tab === 'ot') return OT_BOOKS;
+        if (tab === 'nt') return NT_BOOKS;
+        return ALL_BOOKS;
+    }
 
     container.innerHTML = `
         <div class="page active" id="biblePage">
             <div class="container">
+                <!-- Header -->
                 <div class="bible-header">
                     <h2 class="card-title">📖 Bible</h2>
                     <div class="bible-version-select">
                         <select id="bibleVersion">
+                            <option value="KJV" ${bibleData.version === 'KJV' ? 'selected' : ''}>KJV</option>
                             <option value="NKJV" ${bibleData.version === 'NKJV' ? 'selected' : ''}>NKJV</option>
                             <option value="NIV" ${bibleData.version === 'NIV' ? 'selected' : ''}>NIV</option>
-                            <option value="KJV" ${bibleData.version === 'KJV' ? 'selected' : ''}>KJV</option>
-                            <option value="ESV" ${bibleData.version === 'ESV' ? 'selected' : ''}>ESV</option>
                         </select>
                     </div>
                 </div>
 
+                <!-- Search -->
                 <div class="bible-search">
-                    <input type="text" id="bibleSearchInput" placeholder="🔍 Search scriptures (e.g. 'love', 'John 3:16')" />
+                    <input type="text" id="bibleSearchInput" placeholder="🔍 Search scriptures..." />
                     <button id="bibleSearchBtn" class="search-btn">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
 
-                <div id="bibleContent">
-                    <div class="bible-loading" id="bibleLoading" style="display:none;">
-                        <i class="fas fa-spinner fa-spin"></i> Loading...
-                    </div>
-                    <div id="bibleDisplay">
-                        <div class="bible-welcome">
-                            <i class="fas fa-bible"></i>
-                            <p>Select a book to read</p>
-                            <span class="bible-sub">Choose from the books below</span>
-                        </div>
-                    </div>
+                <!-- Tabs: All | OT | NT -->
+                <div class="bible-tabs">
+                    <button class="tab-btn ${bibleData.tab === 'all' ? 'active' : ''}" data-tab="all">All</button>
+                    <button class="tab-btn ${bibleData.tab === 'ot' ? 'active' : ''}" data-tab="ot">OT</button>
+                    <button class="tab-btn ${bibleData.tab === 'nt' ? 'active' : ''}" data-tab="nt">NT</button>
                 </div>
 
-                <div id="bibleBooks" class="bible-book-list"></div>
+                <!-- Book Grid -->
+                <div id="bibleBooks" class="bible-book-grid"></div>
+
+                <!-- Chapter selector (shown when book is selected) -->
                 <div id="bibleChapters" class="bible-chapter-container" style="display:none;"></div>
+
+                <!-- Verses Display -->
+                <div id="bibleContent">
+                    <div class="bible-welcome">
+                        <i class="fas fa-bible"></i>
+                        <p>Select a book to read</p>
+                    </div>
+                </div>
             </div>
         </div>
     `;
 
-    // Show books
-    const books = BibleAPI.getBibleBooks();
-    const bookContainer = document.getElementById('bibleBooks');
-    const savedBook = bibleData.book;
-    
-    bookContainer.innerHTML = books.map(book => `
-        <div class="book-item ${book.name === savedBook ? 'active' : ''}" data-book="${book.name}">
-            ${book.name}
-            <span class="book-chapters">${book.chapters}</span>
-        </div>
-    `).join('');
+    // ============================================
+    // RENDER BOOK GRID
+    // ============================================
+    function renderBooks(tab) {
+        const bookContainer = document.getElementById('bibleBooks');
+        const filtered = getFilteredBooks(tab);
+        
+        bookContainer.innerHTML = filtered.map(book => `
+            <div class="book-item ${book === bibleData.book ? 'active' : ''}" data-book="${book}">
+                <span class="book-name">${book}</span>
+                <span class="book-chapters">${BibleAPI.getTotalChapters(book)}</span>
+            </div>
+        `).join('');
 
-    // Book click handler
-    bookContainer.querySelectorAll('.book-item').forEach(el => {
-        el.addEventListener('click', async function() {
-            const book = this.dataset.book;
-            bibleData.book = book;
-            bibleData.chapter = 1;
-            Storage.set('gsc-bible-state', bibleData);
-            
-            bookContainer.querySelectorAll('.book-item').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            await loadChapters(book, bibleData.version);
-        });
-    });
+        // Book click
+        bookContainer.querySelectorAll('.book-item').forEach(el => {
+            el.addEventListener('click', async function() {
+                const book = this.dataset.book;
+                bibleData.book = book;
+                bibleData.chapter = 1;
+                Storage.set('gsc-bible-state', bibleData);
 
-    // Version change
-    document.getElementById('bibleVersion')?.addEventListener('change', async function() {
-        bibleData.version = this.value;
-        Storage.set('gsc-bible-state', bibleData);
-        if (bibleData.book) {
-            await loadChapters(bibleData.book, bibleData.version);
-        }
-    });
+                document.querySelectorAll('.book-item').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
 
-    // Search
-    const searchInput = document.getElementById('bibleSearchInput');
-    const searchBtn = document.getElementById('bibleSearchBtn');
-    
-    const performSearch = async () => {
-        const query = searchInput.value.trim();
-        if (!query || query.length < 2) {
-            if (showToast) showToast('📖 Please enter at least 2 characters');
-            return;
-        }
-        
-        const display = document.getElementById('bibleDisplay');
-        const loading = document.getElementById('bibleLoading');
-        
-        loading.style.display = 'block';
-        display.innerHTML = '';
-        
-        try {
-            const results = await BibleAPI.searchBible(query, bibleData.version);
-            loading.style.display = 'none';
-            
-            if (results && results.length > 0) {
-                display.innerHTML = `
-                    <div class="search-results">
-                        <h4 class="search-results-title">🔍 Results for "${query}" (${results.length})</h4>
-                        ${results.map(r => `
-                            <div class="search-result-item" data-ref="${r.reference}">
-                                <div class="search-result-ref">${r.reference}</div>
-                                <div class="search-result-text">${r.text}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                display.querySelectorAll('.search-result-item').forEach(el => {
-                    el.addEventListener('click', () => {
-                        if (onVerseSelect) {
-                            onVerseSelect({ 
-                                reference: el.dataset.ref, 
-                                text: el.querySelector('.search-result-text').textContent 
-                            });
-                        }
-                    });
-                });
-            } else {
-                display.innerHTML = `
-                    <div class="search-empty">
-                        <p>No results found for "${query}"</p>
-                        <span class="bible-sub">Try a different word or reference</span>
-                    </div>
-                `;
-            }
-        } catch (error) {
-            loading.style.display = 'none';
-            display.innerHTML = `
-                <div class="search-error">
-                    <p>⚠️ Search failed</p>
-                    <span class="bible-sub">Please check your internet connection</span>
-                </div>
-            `;
-        }
-    };
-    
-    searchBtn?.addEventListener('click', performSearch);
-    searchInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') performSearch();
-    });
-
-    // Load chapters function
-    async function loadChapters(book, version) {
-        const chaptersContainer = document.getElementById('bibleChapters');
-        const display = document.getElementById('bibleDisplay');
-        const loading = document.getElementById('bibleLoading');
-        
-        chaptersContainer.style.display = 'block';
-        loading.style.display = 'block';
-        
-        try {
-            const totalChapters = BibleAPI.getTotalChapters(book);
-            
-            chaptersContainer.innerHTML = `
-                <div class="chapter-header">
-                    <span class="chapter-book-name">${book}</span>
-                    <div class="chapter-list">
-                        ${Array.from({length: Math.min(totalChapters, 50)}, (_, i) => i + 1).map(c => `
-                            <button class="chapter-btn ${c === bibleData.chapter ? 'active' : ''}" data-chapter="${c}">${c}</button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-            
-            chaptersContainer.querySelectorAll('.chapter-btn').forEach(btn => {
-                btn.addEventListener('click', async function() {
-                    const chapter = parseInt(this.dataset.chapter);
-                    bibleData.chapter = chapter;
-                    Storage.set('gsc-bible-state', bibleData);
-                    
-                    chaptersContainer.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    await loadVerses(book, chapter, version);
-                });
+                await loadChapters(book);
+                await loadVerses(book, 1);
             });
-            
-            await loadVerses(book, bibleData.chapter, version);
-            
-        } catch (error) {
-            console.error('Error loading chapters:', error);
-            chaptersContainer.innerHTML = `<p style="color:var(--text-light);">Error loading chapters</p>`;
-        } finally {
-            loading.style.display = 'none';
-        }
+        });
     }
 
-    async function loadVerses(book, chapter, version) {
-        const display = document.getElementById('bibleDisplay');
-        const loading = document.getElementById('bibleLoading');
+    // ============================================
+    // LOAD CHAPTERS
+    // ============================================
+    async function loadChapters(book) {
+        const container = document.getElementById('bibleChapters');
+        const total = BibleAPI.getTotalChapters(book);
         
-        loading.style.display = 'block';
-        display.innerHTML = '';
+        container.style.display = 'block';
+        container.innerHTML = `
+            <div class="chapter-list-horizontal">
+                ${Array.from({length: Math.min(total, 50)}, (_, i) => i + 1).map(c => `
+                    <button class="chapter-btn ${c === bibleData.chapter ? 'active' : ''}" data-chapter="${c}">${c}</button>
+                `).join('')}
+            </div>
+        `;
+
+        container.querySelectorAll('.chapter-btn').forEach(btn => {
+            btn.addEventListener('click', async function() {
+                const chapter = parseInt(this.dataset.chapter);
+                bibleData.chapter = chapter;
+                Storage.set('gsc-bible-state', bibleData);
+
+                container.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                await loadVerses(book, chapter);
+            });
+        });
+    }
+
+    // ============================================
+    // LOAD VERSES - CLEAN DISPLAY
+    // ============================================
+    async function loadVerses(book, chapter) {
+        const display = document.getElementById('bibleContent');
+        const version = document.getElementById('bibleVersion')?.value || 'KJV';
         
+        display.innerHTML = `
+            <div style="text-align:center; padding:20px;">
+                <i class="fas fa-spinner fa-spin"></i> Loading...
+            </div>
+        `;
+
         try {
             const verses = await BibleAPI.fetchChapterVerses(book, chapter, version);
-            loading.style.display = 'none';
             
             if (verses && verses.length > 0) {
                 display.innerHTML = `
@@ -505,32 +459,120 @@ export async function renderBible(container, props) {
                 `;
             } else {
                 display.innerHTML = `
-                    <div class="verses-empty">
+                    <div class="bible-welcome">
                         <p>No verses found</p>
-                        <span class="bible-sub">Try a different chapter</span>
                     </div>
                 `;
             }
         } catch (error) {
-            loading.style.display = 'none';
             display.innerHTML = `
-                <div class="verses-error">
+                <div class="bible-welcome">
                     <p>⚠️ Error loading verses</p>
-                    <span class="bible-sub">Please check your internet connection</span>
                 </div>
             `;
         }
     }
 
-    // Load initial book if exists
-    if (bibleData.book) {
-        const bookItems = bookContainer.querySelectorAll('.book-item');
-        bookItems.forEach(el => {
-            if (el.dataset.book === bibleData.book) {
-                el.classList.add('active');
-            }
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+
+    // Version change
+    document.getElementById('bibleVersion')?.addEventListener('change', async function() {
+        bibleData.version = this.value;
+        Storage.set('gsc-bible-state', bibleData);
+        if (bibleData.book) {
+            await loadVerses(bibleData.book, bibleData.chapter);
+        }
+    });
+
+    // Tab clicks
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tab = this.dataset.tab;
+            bibleData.tab = tab;
+            Storage.set('gsc-bible-state', bibleData);
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            renderBooks(tab);
         });
-        await loadChapters(bibleData.book, bibleData.version);
+    });
+
+    // Search
+    const searchInput = document.getElementById('bibleSearchInput');
+    const searchBtn = document.getElementById('bibleSearchBtn');
+
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        if (!query || query.length < 2) {
+            if (showToast) showToast('Please enter at least 2 characters');
+            return;
+        }
+
+        const display = document.getElementById('bibleContent');
+        display.innerHTML = `
+            <div style="text-align:center; padding:20px;">
+                <i class="fas fa-spinner fa-spin"></i> Searching...
+            </div>
+        `;
+
+        try {
+            const results = await BibleAPI.searchBible(query, 'KJV');
+            
+            if (results && results.length > 0) {
+                display.innerHTML = `
+                    <div class="search-results">
+                        <h4 class="search-results-title">🔍 Results for "${query}" (${results.length})</h4>
+                        ${results.map(r => `
+                            <div class="search-result-item">
+                                <div class="search-result-ref">${r.reference}</div>
+                                <div class="search-result-text">${r.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                display.innerHTML = `
+                    <div class="bible-welcome">
+                        <p>No results found for "${query}"</p>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            display.innerHTML = `
+                <div class="bible-welcome">
+                    <p>⚠️ Search failed</p>
+                </div>
+            `;
+        }
+    }
+
+    searchBtn?.addEventListener('click', performSearch);
+    searchInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+
+    // ============================================
+    // INIT - Load initial data
+    // ============================================
+    
+    renderBooks(bibleData.tab || 'all');
+
+    // If we have a saved book, load it
+    if (bibleData.book) {
+        // Highlight the book
+        setTimeout(async () => {
+            const bookItems = document.querySelectorAll('.book-item');
+            bookItems.forEach(el => {
+                if (el.dataset.book === bibleData.book) {
+                    el.classList.add('active');
+                }
+            });
+            await loadChapters(bibleData.book);
+            await loadVerses(bibleData.book, bibleData.chapter);
+        }, 100);
     }
 }
 

@@ -20,7 +20,7 @@ export const APP_CONFIG = {
             'KJV': '06125adad2d5898a-01',
             'ESV': 'f061b6d2e7d8b6e5-01'
         }
-    }
+    },
 
     storageKeys: {
         theme: 'gsc-theme',
