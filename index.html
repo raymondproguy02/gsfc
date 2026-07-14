@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Consciousness of the Son</title>
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -25,100 +26,69 @@
     </div>
 
     <!-- ============================================
-    DRAWER OVERLAY
+    APP CONTAINER
     ============================================ -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div id="app">
 
-    <!-- ============================================
-    DRAWER
-    ============================================ -->
-    <aside class="drawer" id="drawer">
-        <div class="drawer-header">
-            <h2><i class="fas fa-bible"></i> All Lessons</h2>
-            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="drawer-body">
-            <div class="drawer-progress">
-                <div class="progress-stats">
-                    <span>Progress</span>
-                    <span id="drawerProgressText">0 / 0</span>
-                </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" id="drawerProgressFill"></div>
-                </div>
-            </div>
-            <div class="drawer-lesson-list" id="drawerLessonList">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-    </aside>
-
-    <!-- ============================================
-    HEADER
-    ============================================ -->
-    <header class="site-header">
-        <div class="container header-inner">
-            <div class="header-brand">
-                <i class="fas fa-cross brand-icon"></i>
-                <div>
-                    <h1>
-                        The Consciousness of the Son
+        <!-- ============================================
+        HEADER
+        ============================================ -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="header-brand" id="brandHome">
+                    <i class="fas fa-cross brand-icon"></i>
+                    <div>
+                        <h1>The Consciousness of the Son</h1>
                         <span class="brand-sub">Grace Spring Family Church</span>
-                    </h1>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
-            <div class="header-actions">
-                <button id="drawerToggle" aria-label="Open lesson menu" title="All Lessons">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="progress-badge">
-                    <i class="fas fa-check-circle"></i>
-                    <span id="headerProgress">0%</span>
-                </div>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- ============================================
-    DAILY VERSE
-    ============================================ -->
-    <div class="container">
-        <div class="daily-verse-container" id="dailyVerse">
-            <div class="daily-verse-label">📖 Verse of the Day</div>
-            <div class="daily-verse-text" id="dailyVerseText">"He that spared not his own Son..."</div>
-            <div class="daily-verse-ref" id="dailyVerseRef">— Romans 8:32</div>
-        </div>
+        <!-- ============================================
+        MAIN CONTENT AREA (Pages render here)
+        ============================================ -->
+        <main class="main-content" id="mainContent">
+            <!-- Pages are rendered here by JavaScript -->
+        </main>
+
+        <!-- ============================================
+        BOTTOM NAVIGATION
+        ============================================ -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="nav-item active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-page="lessons">
+                <i class="fas fa-book-open"></i>
+                <span>Lessons</span>
+            </button>
+            <button class="nav-item" data-page="bible">
+                <i class="fas fa-bible"></i>
+                <span>Bible</span>
+            </button>
+            <button class="nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+            <button class="nav-item" data-page="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+        </nav>
+
     </div>
 
     <!-- ============================================
-    MAIN
+    JAVASCRIPT
     ============================================ -->
-    <main class="main-content">
-        <div class="container" id="app">
-            <!-- Rendered by JS -->
-        </div>
-    </main>
-
-    <!-- ============================================
-    FOOTER
-    ============================================ -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>
-                <span class="footer-heart">♥</span>
-                <span class="footer-church">Grace Spring Family Church</span>
-                &mdash; The Consciousness of the Son &bull; Transformation Series
-            </p>
-            <p style="font-size:12px; margin-top:4px; opacity:0.6;">
-                &copy; 2026 &bull; All glory to God
-            </p>
-        </div>
-    </footer>
     <script type="module" src="./js/app.js"></script>
+
 </body>
 </html>

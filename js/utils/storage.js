@@ -1,5 +1,3 @@
-// STORAGE UTILITY
-
 export const Storage = {
     get(key, defaultValue = null) {
         try {
@@ -9,7 +7,6 @@ export const Storage = {
             return defaultValue;
         }
     },
-    
     set(key, value) {
         try {
             localStorage.setItem(key, JSON.stringify(value));
@@ -18,7 +15,6 @@ export const Storage = {
             return false;
         }
     },
-    
     remove(key) {
         try {
             localStorage.removeItem(key);
@@ -28,5 +24,3 @@ export const Storage = {
         }
     }
 };
-
-export default Storage;
