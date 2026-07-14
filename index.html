@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Consciousness of the Son</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================
+               ROOT VARIABLES
+            ============================================ */
+        :root {
+            --bg-primary: #faf8f0;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-header: #2c1a0e;
+            --text-primary: #2c1a0e;
+            --text-secondary: #5a4a3a;
+            --text-light: #8a7a6a;
+            --accent-gold: #c8a45c;
+            --accent-gold-light: #e8d5a8;
+            --accent-purple: #6b3fa0;
+            --accent-purple-light: #e8dce8;
+            --accent-blue: #2c3e6b;
+            --accent-blue-light: #d4dce8;
+            --accent-green: #7baf7a;
+            --accent-green-light: #e0f0df;
+            --accent-orange: #e8a87c;
+            --accent-orange-light: #f5e4d8;
+            --accent-lavender: #d4c5e8;
+            --shadow-sm: 0 2px 8px rgba(44, 26, 14, 0.06);
+            --shadow-md: 0 8px 32px rgba(44, 26, 14, 0.10);
+            --shadow-lg: 0 16px 64px rgba(44, 26, 14, 0.14);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 50px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            --max-width: 860px;
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --bg-primary: #1a1210;
+            --bg-secondary: #261e1a;
+            --bg-card: #2c2420;
+            --bg-header: #0d0806;
+            --text-primary: #f0e8e0;
+            --text-secondary: #c8bdb5;
+            --text-light: #a09080;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ============================================
+               RESET & BASE
+            ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            background: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+               SCROLLBAR
+            ============================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8944a;
+        }
+
+        /* ============================================
+               HEADER
+            ============================================ */
+        .site-header {
+            background: var(--bg-header);
+            padding: 20px 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--accent-gold);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #f0e8e0;
+        }
+
+        .header-brand .brand-icon {
+            font-size: 28px;
+            color: var(--accent-gold);
+        }
+
+        .header-brand h1 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .header-brand .brand-sub {
+            font-size: 11px;
+            opacity: 0.7;
+            font-weight: 400;
+            letter-spacing: 1px;
+            display: block;
+            font-family: var(--font-body);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-actions button {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.08);
+            color: #e0d8d0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.16);
+            transform: translateY(-1px);
+        }
+
+        .header-actions button.active {
+            background: var(--accent-gold);
+            color: #1a1210;
+        }
+
+        .header-actions .progress-badge {
+            background: rgba(255, 255, 255, 0.10);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            color: #e0d8d0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .header-actions .progress-badge span {
+            color: var(--accent-gold);
+        }
+
+        /* ============================================
+               SIDEBAR / DRAWER
+            ============================================ */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 380px;
+            max-width: 88vw;
+            background: var(--bg-secondary);
+            z-index: 300;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        [data-theme="dark"] .drawer-header {
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .drawer-header h2 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .drawer-header h2 i {
+            color: var(--accent-gold);
+        }
+
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: rgba(0, 0, 0, 0.06);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .drawer-close:hover {
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        .drawer-body {
+            padding: 16px 24px 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .drawer-progress {
+            background: var(--bg-primary);
+            padding: 16px 18px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 24px;
+        }
+
+        .drawer-progress .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .drawer-progress .progress-stats span:last-child {
+            color: var(--accent-gold);
+        }
+
+        .drawer-progress .progress-bar-bg {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .drawer-progress .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple));
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+
+        .drawer-lesson-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .drawer-lesson-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+        }
+        .drawer-lesson-item:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        .drawer-lesson-item.active {
+            background: var(--accent-gold-light);
+            color: var(--bg-header);
+        }
+        [data-theme="dark"] .drawer-lesson-item.active {
+            background: rgba(200, 164, 92, 0.2);
+            color: var(--accent-gold);
+        }
+
+        .drawer-lesson-item .lesson-num {
+            width: 28px;
+            height: 28px;
+            border-radius: var(--radius-full);
+            background: rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .drawer-lesson-item.active .lesson-num {
+            background: var(--accent-gold);
+            color: #fff;
+        }
+        .drawer-lesson-item.completed .lesson-num {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        .drawer-lesson-item .lesson-status {
+            margin-left: auto;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        .drawer-lesson-item.completed .lesson-status {
+            color: var(--accent-green);
+        }
+
+        /* ============================================
+               MAIN CONTENT
+            ============================================ */
+        .main-content {
+            padding: 32px 0 80px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple));
+        }
+
+        .welcome-section .welcome-icon {
+            font-size: 48px;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+        }
+
+        .welcome-section h2 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .welcome-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 600px;
+        }
+
+        .welcome-section .welcome-scripture {
+            margin-top: 20px;
+            padding: 20px 24px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--accent-gold);
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+        .welcome-section .welcome-scripture strong {
+            color: var(--text-primary);
+            font-style: normal;
+        }
+
+        /* Lesson Cards */
+        .lesson-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px 40px 48px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .lesson-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .lesson-card .lesson-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-gold-light);
+            color: var(--bg-header);
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        [data-theme="dark"] .lesson-card .lesson-badge {
+            background: rgba(200, 164, 92, 0.15);
+            color: var(--accent-gold);
+        }
+
+        .lesson-card .lesson-title {
+            font-family: var(--font-heading);
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .lesson-card .lesson-subtitle {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .lesson-card .lesson-image {
+            width: 100%;
+            border-radius: var(--radius-sm);
+            margin: 16px 0 24px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--text-light);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+        .lesson-card .lesson-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .lesson-card .lesson-image .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .lesson-card .lesson-content {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .lesson-card .lesson-content p {
+            margin-bottom: 16px;
+        }
+
+        .lesson-card .lesson-content .scripture-block {
+            padding: 20px 24px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--accent-blue);
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        .lesson-card .lesson-content .scripture-block strong {
+            color: var(--text-primary);
+            font-style: normal;
+        }
+
+        .lesson-card .lesson-content .highlight-box {
+            padding: 20px 24px;
+            background: var(--accent-purple-light);
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
+            border: 1px solid rgba(107, 63, 160, 0.15);
+        }
+        [data-theme="dark"] .lesson-card .lesson-content .highlight-box {
+            background: rgba(107, 63, 160, 0.12);
+        }
+
+        .lesson-card .lesson-content .highlight-box i {
+            color: var(--accent-purple);
+            margin-right: 8px;
+        }
+
+        /* Meditation Section */
+        .meditation-block {
+            margin: 28px 0 0;
+            padding: 24px 28px;
+            background: var(--accent-blue-light);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(44, 62, 107, 0.10);
+        }
+        [data-theme="dark"] .meditation-block {
+            background: rgba(44, 62, 107, 0.12);
+        }
+
+        .meditation-block .meditation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--accent-blue);
+        }
+        .meditation-block .meditation-header i {
+            font-size: 20px;
+        }
+        .meditation-block p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .meditation-block .meditation-timer {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .meditation-block .meditation-timer:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .meditation-block .meditation-timer i {
+            color: var(--accent-blue);
+        }
+
+        /* Exercise Block */
+        .exercise-block {
+            margin: 20px 0 0;
+            padding: 24px 28px;
+            background: var(--accent-orange-light);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(232, 168, 124, 0.15);
+        }
+        [data-theme="dark"] .exercise-block {
+            background: rgba(232, 168, 124, 0.08);
+        }
+
+        .exercise-block .exercise-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--accent-orange);
+        }
+        .exercise-block .exercise-header i {
+            font-size: 20px;
+        }
+        .exercise-block p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .exercise-block .exercise-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .exercise-block .exercise-check:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .exercise-block .exercise-check.checked {
+            background: var(--accent-green);
+            color: #fff;
+        }
+        .exercise-block .exercise-check.checked i {
+            color: #fff;
+        }
+
+        /* Prayer Block */
+        .prayer-block {
+            margin: 20px 0 0;
+            padding: 24px 28px;
+            background: var(--accent-lavender);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(212, 197, 232, 0.2);
+            text-align: center;
+        }
+        [data-theme="dark"] .prayer-block {
+            background: rgba(212, 197, 232, 0.06);
+        }
+
+        .prayer-block .prayer-icon {
+            font-size: 32px;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+        }
+        .prayer-block p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .prayer-block .prayer-declaration {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-style: normal;
+            font-size: 16px;
+        }
+
+        /* Beloved Closing */
+        .beloved-closing {
+            margin-top: 24px;
+            padding: 20px 24px;
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: var(--accent-gold);
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding-top: 24px;
+        }
+        .beloved-closing span {
+            display: block;
+            font-size: 32px;
+            margin-top: 4px;
+        }
+
+        /* ============================================
+               NAVIGATION
+            ============================================ */
+        .lesson-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-nav button {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .lesson-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .lesson-nav button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .lesson-nav button.primary {
+            background: var(--bg-header);
+            color: #f0e8e0;
+            border-color: var(--bg-header);
+        }
+        .lesson-nav button.primary:hover {
+            background: #3d2a1a;
+        }
+        .lesson-nav .nav-center {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .lesson-nav .nav-center span {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ============================================
+               READ ALOUD, NOTES, SHARE, DAILY VERSE
+            ============================================ */
+
+        /* Daily Verse */
+        .daily-verse-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 16px 24px;
+            margin: 0 auto 24px;
+            max-width: var(--max-width);
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+        .daily-verse-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+        .daily-verse-text {
+            font-style: italic;
+            font-size: 16px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .daily-verse-ref {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-top: 4px;
+        }
+
+        /* Read Aloud */
+        .read-aloud-block {
+            margin: 16px 0 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .read-aloud-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .read-aloud-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        .read-aloud-btn i {
+            font-size: 16px;
+        }
+        .read-aloud-btn.playing {
+            background: var(--accent-red) !important;
+            color: #fff !important;
+            border-color: var(--accent-red) !important;
+        }
+        .read-aloud-btn.playing i {
+            color: #fff !important;
+        }
+        .read-aloud-btn .speed-control {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 4px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .read-aloud-btn .speed-control select {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 2px 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        [data-theme="dark"] .read-aloud-btn .speed-control select {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        /* Notes */
+        .notes-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 8px;
+        }
+        .notes-toggle-btn:hover {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .notes-toggle-btn i {
+            font-size: 14px;
+        }
+        .notes-toggle-btn.active {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .notes-block {
+            margin: 16px 0 0;
+            padding: 20px 24px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+        }
+        [data-theme="dark"] .notes-block {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+        .notes-block .notes-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .notes-block .notes-header .notes-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+        .notes-block .notes-header .notes-title i {
+            color: var(--accent-gold);
+        }
+        .notes-block .notes-actions {
+            display: flex;
+            gap: 6px;
+        }
+        .notes-block .notes-actions button {
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 500;
+            transition: var(--transition);
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text-light);
+            border: 1px solid transparent;
+        }
+        .notes-block .notes-actions button:hover {
+            background: rgba(0, 0, 0, 0.08);
+            color: var(--text-primary);
+        }
+        .notes-block .notes-actions button.save-btn {
+            background: var(--accent-gold);
+            color: #1a1210;
+        }
+        .notes-block .notes-actions button.save-btn:hover {
+            background: #dbb86a;
+        }
+        .notes-block textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: var(--transition);
+            outline: none;
+        }
+        .notes-block textarea:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 4px rgba(200, 164, 92, 0.12);
+        }
+        .notes-block textarea::placeholder {
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .notes-block .notes-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .notes-block .notes-footer .char-count {
+            font-size: 12px;
+        }
+        .notes-block .notes-footer .char-count.limit {
+            color: var(--accent-red);
+        }
+        .notes-block .notes-footer .saved-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+        .notes-block .notes-footer .saved-indicator i {
+            font-size: 14px;
+        }
+        .notes-block .notes-footer .saved-indicator.saved {
+            color: var(--accent-green);
+        }
+        .notes-block .notes-footer .saved-indicator.unsaved {
+            color: var(--accent-orange);
+        }
+
+        /* Share Button */
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 8px;
+        }
+        .share-btn:hover {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .share-btn i {
+            font-size: 14px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-header);
+            color: #f0e8e0;
+            padding: 14px 28px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 400;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            max-width: 90vw;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast i {
+            color: var(--accent-gold);
+            font-size: 18px;
+        }
+
+        /* ============================================
+               FOOTER
+            ============================================ */
+        .site-footer {
+            padding: 32px 0 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 16px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        .site-footer .footer-heart {
+            color: #e74c3c;
+        }
+        .site-footer .footer-church {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* ============================================
+               RESPONSIVE
+            ============================================ */
+        @media (max-width: 768px) {
+            .header-brand h1 {
+                font-size: 16px;
+            }
+            .header-brand .brand-sub {
+                font-size: 10px;
+            }
+            .header-actions .progress-badge {
+                font-size: 11px;
+                padding: 4px 12px;
+            }
+            .header-actions button {
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+            }
+
+            .welcome-section {
+                padding: 28px 20px;
+            }
+            .welcome-section h2 {
+                font-size: 22px;
+            }
+
+            .lesson-card {
+                padding: 24px 20px 32px;
+            }
+            .lesson-card .lesson-title {
+                font-size: 21px;
+            }
+
+            .drawer {
+                width: 320px;
+                max-width: 92vw;
+            }
+
+            .lesson-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .lesson-nav button {
+                justify-content: center;
+            }
+            .lesson-nav .nav-center {
+                text-align: center;
+            }
+
+            .meditation-block,
+            .exercise-block,
+            .prayer-block {
+                padding: 18px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .header-brand .brand-sub {
+                display: none;
+            }
+            .header-actions .progress-badge {
+                font-size: 10px;
+                padding: 3px 10px;
+            }
+            .header-actions .progress-badge i {
+                display: none;
+            }
+            .welcome-section .welcome-scripture {
+                font-size: 14px;
+                padding: 16px;
+            }
+            .lesson-card .lesson-content {
+                font-size: 15px;
+            }
+        }
+
+        /* ============================================
+               HIDDEN UTILITY
+            ============================================ */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+    TOAST
+    ============================================ -->
+    <div class="toast" id="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage">Done!</span>
+    </div>
+
+    <!-- ============================================
+    DRAWER OVERLAY
+    ============================================ -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- ============================================
+    DRAWER
+    ============================================ -->
+    <aside class="drawer" id="drawer">
+        <div class="drawer-header">
+            <h2><i class="fas fa-bible"></i> All Lessons</h2>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <div class="drawer-progress">
+                <div class="progress-stats">
+                    <span>Progress</span>
+                    <span id="drawerProgressText">0 / 0</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="drawerProgressFill"></div>
+                </div>
+            </div>
+            <div class="drawer-lesson-list" id="drawerLessonList">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- ============================================
+    HEADER
+    ============================================ -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="header-brand">
+                <i class="fas fa-cross brand-icon"></i>
+                <div>
+                    <h1>
+                        The Consciousness of the Son
+                        <span class="brand-sub">Grace Spring Family Church</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="drawerToggle" aria-label="Open lesson menu" title="All Lessons">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="progress-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="headerProgress">0%</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+    DAILY VERSE
+    ============================================ -->
+    <div class="container">
+        <div class="daily-verse-container" id="dailyVerse">
+            <div class="daily-verse-label">📖 Verse of the Day</div>
+            <div class="daily-verse-text" id="dailyVerseText">"He that spared not his own Son..."</div>
+            <div class="daily-verse-ref" id="dailyVerseRef">— Romans 8:32</div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    MAIN
+    ============================================ -->
+    <main class="main-content">
+        <div class="container" id="app">
+            <!-- Rendered by JS -->
+        </div>
+    </main>
+
+    <!-- ============================================
+    FOOTER
+    ============================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>
+                <span class="footer-heart">♥</span>
+                <span class="footer-church">Grace Spring Family Church</span>
+                &mdash; The Consciousness of the Son &bull; Transformation Series
+            </p>
+            <p style="font-size:12px; margin-top:4px; opacity:0.6;">
+                &copy; 2026 &bull; All glory to God
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+    JAVASCRIPT
+    ============================================ -->
+    <script>
+        // ============================================
+        // LESSONS DATA — Add your lessons here!
+        // ============================================
+        const LESSONS = [
+            // === WELCOME (id: 0) ===
+            {
+                id: 0,
+                title: "Welcome",
+                isWelcome: true,
+                content: `
+                    <div style="text-align:center; margin-bottom:16px;">
+                        <i class="fas fa-dove" style="font-size:64px; color:var(--accent-gold);"></i>
+                    </div>
+                    <p style="font-size:18px; font-weight:500; text-align:center; color:var(--text-primary);">
+                        Welcome to <strong>The Consciousness of the Son</strong>
+                    </p>
+                    <p>
+                        This is a journey into the depths of what Christ has already accomplished
+                        on your behalf. Over the coming lessons, we will explore what it truly
+                        means to live from the finished work of the Cross — not striving to earn
+                        what has already been freely given, but growing into the reality of our
+                        inheritance in Christ.
+                    </p>
+                    <p>
+                        My prayer is that as you walk through these pages, the eyes of your
+                        understanding will be opened, your heart will be settled in God's love,
+                        and you will discover the freedom that comes from knowing — truly knowing —
+                        that He has already blessed us with every spiritual blessing in Christ.
+                    </p>
+                    <div class="welcome-scripture">
+                        <i class="fas fa-quote-left" style="color:var(--accent-gold); margin-right:8px;"></i>
+                        <strong>"He that spared not his own Son, but delivered him up for us all,
+                        how shall he not with him also freely give us all things?"</strong>
+                        <br />— Romans 8:32
+                    </div>
+                    <p style="margin-top:16px; font-weight:500; text-align:center;">
+                        <i class="fas fa-heart" style="color:var(--accent-gold);"></i>
+                        With love and reflection,
+                        <br /><em>Grace Spring Family Church</em>
+                    </p>
+                `
+            }
+            // ════════════════════════════════════════════════
+            // 📝 ADD YOUR LESSONS BELOW THIS LINE
+            // ════════════════════════════════════════════════
+            // Copy this template for each lesson:
+            // {
+            //     id: 1,
+            //     title: "Your Lesson Title",
+            //     subtitle: "Optional subtitle",
+            //     image: {
+            //         icon: "📖",
+            //         caption: "Image caption"
+            //     },
+            //     content: `
+            //         <p>Your lesson content here...</p>
+            //         <div class="scripture-block">
+            //             <i class="fas fa-quote-left" style="color:var(--accent-gold); margin-right:8px;"></i>
+            //             <strong>"Scripture"</strong>
+            //             <br />— Reference
+            //         </div>
+            //     `,
+            //     meditation: {
+            //         text: "Meditation question",
+            //         instruction: "Meditation instructions"
+            //     },
+            //     exercise: {
+            //         text: "Exercise instructions",
+            //         declaration: "Declaration to speak aloud"
+            //     },
+            //     prayer: "Prayer instruction"
+            // }
+        ];
+
+        // ============================================
+        // DAILY VERSE — Add your verses here!
+        // ============================================
+        const VERSES = [
+            { verse: "He that spared not his own Son, but delivered him up for us all, how shall he not with him also freely give us all things?", reference: "Romans 8:32", theme: "God's Generosity" },
+            // ════════════════════════════════════════════════
+            // 📝 ADD YOUR 200+ VERSES BELOW THIS LINE
+            // ════════════════════════════════════════════════
+        ];
+
+        // ============================================
+        // APP STATE
+        // ============================================
+        let currentLesson = 0;
+        let completedLessons = new Set();
+        let darkMode = localStorage.getItem('gsc-theme') === 'dark';
+
+        // ============================================
+        // DOM REFS
+        // ============================================
+        const app = document.getElementById('app');
+        const drawer = document.getElementById('drawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerLessonList = document.getElementById('drawerLessonList');
+        const drawerProgressText = document.getElementById('drawerProgressText');
+        const drawerProgressFill = document.getElementById('drawerProgressFill');
+        const headerProgress = document.getElementById('headerProgress');
+        const themeToggle = document.getElementById('themeToggle');
+        const drawerToggle = document.getElementById('drawerToggle');
+        const drawerClose = document.getElementById('drawerClose');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const dailyVerseText = document.getElementById('dailyVerseText');
+        const dailyVerseRef = document.getElementById('dailyVerseRef');
+
+        // ============================================
+        // THEME
+        // ============================================
+        function applyTheme() {
+            if (darkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+            localStorage.setItem('gsc-theme', darkMode ? 'dark' : 'light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            darkMode = !darkMode;
+            applyTheme();
+        });
+
+        // ============================================
+        // TOAST
+        // ============================================
+        let toastTimeout;
+
+        function showToast(msg) {
+            toastMessage.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ============================================
+        // DAILY VERSE
+        // ============================================
+        function displayDailyVerse() {
+            if (VERSES.length === 0) {
+                dailyVerseText.textContent = '"He that spared not his own Son..."';
+                dailyVerseRef.textContent = '— Romans 8:32';
+                return;
+            }
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = now - start;
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOfYear = Math.floor(diff / oneDay);
+            const index = dayOfYear % VERSES.length;
+            const verse = VERSES[index];
+            if (verse) {
+                dailyVerseText.textContent = `"${verse.verse}"`;
+                dailyVerseRef.textContent = `— ${verse.reference}`;
+            }
+        }
+
+        // ============================================
+        // DRAWER
+        // ============================================
+        function openDrawer() {
+            drawer.classList.add('open');
+            drawerOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            renderDrawer();
+        }
+
+        function closeDrawer() {
+            drawer.classList.remove('open');
+            drawerOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        drawerToggle.addEventListener('click', openDrawer);
+        drawerClose.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDrawer();
+        });
+
+        // ============================================
+        // RENDER DRAWER
+        // ============================================
+        function renderDrawer() {
+            const total = LESSONS.length;
+            const done = completedLessons.size;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            drawerProgressText.textContent = `${done} / ${total}`;
+            drawerProgressFill.style.width = `${pct}%`;
+            headerProgress.textContent = `${pct}%`;
+
+            let html = '';
+            LESSONS.forEach((lesson, idx) => {
+                const isActive = idx === currentLesson;
+                const isWelcome = lesson.isWelcome || false;
+                const isDone = completedLessons.has(idx);
+                const label = isWelcome ? 'Welcome' : `Lesson ${idx}`;
+                const icon = isDone ? 'fa-check-circle' : (isActive ? 'fa-circle' : 'fa-circle-o');
+
+                html += `
+                        <div class="drawer-lesson-item ${isActive ? 'active' : ''} ${isDone ? 'completed' : ''}"
+                             data-index="${idx}">
+                            <span class="lesson-num">${isWelcome ? '✦' : idx}</span>
+                            <span>${label}: ${lesson.title}</span>
+                            <span class="lesson-status"><i class="fas ${icon}"></i></span>
+                        </div>
+                    `;
+            });
+
+            drawerLessonList.innerHTML = html;
+
+            drawerLessonList.querySelectorAll('.drawer-lesson-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const idx = parseInt(el.dataset.index);
+                    if (idx !== currentLesson) {
+                        goToLesson(idx);
+                        closeDrawer();
+                    } else {
+                        closeDrawer();
+                    }
+                });
+            });
+        }
+
+        // ============================================
+        // RENDER LESSON
+        // ============================================
+        function renderLesson(index) {
+            const lesson = LESSONS[index];
+            if (!lesson) return;
+
+            currentLesson = index;
+
+            let html = '';
+
+            if (lesson.isWelcome) {
+                html = `
+                        <div class="welcome-section">
+                            <div class="welcome-icon"><i class="fas fa-dove"></i></div>
+                            <h2>${lesson.title}</h2>
+                            ${lesson.content}
+                        </div>
+                    `;
+            } else {
+                const hasImage = lesson.image;
+                const hasMeditation = lesson.meditation;
+                const hasExercise = lesson.exercise;
+                const hasPrayer = lesson.prayer;
+
+                html = `
+                        <div class="lesson-card" data-lesson="${index}">
+                            <div class="lesson-badge">
+                                <i class="fas fa-book-open"></i>
+                                Lesson ${index}
+                            </div>
+                            <h2 class="lesson-title">${lesson.title}</h2>
+                            ${lesson.subtitle ? `<p class="lesson-subtitle">${lesson.subtitle}</p>` : ''}
+
+                            ${hasImage ? `
+                                <div class="lesson-image">
+                                    <span style="font-size:80px;">${hasImage.icon || '📖'}</span>
+                                    ${hasImage.caption ? `<div class="image-caption">${hasImage.caption}</div>` : ''}
+                                </div>
+                            ` : ''}
+
+                            <div class="lesson-content">
+                                ${lesson.content}
+
+                                ${hasMeditation ? `
+                                    <div class="meditation-block">
+                                        <div class="meditation-header">
+                                            <i class="fas fa-praying-hands"></i>
+                                            Meditation
+                                        </div>
+                                        <p><strong>“${hasMeditation.text}”</strong></p>
+                                        <p>${hasMeditation.instruction}</p>
+                                        <button class="meditation-timer" data-minutes="2">
+                                            <i class="fas fa-clock"></i>
+                                            <span>2 min</span>
+                                        </button>
+                                    </div>
+                                ` : ''}
+
+                                ${hasExercise ? `
+                                    <div class="exercise-block">
+                                        <div class="exercise-header">
+                                            <i class="fas fa-pen-fancy"></i>
+                                            Exercise
+                                        </div>
+                                        <p>${hasExercise.text}</p>
+                                        ${hasExercise.declaration ? `
+                                            <p style="font-style:italic; color:var(--text-primary); font-weight:500; padding:12px 16px; background:rgba(255,255,255,0.3); border-radius:8px;">
+                                                “${hasExercise.declaration}”
+                                            </p>
+                                        ` : ''}
+                                        <button class="exercise-check" data-lesson="${index}">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>${completedLessons.has(index) ? 'Completed ✓' : 'Mark Complete'}</span>
+                                        </button>
+                                    </div>
+                                ` : ''}
+
+                                ${hasPrayer ? `
+                                    <div class="prayer-block">
+                                        <div class="prayer-icon"><i class="fas fa-dove"></i></div>
+                                        <p>${hasPrayer}</p>
+                                        <p style="margin-top:8px; font-size:13px; color:var(--text-light);">
+                                            <i class="fas fa-arrow-right"></i> Close your eyes and pray
+                                        </p>
+                                    </div>
+                                ` : ''}
+
+                                ${index === LESSONS.length - 1 ? `
+                                    <div class="beloved-closing">
+                                        <i class="fas fa-heart" style="color:var(--accent-gold);"></i>
+                                        Beloved. 🥰
+                                        <span style="font-size:14px; font-weight:400; color:var(--text-light); font-family:var(--font-body);">
+                                            The journey continues. Walk in the truth.
+                                        </span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `;
+            }
+
+            // Read Aloud, Notes, Share
+            const hasMeditation = lesson.meditation;
+            const hasExercise = lesson.exercise;
+            const hasPrayer = lesson.prayer;
+
+            if (!lesson.isWelcome) {
+                html += `
+                        <div class="read-aloud-block">
+                            <button class="read-aloud-btn" data-lesson="${index}">
+                                <i class="fas fa-volume-up"></i>
+                                <span>Read Aloud</span>
+                                <span class="speed-control">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <select class="speed-select">
+                                        <option value="0.7">0.7x</option>
+                                        <option value="0.9">0.9x</option>
+                                        <option value="1" selected>1x</option>
+                                        <option value="1.2">1.2x</option>
+                                        <option value="1.5">1.5x</option>
+                                        <option value="2">2x</option>
+                                    </select>
+                                </span>
+                            </button>
+                            <button class="notes-toggle-btn" data-lesson="${index}">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>Notes</span>
+                                <span class="notes-badge" style="display:none; background:var(--accent-gold); color:#1a1210; border-radius:50%; padding:0 8px; font-size:11px; font-weight:700;"></span>
+                            </button>
+                            <button class="share-btn" id="shareProgressBtn">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share</span>
+                            </button>
+                        </div>
+
+                        <div class="notes-block" id="notes-${index}" style="display:none;">
+                            <div class="notes-header">
+                                <div class="notes-title">
+                                    <i class="fas fa-sticky-note"></i>
+                                    <span>My Notes</span>
+                                </div>
+                                <div class="notes-actions">
+                                    <button class="save-btn" data-lesson="${index}">
+                                        <i class="fas fa-save"></i> Save
+                                    </button>
+                                    <button class="clear-btn" data-lesson="${index}">
+                                        <i class="fas fa-trash-alt"></i> Clear
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea 
+                                class="notes-textarea" 
+                                data-lesson="${index}" 
+                                placeholder="Write your thoughts, revelations, or key takeaways from this lesson..."
+                                maxlength="2000"
+                            ></textarea>
+                            <div class="notes-footer">
+                                <span class="char-count">0 / 2000</span>
+                                <span class="saved-indicator unsaved" id="savedIndicator-${index}">
+                                    <i class="fas fa-circle"></i> Unsaved
+                                </span>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            // Navigation
+            const prevDisabled = index === 0 ? 'disabled' : '';
+            const nextDisabled = index === LESSONS.length - 1 ? 'disabled' : '';
+            const total = LESSONS.length;
+            const displayNum = lesson.isWelcome ? 'Welcome' : `${index} of ${total - 1}`;
+
+            html += `
+                    <div class="lesson-nav">
+                        <button class="${prevDisabled}" ${prevDisabled ? 'disabled' : ''} id="prevLesson">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <div class="nav-center">
+                            <span>${displayNum}</span>
+                        </div>
+                        <button class="${nextDisabled} primary" ${nextDisabled ? 'disabled' : ''} id="nextLesson">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                `;
+
+            app.innerHTML = html;
+
+            // ============================================
+            // ATTACH EVENT LISTENERS
+            // ============================================
+
+            // Navigation
+            document.getElementById('prevLesson')?.addEventListener('click', () => {
+                if (index > 0) goToLesson(index - 1);
+            });
+            document.getElementById('nextLesson')?.addEventListener('click', () => {
+                if (index < LESSONS.length - 1) goToLesson(index + 1);
+            });
+
+            // Exercise Check
+            document.querySelectorAll('.exercise-check').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.dataset.lesson);
+                    if (completedLessons.has(idx)) {
+                        completedLessons.delete(idx);
+                        this.querySelector('span').textContent = 'Mark Complete';
+                        this.classList.remove('checked');
+                        showToast('Unmarked');
+                    } else {
+                        completedLessons.add(idx);
+                        this.querySelector('span').textContent = 'Completed ✓';
+                        this.classList.add('checked');
+                        showToast('✅ Lesson completed!');
+                    }
+                    saveProgress();
+                    renderDrawer();
+                });
+            });
+
+            // Meditation Timer
+            document.querySelectorAll('.meditation-timer').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const minutes = parseInt(this.dataset.minutes) || 2;
+                    const seconds = minutes * 60;
+                    const icon = this.querySelector('i');
+                    const span = this.querySelector('span');
+                    let remaining = seconds;
+
+                    this.disabled = true;
+                    this.style.opacity = '0.6';
+
+                    const origText = span.textContent;
+                    span.textContent = `${minutes}:00`;
+
+                    const timer = setInterval(() => {
+                        remaining--;
+                        const mins = Math.floor(remaining / 60);
+                        const secs = remaining % 60;
+                        span.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+
+                        if (remaining <= 0) {
+                            clearInterval(timer);
+                            span.textContent = '🕊️ Done';
+                            this.disabled = false;
+                            this.style.opacity = '1';
+                            showToast('🕊️ Meditation complete!');
+                            setTimeout(() => {
+                                span.textContent = origText;
+                            }, 2000);
+                        }
+                    }, 1000);
+                });
+            });
+
+            // ============================================
+            // READ ALOUD
+            // ============================================
+            const readBtn = document.querySelector('.read-aloud-btn');
+            if (readBtn) {
+                const lessonData = LESSONS[index];
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = lessonData.content;
+                const textContent = tempDiv.textContent || tempDiv.innerText || '';
+                const cleanText = textContent.replace(/\s+/g, ' ').trim();
+                let isSpeaking = false;
+                let speechSynth = window.speechSynthesis;
+
+                const speedSelect = readBtn.querySelector('.speed-select');
+
+                readBtn.addEventListener('click', function(e) {
+                    if (e.target.closest('.speed-control')) return;
+
+                    if (isSpeaking) {
+                        speechSynth.cancel();
+                        isSpeaking = false;
+                        this.classList.remove('playing');
+                        const icon = this.querySelector('i');
+                        const label = this.querySelector('span:not(.speed-control)');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                        if (label) label.textContent = 'Read Aloud';
+                        return;
+                    }
+
+                    if (!window.speechSynthesis) {
+                        showToast('🔊 Text-to-speech not supported');
+                        return;
+                    }
+
+                    const utterance = new SpeechSynthesisUtterance(cleanText);
+                    const speed = parseFloat(speedSelect?.value) || 1;
+                    utterance.rate = speed;
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+
+                    const voices = speechSynth.getVoices();
+                    const preferred = voices.find(v => v.lang.startsWith('en') && v.name.includes('Google')) ||
+                        voices.find(v => v.lang.startsWith('en')) || null;
+                    if (preferred) utterance.voice = preferred;
+
+                    this.classList.add('playing');
+                    const icon = this.querySelector('i');
+                    const label = this.querySelector('span:not(.speed-control)');
+                    if (icon) icon.className = 'fas fa-stop';
+                    if (label) label.textContent = 'Stop';
+
+                    speechSynth.speak(utterance);
+                    isSpeaking = true;
+
+                    utterance.onend = () => {
+                        isSpeaking = false;
+                        this.classList.remove('playing');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                        if (label) label.textContent = 'Read Aloud';
+                    };
+                    utterance.onerror = () => {
+                        isSpeaking = false;
+                        this.classList.remove('playing');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                        if (label) label.textContent = 'Read Aloud';
+                        showToast('🔊 Speech error');
+                    };
+                });
+
+                // Pre-load voices
+                if (window.speechSynthesis) {
+                    speechSynth.getVoices();
+                    speechSynth.onvoiceschanged = () => {
+                        speechSynth.getVoices();
+                    };
+                }
+            }
+
+            // ============================================
+            // NOTES
+            // ============================================
+            const notesBlock = document.querySelector('.notes-block');
+            const notesToggle = document.querySelector('.notes-toggle-btn');
+            const notesTextarea = document.querySelector('.notes-textarea');
+            const notesSaveBtn = document.querySelector('.save-btn');
+            const notesClearBtn = document.querySelector('.clear-btn');
+            const charCount = document.querySelector('.char-count');
+            const savedIndicator = document.querySelector('.saved-indicator');
+
+            if (notesToggle && notesBlock) {
+                // Load saved notes
+                const savedNotes = getNotes();
+                if (savedNotes[index]) {
+                    notesTextarea.value = savedNotes[index];
+                    updateCharCount(notesTextarea, charCount);
+                    updateIndicator(savedIndicator, true);
+                    updateNotesBadge(index);
+                }
+
+                notesToggle.addEventListener('click', function() {
+                    const isVisible = notesBlock.style.display !== 'none';
+                    notesBlock.style.display = isVisible ? 'none' : 'block';
+                    this.classList.toggle('active');
+                    if (!isVisible) {
+                        notesTextarea.focus();
+                    }
+                });
+
+                notesTextarea.addEventListener('input', function() {
+                    updateCharCount(this, charCount);
+                    updateIndicator(savedIndicator, false);
+                });
+
+                notesTextarea.addEventListener('blur', function() {
+                    saveNote(index, this.value, savedIndicator);
+                });
+
+                notesSaveBtn.addEventListener('click', function() {
+                    saveNote(index, notesTextarea.value, savedIndicator);
+                    showToast('📝 Notes saved!');
+                    updateNotesBadge(index);
+                });
+
+                notesClearBtn.addEventListener('click', function() {
+                    if (notesTextarea.value && !confirm('Clear all notes for this lesson?')) return;
+                    notesTextarea.value = '';
+                    updateCharCount(notesTextarea, charCount);
+                    saveNote(index, '', savedIndicator);
+                    updateNotesBadge(index);
+                    showToast('🗑️ Notes cleared');
+                });
+
+                notesTextarea.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                        e.preventDefault();
+                        notesSaveBtn.click();
+                    }
+                });
+            }
+
+            // ============================================
+            // SHARE PROGRESS
+            // ============================================
+            const shareBtn = document.getElementById('shareProgressBtn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    const total = LESSONS.length;
+                    const done = completedLessons.size;
+                    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+                    const message =
+                        `📖 I've completed ${done}/${total} lessons (${pct}%) in "The Consciousness of the Son"! 🕊️\n\nJoin me at Grace Spring Family Church and grow in Christ.\n\n#ConsciousnessOfTheSon #GraceSpringFamilyChurch`;
+
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'My Progress - The Consciousness of the Son',
+                            text: message,
+                            url: window.location.href
+                        }).catch(() => {});
+                    } else {
+                        navigator.clipboard.writeText(message).then(() => {
+                            showToast('📋 Progress copied to clipboard!');
+                        }).catch(() => {
+                            prompt('Copy this message to share:', message);
+                        });
+                    }
+                });
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' && index > 0 && !e.target.closest('textarea')) {
+                    e.preventDefault();
+                    goToLesson(index - 1);
+                } else if (e.key === 'ArrowRight' && index < LESSONS.length - 1 && !e.target.closest(
+                    'textarea')) {
+                    e.preventDefault();
+                    goToLesson(index + 1);
+                }
+            });
+
+            renderDrawer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================
+        // NOTES HELPERS
+        // ============================================
+        const NOTES_STORAGE_KEY = 'gsc-notes';
+
+        function getNotes() {
+            try {
+                const data = localStorage.getItem(NOTES_STORAGE_KEY);
+                return data ? JSON.parse(data) : {};
+            } catch {
+                return {};
+            }
+        }
+
+        function saveNotesToStorage(notes) {
+            localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
+        }
+
+        function saveNote(lessonId, value, indicator) {
+            const allNotes = getNotes();
+            if (value && value.trim()) {
+                allNotes[lessonId] = value.trim();
+            } else {
+                delete allNotes[lessonId];
+            }
+            saveNotesToStorage(allNotes);
+            updateIndicator(indicator, !!(value && value.trim()));
+        }
+
+        function updateCharCount(textarea, charCountEl) {
+            const count = textarea.value.length;
+            const max = parseInt(textarea.maxLength) || 2000;
+            charCountEl.textContent = `${count} / ${max}`;
+            charCountEl.classList.toggle('limit', count > max * 0.9);
+        }
+
+        function updateIndicator(indicator, isSaved) {
+            if (!indicator) return;
+            if (isSaved) {
+                indicator.className = 'saved-indicator saved';
+                indicator.innerHTML = '<i class="fas fa-check-circle"></i> Saved';
+            } else {
+                indicator.className = 'saved-indicator unsaved';
+                indicator.innerHTML = '<i class="fas fa-circle"></i> Unsaved';
+            }
+        }
+
+        function updateNotesBadge(lessonId) {
+            const toggleBtn = document.querySelector(`.notes-toggle-btn[data-lesson="${lessonId}"]`);
+            if (!toggleBtn) return;
+            const badge = toggleBtn.querySelector('.notes-badge');
+            const allNotes = getNotes();
+            const hasNote = allNotes[lessonId] && allNotes[lessonId].trim();
+
+            if (hasNote) {
+                badge.style.display = 'inline';
+                badge.textContent = '📝';
+                toggleBtn.classList.add('active');
+            } else {
+                badge.style.display = 'none';
+                toggleBtn.classList.remove('active');
+            }
+        }
+
+        // ============================================
+        // SAVE PROGRESS
+        // ============================================
+        function saveProgress() {
+            const data = {
+                completedLessons: Array.from(completedLessons),
+                currentLesson: currentLesson
+            };
+            localStorage.setItem('gsc-progress', JSON.stringify(data));
+        }
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        function goToLesson(index) {
+            if (index < 0 || index >= LESSONS.length) return;
+            renderLesson(index);
+            renderDrawer();
+        }
+
+        // ============================================
+        // INIT
+        // ============================================
+        function init() {
+            applyTheme();
+            displayDailyVerse();
+
+            // Load saved progress
+            const saved = localStorage.getItem('gsc-progress');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    completedLessons = new Set(data.completedLessons || []);
+                    currentLesson = data.currentLesson || 0;
+                } catch (e) {}
+            }
+
+            renderLesson(currentLesson);
+            renderDrawer();
+
+            console.log(`📖 The Consciousness of the Son`);
+            console.log(`📚 ${LESSONS.length} lessons loaded`);
+            console.log(`📖 ${VERSES.length} verses loaded`);
+            console.log(`⌨️  Arrow keys to navigate | 'm' for menu`);
+        }
+
+        // Add 'm' shortcut for menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'm' && !e.ctrlKey && !e.metaKey && !e.target.closest('textarea')) {
+                e.preventDefault();
+                if (drawer.classList.contains('open')) {
+                    closeDrawer();
+                } else {
+                    openDrawer();
+                }
+            }
+        });
+
+        // Start the app
+        init();
+    </script>
+
+</body>
+</html>
