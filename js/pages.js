@@ -5,6 +5,7 @@
 import { VERSES } from './verses.js';
 import { LESSONS } from './lessons.js';
 import { Storage } from './utils/storage.js';
+import { APP_CONFIG } from './config.js'
 import * as BibleAPI from './bible-api.js';
 
 console.log('✅ pages.js loaded!');
@@ -228,21 +229,21 @@ export function renderLessons(container, props) {
                     ` : ''}
 
                     <!-- Read Aloud, Notes, Share -->
-                    <div class="read-aloud-block" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-                        <button class="read-aloud-btn" data-lesson="${idx}">
-                            <i class="fas fa-volume-up"></i>
-                            <span>Read Aloud</span>
-                        </button>
-                        <button class="notes-toggle-btn" data-lesson="${idx}">
-                            <i class="fas fa-sticky-note"></i>
-                            <span>Notes</span>
-                            <span class="notes-badge" style="display:none; background:var(--accent-gold); color:#1a1210; border-radius:50%; padding:0 8px; font-size:11px; font-weight:700;"></span>
-                        </button>
-                        <button class="share-btn" onclick="window._shareLesson(${idx})">
-                            <i class="fas fa-share-alt"></i>
-                            <span>Share</span>
-                        </button>
-                    </div>
+<div class="read-aloud-block">
+    <button class="read-aloud-btn" data-lesson="${idx}">
+        <i class="fas fa-volume-up"></i>
+        <span>Read Aloud</span>
+    </button>
+    <button class="notes-toggle-btn" data-lesson="${idx}">
+        <i class="fas fa-sticky-note"></i>
+        <span>Notes</span>
+        <span class="notes-badge" style="display:none; background:var(--accent-gold); color:#1a1210; border-radius:50%; padding:0 8px; font-size:11px; font-weight:700;"></span>
+    </button>
+    <button class="share-btn" onclick="window._shareLesson(${idx})">
+        <i class="fas fa-share-alt"></i>
+        <span>Share</span>
+    </button>
+</div>
 
                     <div class="notes-block" id="notes-${idx}" style="display:none; margin-top:12px;">
                         <div class="notes-header">

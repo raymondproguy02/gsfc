@@ -849,6 +849,200 @@ select {
 }
 
 /* ============================================
+   READ ALOUD, NOTES, SHARE - Lessons Page
+   ============================================ */
+
+.read-aloud-block {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.read-aloud-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    font-size: 14px;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.read-aloud-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.read-aloud-btn.playing {
+    background: var(--accent-red);
+    color: #fff;
+    border-color: var(--accent-red);
+}
+
+.read-aloud-btn i {
+    font-size: 16px;
+}
+
+.notes-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 500;
+    transition: var(--transition);
+    background: var(--bg-primary);
+    color: var(--text-light);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+}
+
+.notes-toggle-btn:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.notes-toggle-btn.active {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+.notes-toggle-btn i {
+    font-size: 14px;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 500;
+    transition: var(--transition);
+    background: var(--bg-primary);
+    color: var(--text-light);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+}
+
+.share-btn:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.share-btn i {
+    font-size: 14px;
+}
+
+/* Notes Block */
+.notes-block {
+    margin-top: 12px;
+    padding: 16px 20px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.notes-block .notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.notes-block .notes-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.notes-block .notes-title i {
+    color: var(--accent-gold);
+}
+
+.notes-block .notes-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.notes-block .notes-actions button {
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-light);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.notes-block .notes-actions button:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
+}
+
+.notes-block .notes-actions .save-btn {
+    background: var(--accent-gold);
+    color: #1a1210;
+}
+
+.notes-block .notes-actions .save-btn:hover {
+    background: #dbb86a;
+}
+
+.notes-block textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: var(--transition);
+    font-family: var(--font-body);
+}
+
+.notes-block textarea:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(200, 164, 92, 0.12);
+}
+
+.notes-block .notes-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.notes-block .notes-footer .saved-indicator.saved {
+    color: var(--accent-green);
+}
+
+.notes-block .notes-footer .saved-indicator.unsaved {
+    color: var(--accent-orange);
+}
+
+/* ============================================
    PROFILE PAGE
    ============================================ */
 .profile-header-card {
