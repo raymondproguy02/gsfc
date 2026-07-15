@@ -21,7 +21,6 @@ const BIBLE_BOOKS = {
     'Jude': 1, 'Revelation': 22
 };
 
-// API expects these abbreviations
 const BOOK_IDS = {
     'Genesis': 'gen', 'Exodus': 'exo', 'Leviticus': 'lev', 'Numbers': 'num',
     'Deuteronomy': 'deu', 'Joshua': 'jos', 'Judges': 'jdg', 'Ruth': 'rut',
@@ -54,55 +53,40 @@ export function getTotalChapters(book) {
 }
 
 export async function fetchChapterVerses(book, chapter, version = 'KJV') {
-    // Get the API-friendly book ID
     const bookId = BOOK_IDS[book];
     
     if (!bookId) {
         console.error('Book not found:', book);
         return [];
     }
-    
+
     try {
+        // Build the API URL
         const url = `https://bible-api.com/${bookId}+${chapter}?translation=${version.toLowerCase()}`;
         console.log('📡 Fetching:', url);
-        
+
         const response = await fetch(url);
-        
+
         if (!response.ok) {
             console.error('API Error:', response.status);
             return [];
         }
-        
+
         const data = await response.json();
         console.log('📡 Data received:', data);
-        
-        // Check if we got verses
+
+        // ✅ FIX: Check if verses exist and return ALL of them
         if (data && data.verses && data.verses.length > 0) {
-            return data.verses.map(v => ({
+            // Map all verses, not just the first one
+            const allVerses = data.verses.map(v => ({
                 verse: v.verse,
                 text: v.text.trim()
             }));
+            console.log(`✅ Loaded ${allVerses.length} verses for ${book} ${chapter}`);
+            return allVerses;
         }
-        
-        // If no verses, try alternative format (some books need different formatting)
-        // For books with numbers like "1 Timothy", the API might need "1timothy"
-        const altBookId = bookId.replace(' ', '').toLowerCase();
-        if (altBookId !== bookId) {
-            const altUrl = `https://bible-api.com/${altBookId}+${chapter}?translation=${version.toLowerCase()}`;
-            console.log('📡 Trying alternative:', altUrl);
-            
-            const altResponse = await fetch(altUrl);
-            if (altResponse.ok) {
-                const altData = await altResponse.json();
-                if (altData && altData.verses) {
-                    return altData.verses.map(v => ({
-                        verse: v.verse,
-                        text: v.text.trim()
-                    }));
-                }
-            }
-        }
-        
+
+        // If no verses found, return empty array
         return [];
     } catch (error) {
         console.error('Error fetching verses:', error);
@@ -112,15 +96,15 @@ export async function fetchChapterVerses(book, chapter, version = 'KJV') {
 
 export async function searchBible(query, version = 'KJV') {
     if (!query || query.trim().length < 2) return [];
-    
+
     try {
         const url = `https://bible-api.com/search?query=${encodeURIComponent(query)}&translation=${version.toLowerCase()}`;
         const response = await fetch(url);
-        
+
         if (!response.ok) return [];
-        
+
         const data = await response.json();
-        
+
         if (data && data.results) {
             return data.results.slice(0, 20).map(r => ({
                 reference: `${r.book} ${r.chapter}:${r.verse}`,
