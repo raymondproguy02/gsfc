@@ -414,6 +414,142 @@ select {
 }
 
 /* ============================================
+   BIBLE - SEARCH WITH ICON INSIDE
+   ============================================ */
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-wrapper .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 10px 16px 10px 42px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-wrapper input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(200, 164, 92, 0.12);
+}
+
+/* ============================================
+   BIBLE - ACTION BUTTONS
+   ============================================ */
+
+.bible-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bible-actions .action-btn {
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(0,0,0,0.06);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.bible-actions .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.bible-actions .action-btn i {
+    font-size: 16px;
+    color: var(--accent-gold);
+}
+
+/* Back to Books Button */
+.back-to-books-btn {
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    border: 1px solid rgba(0,0,0,0.06);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+}
+
+.back-to-books-btn:hover {
+    background: var(--bg-card);
+}
+
+/* ============================================
+   BIBLE - HEADER (removed title)
+   ============================================ */
+
+.bible-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.bible-version-select select {
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    border: 1px solid rgba(0,0,0,0.08);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+}
+
+.bible-version-select select:focus {
+    border-color: var(--accent-gold);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+    .bible-actions .action-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+    .search-wrapper input {
+        padding: 8px 12px 8px 36px;
+        font-size: 14px;
+    }
+    .search-wrapper .search-icon {
+        left: 10px;
+        font-size: 13px;
+    }
+}
+
+/* ============================================
    BIBLE - GRID & TABS
    ============================================ */
 

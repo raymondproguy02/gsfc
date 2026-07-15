@@ -25,19 +25,13 @@ function getDailyVerse(verses) {
 }
 
 // ============================================
-// HOME PAGE - Clean & Professional
+// HOME PAGE
 // ============================================
 export function renderHome(container, props) {
     console.log('🏠 renderHome called!');
-    
-    const { 
-        lessons, 
-        completedLessons, 
-        userProfile, 
-        showToast,
-        updateStreak
-    } = props;
-    
+
+    const { lessons, completedLessons, userProfile, showToast, updateStreak } = props;
+
     const total = lessons.length;
     const done = completedLessons.size;
     const pct = total > 0 ? Math.round((done / total) * 100) : 0;
@@ -47,8 +41,6 @@ export function renderHome(container, props) {
     container.innerHTML = `
         <div class="page active" id="homePage">
             <div class="container">
-
-                <!-- Top Stats Bar - Clean & Minimal -->
                 <div class="stats-bar">
                     <div class="stats-item">
                         <span class="stats-number">${streak}</span>
@@ -66,14 +58,12 @@ export function renderHome(container, props) {
                     </div>
                 </div>
 
-                <!-- Progress Bar - Thin & Clean -->
                 <div class="progress-bar-container">
                     <div class="progress-bar-track">
                         <div class="progress-bar-fill" style="width:${pct}%;"></div>
                     </div>
                 </div>
 
-                <!-- Welcome Hero Section -->
                 <div class="welcome-hero">
                     <div class="welcome-icon">🌅</div>
                     <h1 class="welcome-title">Welcome to <span>The Consciousness of the Son</span></h1>
@@ -103,14 +93,12 @@ export function renderHome(container, props) {
                     </div>
                 </div>
 
-                <!-- Daily Verse - Clean Card -->
                 <div class="verse-card" onclick="window._navigateToBible()">
                     <div class="verse-label">📖 Verse of the Day</div>
                     <div class="verse-text">"${verse.verse}"</div>
                     <div class="verse-ref">— ${verse.reference}</div>
                 </div>
 
-                <!-- Quick Actions - Clean Buttons -->
                 <div class="action-row">
                     <button class="action-btn-primary" onclick="window._navigateToLessons()">
                         <i class="fas fa-book-open"></i> Continue Learning
@@ -120,18 +108,14 @@ export function renderHome(container, props) {
                     </button>
                 </div>
 
-                <!-- Welcome back message -->
                 <div class="greeting">
-                    Welcome back, <strong>${userProfile?.name || 'Guest'}</strong>! 
+                    Welcome back, <strong>${userProfile?.name || 'Guest'}</strong>!
                     ${done === 0 ? 'Start your journey today.' : `Keep going! You're doing great. 🎉`}
-                    ${done < total && done > 0 ? `<span class="greeting-next">Next: ${lessons[done + 1]?.title || 'Complete the series!'}</span>` : ''}
                 </div>
-
             </div>
         </div>
     `;
 
-    // Expose navigation to window for onclick handlers
     window._navigateToLessons = () => {
         document.querySelector('[data-page="lessons"]')?.click();
     };
@@ -144,15 +128,9 @@ export function renderHome(container, props) {
 // LESSONS PAGE
 // ============================================
 export function renderLessons(container, props) {
-    console.log('📚 renderLessons called!', { container, props });
-    
-    const { 
-        lessons, 
-        completedLessons, 
-        onSelectLesson,
-        showToast,
-        updateStreak
-    } = props;
+    console.log('📚 renderLessons called!');
+
+    const { lessons, completedLessons, onSelectLesson, showToast, updateStreak } = props;
 
     let html = `
         <div class="page active" id="lessonsPage">
@@ -190,7 +168,6 @@ export function renderLessons(container, props) {
 
     container.innerHTML = html;
 
-    // Search filter
     const searchInput = document.getElementById('lessonSearch');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -205,7 +182,6 @@ export function renderLessons(container, props) {
         });
     }
 
-    // Select lesson handler
     window._selectLesson = (idx) => {
         if (onSelectLesson) onSelectLesson(idx);
         const lesson = lessons[idx];
@@ -261,9 +237,9 @@ export function renderLessons(container, props) {
             completedLessons.add(idx);
             if (updateStreak) updateStreak();
         }
-        Storage.set('gsc-progress', { 
-            completedLessons: Array.from(completedLessons), 
-            currentLesson: idx 
+        Storage.set('gsc-progress', {
+            completedLessons: Array.from(completedLessons),
+            currentLesson: idx
         });
         if (showToast) showToast(completedLessons.has(idx) ? '✅ Completed!' : 'Unmarked');
         renderLessons(container, props);
@@ -271,17 +247,16 @@ export function renderLessons(container, props) {
 }
 
 // ============================================
-// BIBLE PAGE - Clean Like a Real Bible App
+// BIBLE PAGE — Clean & Simple (KJV Only)
 // ============================================
 export async function renderBible(container, props) {
     console.log('📖 renderBible called!');
 
-    const { onVerseSelect, showToast } = props;
+    const { showToast } = props;
     const bibleData = Storage.get('gsc-bible-state', {
-        version: 'KJV',
         book: 'John',
         chapter: 1,
-        tab: 'all' // 'all', 'ot', 'nt'
+        tab: 'all'
     });
 
     // OT Books (39)
@@ -314,29 +289,11 @@ export async function renderBible(container, props) {
         return ALL_BOOKS;
     }
 
+    const hasSelection = bibleData.book && bibleData.chapter;
+
     container.innerHTML = `
         <div class="page active" id="biblePage">
             <div class="container">
-                <!-- Header -->
-                <div class="bible-header">
-                    <h2 class="card-title">📖 Bible</h2>
-                    <div class="bible-version-select">
-                        <select id="bibleVersion">
-                            <option value="KJV" ${bibleData.version === 'KJV' ? 'selected' : ''}>KJV</option>
-                            <option value="NKJV" ${bibleData.version === 'NKJV' ? 'selected' : ''}>NKJV</option>
-                            <option value="NIV" ${bibleData.version === 'NIV' ? 'selected' : ''}>NIV</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Search -->
-                <div class="bible-search">
-                    <input type="text" id="bibleSearchInput" placeholder="🔍 Search scriptures..." />
-                    <button id="bibleSearchBtn" class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-
                 <!-- Tabs: All | OT | NT -->
                 <div class="bible-tabs">
                     <button class="tab-btn ${bibleData.tab === 'all' ? 'active' : ''}" data-tab="all">All</button>
@@ -345,9 +302,9 @@ export async function renderBible(container, props) {
                 </div>
 
                 <!-- Book Grid -->
-                <div id="bibleBooks" class="bible-book-grid"></div>
+                <div id="bibleBooks" class="bible-book-grid" style="${hasSelection ? 'display:none;' : ''}"></div>
 
-                <!-- Chapter selector (shown when book is selected) -->
+                <!-- Chapter selector -->
                 <div id="bibleChapters" class="bible-chapter-container" style="display:none;"></div>
 
                 <!-- Verses Display -->
@@ -357,9 +314,39 @@ export async function renderBible(container, props) {
                         <p>Select a book to read</p>
                     </div>
                 </div>
+
+                <!-- Action Buttons -->
+                <div id="bibleActions" class="bible-actions" style="${hasSelection ? 'display:flex;' : 'display:none;'}">
+                    <button class="action-btn" id="bibleReadAloud">
+                        <i class="fas fa-volume-up"></i> Read Aloud
+                    </button>
+                    <button class="action-btn" id="bibleFavorite">
+                        <i class="fas fa-star"></i> Favorite
+                    </button>
+                    <button class="action-btn" id="bibleShare">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
+
+                <!-- Back button -->
+                <div id="bibleBackBtn" style="${hasSelection ? 'display:block;' : 'display:none;'} margin-top:12px;">
+                    <button class="back-to-books-btn" id="backToBooks">
+                        <i class="fas fa-arrow-left"></i> Back to Books
+                    </button>
+                </div>
             </div>
         </div>
     `;
+
+    // ============================================
+    // BACK TO BOOKS
+    // ============================================
+    document.getElementById('backToBooks')?.addEventListener('click', function() {
+        bibleData.book = null;
+        bibleData.chapter = null;
+        Storage.set('gsc-bible-state', bibleData);
+        renderBible(container, props);
+    });
 
     // ============================================
     // RENDER BOOK GRID
@@ -367,7 +354,7 @@ export async function renderBible(container, props) {
     function renderBooks(tab) {
         const bookContainer = document.getElementById('bibleBooks');
         const filtered = getFilteredBooks(tab);
-        
+
         bookContainer.innerHTML = filtered.map(book => `
             <div class="book-item ${book === bibleData.book ? 'active' : ''}" data-book="${book}">
                 <span class="book-name">${book}</span>
@@ -375,13 +362,16 @@ export async function renderBible(container, props) {
             </div>
         `).join('');
 
-        // Book click
         bookContainer.querySelectorAll('.book-item').forEach(el => {
             el.addEventListener('click', async function() {
                 const book = this.dataset.book;
                 bibleData.book = book;
                 bibleData.chapter = 1;
                 Storage.set('gsc-bible-state', bibleData);
+
+                document.getElementById('bibleBooks').style.display = 'none';
+                document.getElementById('bibleActions').style.display = 'flex';
+                document.getElementById('bibleBackBtn').style.display = 'block';
 
                 document.querySelectorAll('.book-item').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
@@ -398,7 +388,7 @@ export async function renderBible(container, props) {
     async function loadChapters(book) {
         const container = document.getElementById('bibleChapters');
         const total = BibleAPI.getTotalChapters(book);
-        
+
         container.style.display = 'block';
         container.innerHTML = `
             <div class="chapter-list-horizontal">
@@ -423,12 +413,11 @@ export async function renderBible(container, props) {
     }
 
     // ============================================
-    // LOAD VERSES - CLEAN DISPLAY
+    // LOAD VERSES
     // ============================================
     async function loadVerses(book, chapter) {
         const display = document.getElementById('bibleContent');
-        const version = document.getElementById('bibleVersion')?.value || 'KJV';
-        
+
         display.innerHTML = `
             <div style="text-align:center; padding:20px;">
                 <i class="fas fa-spinner fa-spin"></i> Loading...
@@ -436,8 +425,8 @@ export async function renderBible(container, props) {
         `;
 
         try {
-            const verses = await BibleAPI.fetchChapterVerses(book, chapter, version);
-            
+            const verses = await BibleAPI.fetchChapterVerses(book, chapter, 'KJV');
+
             if (verses && verses.length > 0) {
                 display.innerHTML = `
                     <div class="verses-container">
@@ -450,43 +439,81 @@ export async function renderBible(container, props) {
                                 </div>
                             `).join('')}
                         </div>
-                        <div class="verse-actions">
-                            <button class="copy-btn" onclick="navigator.clipboard.writeText('${book} ${chapter}')">
-                                <i class="fas fa-copy"></i> Copy Chapter
-                            </button>
-                        </div>
                     </div>
                 `;
+
+                document.getElementById('bibleActions').style.display = 'flex';
+                document.getElementById('bibleBackBtn').style.display = 'block';
+
+                // Set up action buttons
+                setupActionButtons(book, chapter, verses);
+
             } else {
-                display.innerHTML = `
-                    <div class="bible-welcome">
-                        <p>No verses found</p>
-                    </div>
-                `;
+                display.innerHTML = `<div class="bible-welcome"><p>No verses found</p></div>`;
             }
         } catch (error) {
-            display.innerHTML = `
-                <div class="bible-welcome">
-                    <p>⚠️ Error loading verses</p>
-                </div>
-            `;
+            display.innerHTML = `<div class="bible-welcome"><p>⚠️ Error loading verses</p></div>`;
         }
     }
 
     // ============================================
-    // EVENT LISTENERS
+    // ACTION BUTTONS
     // ============================================
+    function setupActionButtons(book, chapter, verses) {
+        const text = verses.map(v => `${v.verse}. ${v.text}`).join('\n');
+        const reference = `${book} ${chapter}`;
 
-    // Version change
-    document.getElementById('bibleVersion')?.addEventListener('change', async function() {
-        bibleData.version = this.value;
-        Storage.set('gsc-bible-state', bibleData);
-        if (bibleData.book) {
-            await loadVerses(bibleData.book, bibleData.chapter);
-        }
-    });
+        // Read Aloud
+        document.getElementById('bibleReadAloud')?.addEventListener('click', function() {
+            if (!window.speechSynthesis) {
+                if (showToast) showToast('🔊 Text-to-speech not supported');
+                return;
+            }
 
-    // Tab clicks
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1;
+            utterance.pitch = 1;
+            window.speechSynthesis.speak(utterance);
+            if (showToast) showToast('🔊 Reading aloud...');
+        });
+
+        // Favorite
+        document.getElementById('bibleFavorite')?.addEventListener('click', function() {
+            const favorites = JSON.parse(localStorage.getItem('bible-favorites') || '[]');
+            const exists = favorites.some(f => f.reference === reference);
+
+            if (exists) {
+                const index = favorites.findIndex(f => f.reference === reference);
+                favorites.splice(index, 1);
+                localStorage.setItem('bible-favorites', JSON.stringify(favorites));
+                if (showToast) showToast('⭐ Removed from favorites');
+            } else {
+                favorites.push({ reference, text: text.slice(0, 200) + '...' });
+                localStorage.setItem('bible-favorites', JSON.stringify(favorites));
+                if (showToast) showToast('⭐ Added to favorites!');
+            }
+        });
+
+        // Share
+        document.getElementById('bibleShare')?.addEventListener('click', function() {
+            const shareText = `${reference}\n\n${text}`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: reference,
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    if (showToast) showToast('📋 Copied to clipboard!');
+                });
+            }
+        });
+    }
+
+    // ============================================
+    // TAB CLICKS
+    // ============================================
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const tab = this.dataset.tab;
@@ -496,80 +523,34 @@ export async function renderBible(container, props) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
+            bibleData.book = null;
+            bibleData.chapter = null;
+            document.getElementById('bibleBooks').style.display = 'grid';
+            document.getElementById('bibleActions').style.display = 'none';
+            document.getElementById('bibleBackBtn').style.display = 'none';
+            document.getElementById('bibleChapters').style.display = 'none';
+            document.getElementById('bibleContent').innerHTML = `
+                <div class="bible-welcome">
+                    <i class="fas fa-bible"></i>
+                    <p>Select a book to read</p>
+                </div>
+            `;
+
             renderBooks(tab);
         });
     });
 
-    // Search
-    const searchInput = document.getElementById('bibleSearchInput');
-    const searchBtn = document.getElementById('bibleSearchBtn');
-
-    async function performSearch() {
-        const query = searchInput.value.trim();
-        if (!query || query.length < 2) {
-            if (showToast) showToast('Please enter at least 2 characters');
-            return;
-        }
-
-        const display = document.getElementById('bibleContent');
-        display.innerHTML = `
-            <div style="text-align:center; padding:20px;">
-                <i class="fas fa-spinner fa-spin"></i> Searching...
-            </div>
-        `;
-
-        try {
-            const results = await BibleAPI.searchBible(query, 'KJV');
-            
-            if (results && results.length > 0) {
-                display.innerHTML = `
-                    <div class="search-results">
-                        <h4 class="search-results-title">🔍 Results for "${query}" (${results.length})</h4>
-                        ${results.map(r => `
-                            <div class="search-result-item">
-                                <div class="search-result-ref">${r.reference}</div>
-                                <div class="search-result-text">${r.text}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            } else {
-                display.innerHTML = `
-                    <div class="bible-welcome">
-                        <p>No results found for "${query}"</p>
-                    </div>
-                `;
-            }
-        } catch (error) {
-            display.innerHTML = `
-                <div class="bible-welcome">
-                    <p>⚠️ Search failed</p>
-                </div>
-            `;
-        }
-    }
-
-    searchBtn?.addEventListener('click', performSearch);
-    searchInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') performSearch();
-    });
-
     // ============================================
-    // INIT - Load initial data
+    // INIT — Load initial data
     // ============================================
-    
     renderBooks(bibleData.tab || 'all');
 
-    // If we have a saved book, load it
-    if (bibleData.book) {
-        // Highlight the book
+    if (bibleData.book && bibleData.chapter) {
+        document.getElementById('bibleBooks').style.display = 'none';
+        document.getElementById('bibleActions').style.display = 'flex';
+        document.getElementById('bibleBackBtn').style.display = 'block';
+
         setTimeout(async () => {
-            const bookItems = document.querySelectorAll('.book-item');
-            bookItems.forEach(el => {
-                if (el.dataset.book === bibleData.book) {
-                    el.classList.add('active');
-                }
-            });
             await loadChapters(bibleData.book);
             await loadVerses(bibleData.book, bibleData.chapter);
         }, 100);
@@ -580,8 +561,8 @@ export async function renderBible(container, props) {
 // PROFILE PAGE
 // ============================================
 export function renderProfile(container, props) {
-    console.log('👤 renderProfile called!', { container, props });
-    
+    console.log('👤 renderProfile called!');
+
     const { user, lessons, completedLessons, onEdit } = props;
     const total = lessons.length;
     const done = completedLessons.size;
@@ -652,13 +633,13 @@ export function renderProfile(container, props) {
 // SETTINGS PAGE
 // ============================================
 export function renderSettings(container, props) {
-    console.log('⚙️ renderSettings called!', { container, props });
-    
-    const { 
-        darkMode, 
-        onToggleDarkMode, 
-        onExportNotes, 
-        onShare, 
+    console.log('⚙️ renderSettings called!');
+
+    const {
+        darkMode,
+        onToggleDarkMode,
+        onExportNotes,
+        onShare,
         onSignOut,
         showToast
     } = props;
@@ -723,10 +704,8 @@ export function renderSettings(container, props) {
         </div>
     `;
 
-    // Dark mode toggle
     document.getElementById('darkModeToggle')?.addEventListener('click', onToggleDarkMode);
 
-    // Font size
     document.querySelectorAll('.font-size-group button').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.font-size-group button').forEach(b => b.classList.remove('active'));
@@ -739,16 +718,10 @@ export function renderSettings(container, props) {
         });
     });
 
-    // Apply current font size
     const sizes = { Small: '14px', Medium: '16px', Large: '18px' };
     document.body.style.fontSize = sizes[currentSize] || '16px';
 
-    // Export notes
     document.getElementById('exportNotesBtn')?.addEventListener('click', onExportNotes);
-
-    // Share
     document.getElementById('shareBtn')?.addEventListener('click', onShare);
-
-    // Sign out
     document.getElementById('signOutBtn')?.addEventListener('click', onSignOut);
 }
