@@ -236,11 +236,6 @@ document.getElementById('brandHome')?.addEventListener('click', () => {
     navigateTo('home');
 });
 
-// Auth header button
-document.getElementById('authHeaderBtn')?.addEventListener('click', () => {
-    openAuthModal('signin');
-});
-
 // ============================================
 // LOAD SAVED PROGRESS
 // ============================================
