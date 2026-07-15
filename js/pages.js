@@ -31,7 +31,7 @@ function getDailyVerse(verses) {
 export function renderHome(container, props) {
     console.log('🏠 renderHome called!');
 
-    const { lessons, completedLessons, userProfile, showToast, updateStreak } = props;
+    const { lessons, completedLessons, userProfile, showToast, updateStreak, isLoggedIn } = props;
 
     const total = lessons.length;
     const done = completedLessons.size;
@@ -42,6 +42,7 @@ export function renderHome(container, props) {
     container.innerHTML = `
         <div class="page active" id="homePage">
             <div class="container">
+                <!-- Stats Bar -->
                 <div class="stats-bar">
                     <div class="stats-item">
                         <span class="stats-number">${streak}</span>
@@ -113,6 +114,28 @@ export function renderHome(container, props) {
                     Welcome back, <strong>${userProfile?.name || 'Guest'}</strong>!
                     ${done === 0 ? 'Start your journey today.' : `Keep going! You're doing great. 🎉`}
                 </div>
+
+                ${!isLoggedIn ? `
+                    <div class="auth-prompt">
+                        <div class="prompt-icon">✨</div>
+                        <div class="prompt-title">Create an Account</div>
+                        <div class="prompt-desc">Save your progress, notes, and favorites across all devices.</div>
+                        <div class="prompt-buttons">
+                            <button class="prompt-btn primary" onclick="window.openAuthModal('signup')">
+                                <i class="fas fa-user-plus"></i> Get Started
+                            </button>
+                            <button class="prompt-btn secondary" onclick="window.openAuthModal('signin')">
+                                <i class="fas fa-sign-in-alt"></i> Sign In
+                            </button>
+                        </div>
+                    </div>
+                ` : `
+                    <div class="auth-prompt" style="border-color:var(--accent-green);">
+                        <div class="prompt-icon">✅</div>
+                        <div class="prompt-title">You're Signed In!</div>
+                        <div class="prompt-desc">Your progress is being saved to the cloud.</div>
+                    </div>
+                `}
             </div>
         </div>
     `;

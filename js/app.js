@@ -4,6 +4,7 @@
 import { APP_CONFIG } from './config.js';
 import { Storage } from './utils/storage.js';
 import { LESSONS } from './lessons.js';
+import { openAuthModal } from './auth-ui.js';
 import { VERSES } from './verses.js';
 import { 
     renderHome, 
@@ -233,6 +234,11 @@ document.querySelectorAll('.nav-item').forEach(el => {
 // Brand click -> home
 document.getElementById('brandHome')?.addEventListener('click', () => {
     navigateTo('home');
+});
+
+// Auth header button
+document.getElementById('authHeaderBtn')?.addEventListener('click', () => {
+    openAuthModal('signin');
 });
 
 // ============================================
