@@ -182,10 +182,15 @@ export function renderLessons(container, props) {
         });
     }
 
+    // ============================================
+    // SELECT LESSON - Full view with features
+    // ============================================
     window._selectLesson = (idx) => {
         if (onSelectLesson) onSelectLesson(idx);
         const lesson = lessons[idx];
         const content = document.getElementById('lessonList');
+        const isCompleted = completedLessons.has(idx);
+
         if (content) {
             content.innerHTML = `
                 <button onclick="window._backToLessons()" style="padding:8px 16px; border-radius:var(--radius-full); background:var(--bg-primary); margin-bottom:16px; font-size:14px; border:1px solid rgba(0,0,0,0.06);">
@@ -201,14 +206,14 @@ export function renderLessons(container, props) {
                         ${lesson.content}
                     </div>
                     ${lesson.meditation ? `
-                        <div style="margin-top:20px; padding:16px 20px; background:var(--accent-blue-light); border-radius:var(--radius-sm);">
+                        <div style="margin-top:20px; padding:16px 20px; background:var(--bg-primary); border-radius:var(--radius-sm); border-left:4px solid var(--accent-blue);">
                             <strong style="color:var(--accent-blue);">💭 Meditation</strong>
                             <p style="margin-top:4px; font-style:italic;">"${lesson.meditation.text}"</p>
                             <p style="font-size:14px; color:var(--text-light);">${lesson.meditation.instruction}</p>
                         </div>
                     ` : ''}
                     ${lesson.exercise ? `
-                        <div style="margin-top:16px; padding:16px 20px; background:var(--accent-orange-light); border-radius:var(--radius-sm);">
+                        <div style="margin-top:16px; padding:16px 20px; background:var(--bg-primary); border-radius:var(--radius-sm); border-left:4px solid var(--accent-orange);">
                             <strong style="color:var(--accent-orange);">✍️ Exercise</strong>
                             <p style="margin-top:4px;">${lesson.exercise.text}</p>
                             ${lesson.exercise.declaration ? `
@@ -216,20 +221,214 @@ export function renderLessons(container, props) {
                                     "${lesson.exercise.declaration}"
                                 </p>
                             ` : ''}
-                            <button onclick="window._markComplete(${idx})" style="margin-top:12px; padding:8px 24px; border-radius:var(--radius-full); background:${completedLessons.has(idx) ? 'var(--accent-green)' : 'var(--accent-gold)'}; color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;">
-                                ${completedLessons.has(idx) ? '✅ Completed' : 'Mark Complete'}
+                            <button onclick="window._markComplete(${idx})" style="margin-top:12px; padding:8px 24px; border-radius:var(--radius-full); background:${isCompleted ? 'var(--accent-green)' : 'var(--accent-gold)'}; color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;">
+                                ${isCompleted ? '✅ Completed' : 'Mark Complete'}
                             </button>
                         </div>
                     ` : ''}
+
+                    <!-- Read Aloud, Notes, Share -->
+                    <div class="read-aloud-block" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="read-aloud-btn" data-lesson="${idx}">
+                            <i class="fas fa-volume-up"></i>
+                            <span>Read Aloud</span>
+                        </button>
+                        <button class="notes-toggle-btn" data-lesson="${idx}">
+                            <i class="fas fa-sticky-note"></i>
+                            <span>Notes</span>
+                            <span class="notes-badge" style="display:none; background:var(--accent-gold); color:#1a1210; border-radius:50%; padding:0 8px; font-size:11px; font-weight:700;"></span>
+                        </button>
+                        <button class="share-btn" onclick="window._shareLesson(${idx})">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+
+                    <div class="notes-block" id="notes-${idx}" style="display:none; margin-top:12px;">
+                        <div class="notes-header">
+                            <div class="notes-title">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>My Notes</span>
+                            </div>
+                            <div class="notes-actions">
+                                <button class="save-btn" data-lesson="${idx}">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                                <button class="clear-btn" data-lesson="${idx}">
+                                    <i class="fas fa-trash-alt"></i> Clear
+                                </button>
+                            </div>
+                        </div>
+                        <textarea 
+                            class="notes-textarea" 
+                            data-lesson="${idx}" 
+                            placeholder="Write your thoughts, revelations, or key takeaways from this lesson..."
+                            maxlength="2000"
+                        ></textarea>
+                        <div class="notes-footer">
+                            <span class="char-count">0 / 2000</span>
+                            <span class="saved-indicator unsaved" id="savedIndicator-${idx}">
+                                <i class="fas fa-circle"></i> Unsaved
+                            </span>
+                        </div>
+                    </div>
                 </div>
             `;
+
+            // ============================================
+            // SETUP FEATURES
+            // ============================================
+
+            // Load saved notes
+            const savedNotes = getNotes();
+            const textarea = document.querySelector(`.notes-textarea[data-lesson="${idx}"]`);
+            const charCount = document.querySelector(`#notes-${idx} .char-count`);
+            const savedIndicator = document.getElementById(`savedIndicator-${idx}`);
+            const notesToggle = document.querySelector(`.notes-toggle-btn[data-lesson="${idx}"]`);
+            const notesBlock = document.getElementById(`notes-${idx}`);
+
+            if (savedNotes && savedNotes[idx]) {
+                if (textarea) textarea.value = savedNotes[idx];
+                updateCharCount(textarea, charCount);
+                updateIndicator(savedIndicator, true);
+                updateNotesBadge(idx);
+                if (notesBlock) notesBlock.style.display = 'block';
+                if (notesToggle) notesToggle.classList.add('active');
+            }
+
+            // Notes toggle
+            if (notesToggle && notesBlock) {
+                notesToggle.addEventListener('click', function() {
+                    const isVisible = notesBlock.style.display !== 'none';
+                    notesBlock.style.display = isVisible ? 'none' : 'block';
+                    this.classList.toggle('active');
+                    if (!isVisible && textarea) textarea.focus();
+                });
+            }
+
+            // Notes textarea events
+            if (textarea) {
+                textarea.addEventListener('input', function() {
+                    updateCharCount(this, charCount);
+                    updateIndicator(savedIndicator, false);
+                });
+
+                textarea.addEventListener('blur', function() {
+                    saveNote(idx, this.value, savedIndicator);
+                });
+
+                textarea.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                        e.preventDefault();
+                        document.querySelector(`#notes-${idx} .save-btn`)?.click();
+                    }
+                });
+            }
+
+            // Notes save button
+            document.querySelector(`#notes-${idx} .save-btn`)?.addEventListener('click', function() {
+                if (textarea) {
+                    saveNote(idx, textarea.value, savedIndicator);
+                    showToast('📝 Notes saved!');
+                    updateNotesBadge(idx);
+                }
+            });
+
+            // Notes clear button
+            document.querySelector(`#notes-${idx} .clear-btn`)?.addEventListener('click', function() {
+                if (textarea && textarea.value && !confirm('Clear all notes for this lesson?')) return;
+                if (textarea) {
+                    textarea.value = '';
+                    updateCharCount(textarea, charCount);
+                    saveNote(idx, '', savedIndicator);
+                    updateNotesBadge(idx);
+                    showToast('🗑️ Notes cleared');
+                }
+            });
+
+            // Read Aloud
+            const readBtn = document.querySelector(`.read-aloud-btn[data-lesson="${idx}"]`);
+            if (readBtn) {
+                // Get text content from lesson
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = lesson.content;
+                const textContent = tempDiv.textContent || tempDiv.innerText || '';
+                const cleanText = textContent.replace(/\s+/g, ' ').trim();
+                let isSpeaking = false;
+                const speechSynth = window.speechSynthesis;
+
+                readBtn.addEventListener('click', function() {
+                    if (isSpeaking) {
+                        speechSynth.cancel();
+                        isSpeaking = false;
+                        this.classList.remove('playing');
+                        const icon = this.querySelector('i');
+                        const label = this.querySelector('span');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                        if (label) label.textContent = 'Read Aloud';
+                        return;
+                    }
+
+                    if (!window.speechSynthesis) {
+                        showToast('🔊 Text-to-speech not supported');
+                        return;
+                    }
+
+                    const utterance = new SpeechSynthesisUtterance(cleanText);
+                    utterance.rate = 1;
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+
+                    this.classList.add('playing');
+                    const icon = this.querySelector('i');
+                    const label = this.querySelector('span');
+                    if (icon) icon.className = 'fas fa-stop';
+                    if (label) label.textContent = 'Stop';
+
+                    speechSynth.speak(utterance);
+                    isSpeaking = true;
+
+                    utterance.onend = () => {
+                        isSpeaking = false;
+                        this.classList.remove('playing');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                        if (label) label.textContent = 'Read Aloud';
+                    };
+                    utterance.onerror = () => {
+                        isSpeaking = false;
+                        this.classList.remove('playing');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                        if (label) label.textContent = 'Read Aloud';
+                        showToast('🔊 Speech error');
+                    };
+                });
+            }
+
+            // Share Lesson
+            window._shareLesson = (shareIdx) => {
+                const shareLesson = lessons[shareIdx];
+                const message = `📖 ${shareLesson.title}\n\n"${shareLesson.subtitle || ''}"\n\nRead more at The Consciousness of the Son 🕊️`;
+                if (navigator.share) {
+                    navigator.share({ title: shareLesson.title, text: message });
+                } else {
+                    navigator.clipboard.writeText(message).then(() => {
+                        showToast('📋 Lesson shared!');
+                    });
+                }
+            };
         }
     };
 
+    // ============================================
+    // BACK TO LESSONS
+    // ============================================
     window._backToLessons = () => {
         renderLessons(container, props);
     };
 
+    // ============================================
+    // MARK COMPLETE
+    // ============================================
     window._markComplete = (idx) => {
         if (completedLessons.has(idx)) {
             completedLessons.delete(idx);
@@ -244,6 +443,65 @@ export function renderLessons(container, props) {
         if (showToast) showToast(completedLessons.has(idx) ? '✅ Completed!' : 'Unmarked');
         renderLessons(container, props);
     };
+
+    // ============================================
+    // NOTES HELPERS
+    // ============================================
+    function getNotes() {
+        try {
+            const data = localStorage.getItem('gsc-notes');
+            return data ? JSON.parse(data) : {};
+        } catch { return {}; }
+    }
+
+    function saveNote(lessonId, value, indicator) {
+        const allNotes = getNotes();
+        if (value && value.trim()) {
+            allNotes[lessonId] = value.trim();
+        } else {
+            delete allNotes[lessonId];
+        }
+        localStorage.setItem('gsc-notes', JSON.stringify(allNotes));
+        updateIndicator(indicator, !!(value && value.trim()));
+    }
+
+    function updateCharCount(textarea, charCountEl) {
+        if (!textarea || !charCountEl) return;
+        const count = textarea.value.length;
+        const max = parseInt(textarea.maxLength) || 2000;
+        charCountEl.textContent = `${count} / ${max}`;
+        charCountEl.classList.toggle('limit', count > max * 0.9);
+    }
+
+    function updateIndicator(indicator, isSaved) {
+        if (!indicator) return;
+        if (isSaved) {
+            indicator.className = 'saved-indicator saved';
+            indicator.innerHTML = '<i class="fas fa-check-circle"></i> Saved';
+        } else {
+            indicator.className = 'saved-indicator unsaved';
+            indicator.innerHTML = '<i class="fas fa-circle"></i> Unsaved';
+        }
+    }
+
+    function updateNotesBadge(lessonId) {
+        const toggleBtn = document.querySelector(`.notes-toggle-btn[data-lesson="${lessonId}"]`);
+        if (!toggleBtn) return;
+        const badge = toggleBtn.querySelector('.notes-badge');
+        const allNotes = getNotes();
+        const hasNote = allNotes[lessonId] && allNotes[lessonId].trim();
+
+        if (hasNote) {
+            if (badge) {
+                badge.style.display = 'inline';
+                badge.textContent = '📝';
+            }
+            toggleBtn.classList.add('active');
+        } else {
+            if (badge) badge.style.display = 'none';
+            toggleBtn.classList.remove('active');
+        }
+    }
 }
 
 // ============================================
@@ -563,13 +821,14 @@ export async function renderBible(container, props) {
 export function renderProfile(container, props) {
     console.log('👤 renderProfile called!');
 
-    const { user, lessons, completedLessons, onEdit } = props;
+    const { user, lessons, completedLessons, onEdit, showToast } = props;
     const total = lessons.length;
     const done = completedLessons.size;
     const pct = total > 0 ? Math.round((done / total) * 100) : 0;
     const streak = Storage.get('gsc-streak', { count: 0 }).count || 0;
     const notes = Storage.get('gsc-notes', {});
     const noteCount = Object.keys(notes).filter(k => notes[k] && notes[k].trim()).length;
+    const favorites = JSON.parse(localStorage.getItem('bible-favorites') || '[]');
     const initials = user?.name?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'GU';
 
     container.innerHTML = `
@@ -600,6 +859,10 @@ export function renderProfile(container, props) {
                             <span class="stat-number">${noteCount}</span>
                             <span class="stat-label">📝 Notes</span>
                         </div>
+                        <div class="stat-item">
+                            <span class="stat-number">${favorites.length}</span>
+                            <span class="stat-label">⭐ Favorites</span>
+                        </div>
                     </div>
                     <div style="margin-top:12px; background:var(--bg-primary); border-radius:var(--radius-sm); padding:8px 12px;">
                         <div style="background:rgba(0,0,0,0.05); border-radius:10px; height:6px; overflow:hidden;">
@@ -622,9 +885,102 @@ export function renderProfile(container, props) {
                         </div>
                     `).join('')}
                 </div>
+
+                <!-- Settings Features moved to Profile -->
+                <div class="card">
+                    <h3 style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">⚙️ Account</h3>
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        <button class="profile-action-btn" id="exportNotesBtn">
+                            <i class="fas fa-file-export"></i> Export All Notes
+                        </button>
+                        <button class="profile-action-btn" id="shareProgressBtn">
+                            <i class="fas fa-share-alt"></i> Share Progress
+                        </button>
+                        <button class="profile-action-btn" id="viewFavoritesBtn">
+                            <i class="fas fa-star"></i> View Bible Favorites (${favorites.length})
+                        </button>
+                        <button class="profile-action-btn danger" id="signOutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </button>
+                    </div>
+                </div>
+
+                <div style="text-align:center; padding:8px 0; color:var(--text-light); font-size:12px;">
+                    Version ${APP_CONFIG.version}
+                </div>
             </div>
         </div>
     `;
+
+    // Export Notes
+    document.getElementById('exportNotesBtn')?.addEventListener('click', function() {
+        const allNotes = Storage.get('gsc-notes', {});
+        const entries = Object.entries(allNotes);
+        if (entries.length === 0) {
+            if (showToast) showToast('📝 No notes to export');
+            return;
+        }
+        let text = '📖 The Consciousness of the Son - Notes\n\n';
+        entries.forEach(([id, note]) => {
+            const lesson = lessons.find(l => l.id === parseInt(id));
+            const title = lesson ? lesson.title : `Lesson ${id}`;
+            text += `📘 ${title}\n${'-'.repeat(title.length + 4)}\n${note}\n\n`;
+        });
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `notes-${new Date().toISOString().slice(0,10)}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        if (showToast) showToast('📥 Notes exported!');
+    });
+
+    // Share Progress
+    document.getElementById('shareProgressBtn')?.addEventListener('click', function() {
+        const total = lessons.length;
+        const done = completedLessons.size;
+        const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+        const msg = `📖 I've completed ${done}/${total} lessons (${pct}%) in "The Consciousness of the Son"! 🕊️\n\nJoin me at Grace Spring Family Church.`;
+        if (navigator.share) {
+            navigator.share({ title: 'My Progress', text: msg });
+        } else {
+            navigator.clipboard.writeText(msg).then(() => {
+                if (showToast) showToast('📋 Copied to clipboard!');
+            });
+        }
+    });
+
+    // View Favorites
+    document.getElementById('viewFavoritesBtn')?.addEventListener('click', function() {
+        const favorites = JSON.parse(localStorage.getItem('bible-favorites') || '[]');
+        if (favorites.length === 0) {
+            if (showToast) showToast('⭐ No favorites yet');
+            return;
+        }
+        let text = '⭐ Bible Favorites\n\n';
+        favorites.forEach(f => {
+            text += `${f.reference}\n${f.text}\n\n`;
+        });
+        if (navigator.share) {
+            navigator.share({ title: 'My Bible Favorites', text: text });
+        } else {
+            navigator.clipboard.writeText(text).then(() => {
+                if (showToast) showToast('📋 Favorites copied!');
+            });
+        }
+    });
+
+    // Sign Out
+    document.getElementById('signOutBtn')?.addEventListener('click', function() {
+        if (confirm('Are you sure you want to sign out?')) {
+            // Reset user
+            const defaultUser = { name: 'Guest User', email: 'guest@example.com', joined: 'Guest' };
+            Storage.set('gsc-profile', defaultUser);
+            // Reload to reset state
+            window.location.reload();
+        }
+    });
 
     window._editProfile = onEdit;
 }
