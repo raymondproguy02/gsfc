@@ -1,3 +1,10 @@
+// Import all CSS files
+import '../css/main.css';
+import '../css/components.css';
+import '../css/lessons.css';
+import '../css/bible.css';
+import '../css/profile.css';
+
 import { Storage } from './utils/storage.js';
 import { renderHome } from './pages/home.js';
 import { renderLessons } from './pages/lessons.js';
