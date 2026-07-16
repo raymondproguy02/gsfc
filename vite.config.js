@@ -6,8 +6,8 @@ export default defineConfig({
     outDir: 'docs',
     emptyOutDir: true,
     rollupOptions: {
-      output: {
-        manualChunks: undefined
+      input: {
+        main: 'index.html'
       }
     }
   },
