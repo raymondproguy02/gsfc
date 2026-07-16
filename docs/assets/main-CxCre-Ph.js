@@ -1,13 +1,4 @@
-// All lessons data - copy your lessons here
-// Remove image objects and prayer fields
-
-export const LESSONS = [
-     // === WELCOME (id: 0) ===
-    {
-        id: 0,
-        title: "Welcome",
-        isWelcome: true,
-        content: `
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))i(n);new MutationObserver(n=>{for(const s of n)if(s.type==="childList")for(const p of s.addedNodes)p.tagName==="LINK"&&p.rel==="modulepreload"&&i(p)}).observe(document,{childList:!0,subtree:!0});function o(n){const s={};return n.integrity&&(s.integrity=n.integrity),n.referrerPolicy&&(s.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?s.credentials="include":n.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function i(n){if(n.ep)return;n.ep=!0;const s=o(n);fetch(n.href,s)}})();const c={get(t,e=null){try{const o=localStorage.getItem(t);return o?JSON.parse(o):e}catch{return e}},set(t,e){try{return localStorage.setItem(t,JSON.stringify(e)),!0}catch{return!1}},remove(t){try{return localStorage.removeItem(t),!0}catch{return!1}}},G=[{id:0,title:"Welcome",isWelcome:!0,content:`
             <div style="text-align:center; margin-bottom:16px;">
                 <img src="images/church-logo.png" alt="Grace Spring Family Church" style="max-width:80px; border-radius:12px;" onerror="this.style.display='none'" />
             </div>
@@ -38,15 +29,7 @@ export const LESSONS = [
                 With love and reflection,
                 <br /><em>Grace Spring Family Church</em>
             </p>
-        `
-    },
-
-    // === LESSON 1 ===
-    {
-    id: 1,
-    title: "The Foundation: God Is Not Withholding",
-    subtitle: "Learning to trust what He has already revealed",
-    content: `
+        `},{id:1,title:"The Foundation: God Is Not Withholding",subtitle:"Learning to trust what He has already revealed",content:`
         <p><strong>The Foundation: God Is Not Withholding</strong></p>
         
         <p>The beginning of spiritual maturity is not learning how to persuade God.</p>
@@ -161,22 +144,7 @@ export const LESSONS = [
                 And until this truth settles deeply within us, we will continue trying to earn what can only be received by faith.
             </span>
         </div>
-    `,
-    meditation: {
-        text: `"If God did not withhold His Son from me, what does that reveal about His heart toward me?"`,
-        instruction: `Sit quietly before the Lord. Do not rush to answer. Allow the Holy Spirit to move this truth from your mind into your heart. Remain there for a few moments. Let the Cross speak.`
-    },
-    exercise: {
-        text: `Read Romans 8 slowly and prayerfully. Each time you encounter a statement revealing God's generosity, acceptance, or commitment toward His children, pause and thank Him aloud.`,
-        declaration: `"I do not approach God as one trying to earn His favour. I approach Him as one who has already been welcomed through Christ."`
-    },
-},
-    // === LESSON 2 ===
-     {
-    id: 2,
-    title: "Prayer and Learning to Walk in What Christ Has Given",
-    subtitle: "Prayer is God's invitation into fellowship",
-    content: `
+    `,meditation:{text:'"If God did not withhold His Son from me, what does that reveal about His heart toward me?"',instruction:"Sit quietly before the Lord. Do not rush to answer. Allow the Holy Spirit to move this truth from your mind into your heart. Remain there for a few moments. Let the Cross speak."},exercise:{text:"Read Romans 8 slowly and prayerfully. Each time you encounter a statement revealing God's generosity, acceptance, or commitment toward His children, pause and thank Him aloud.",declaration:'"I do not approach God as one trying to earn His favour. I approach Him as one who has already been welcomed through Christ."'}},{id:2,title:"Prayer and Learning to Walk in What Christ Has Given",subtitle:"Prayer is God's invitation into fellowship",content:`
         <p><strong>Prayer and Learning to Walk in What Christ Has Given</strong></p>
         
         <p>So now, my brother,</p>
@@ -332,22 +300,7 @@ export const LESSONS = [
         <p>And perhaps that is where we should go next.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">With love and reflection.</p>
-    `,
-    meditation: {
-        text: `"Am I praying to persuade God, or am I praying to know Him more deeply?"`,
-        instruction: `Spend time in prayer with a different focus. Not rushing to a list of requests. But simply spending time with the Lord. Listening. Reflecting. Allowing Him to shape your heart.`
-    },
-    exercise: {
-        text: `Set aside 10 minutes. Don't ask for anything. Simply sit in God's presence. Read a psalm slowly. Let His words wash over you. Notice what happens in your heart.`,
-        declaration: `"I come to You not to persuade You, but to know You. You have already given me everything I need in Christ. I rest in Your love."`
-    },
-},
-    // === LESSON 3 ===
-    {
-        id: 3,
-        title: "The Shepherd Who Carries",
-        subtitle: "His strength is expressed through tenderness",
-        content: `
+    `,meditation:{text:'"Am I praying to persuade God, or am I praying to know Him more deeply?"',instruction:"Spend time in prayer with a different focus. Not rushing to a list of requests. But simply spending time with the Lord. Listening. Reflecting. Allowing Him to shape your heart."},exercise:{text:"Set aside 10 minutes. Don't ask for anything. Simply sit in God's presence. Read a psalm slowly. Let His words wash over you. Notice what happens in your heart.",declaration:'"I come to You not to persuade You, but to know You. You have already given me everything I need in Christ. I rest in Your love."'}},{id:3,title:"The Shepherd Who Carries",subtitle:"His strength is expressed through tenderness",content:`
             <p>
                 One of the most beautiful revelations of God in Scripture is not merely
                 that He leads His people, but that <strong>He carries them</strong>.
@@ -371,23 +324,7 @@ export const LESSONS = [
                 <strong>The Shepherd's greatness is revealed not only in His power to lead a flock,
                 but in His willingness to carry a lamb.</strong>
             </div>
-        `,
-        meditation: {
-            text: `"Where have I been striving to walk when God has been waiting to carry me?"`,
-            instruction: `Close your eyes and picture yourself as a lamb in the Shepherd's arms. Rest in His care.`
-        },
-        exercise: {
-            text: `Read Isaiah 40:9-31 slowly. Notice the contrast between human weariness and God's strength.`,
-            declaration: `"I am not alone. The Shepherd carries me. I rest in His arms and trust His heart."`
-        },
-    },
-
-    // === LESSON 4 ===
-    {
-    id: 4,
-    title: "Birth, Growth, and the Finished Work",
-    subtitle: "We grow because life is already within us",
-    content: `
+        `,meditation:{text:'"Where have I been striving to walk when God has been waiting to carry me?"',instruction:"Close your eyes and picture yourself as a lamb in the Shepherd's arms. Rest in His care."},exercise:{text:"Read Isaiah 40:9-31 slowly. Notice the contrast between human weariness and God's strength.",declaration:'"I am not alone. The Shepherd carries me. I rest in His arms and trust His heart."'}},{id:4,title:"Birth, Growth, and the Finished Work",subtitle:"We grow because life is already within us",content:`
         <p><strong>Birth, Growth, and the Finished Work</strong></p>
         
         <p>My dear friend,</p>
@@ -524,23 +461,7 @@ export const LESSONS = [
         <p>And perhaps that is where we should go next.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">With love and reflection.</p>
-    `,
-    meditation: {
-        text: `"Where am I still striving to obtain what Christ has already provided?"`,
-        instruction: `Consider the seed. It does not strive to become alive — it grows because life is already within it. In the same way, you do not grow to become God's child. You grow because you already are.`
-    },
-    exercise: {
-        text: `Reflect on the past year. Where have you seen growth? Where has God been quietly working? Write down three areas where you see His life producing fruit in you.`,
-        declaration: `"I am growing. Not to earn God's love, but because His life is already within me. I rest in His finished work."`
-    },
-},
-
-    // === LESSON 5 ===
-    {
-    id: 5,
-    title: "Prayer and Learning to Walk in What Christ Has Given",
-    subtitle: "Prayer is God's invitation into fellowship",
-    content: `
+    `,meditation:{text:'"Where am I still striving to obtain what Christ has already provided?"',instruction:"Consider the seed. It does not strive to become alive — it grows because life is already within it. In the same way, you do not grow to become God's child. You grow because you already are."},exercise:{text:"Reflect on the past year. Where have you seen growth? Where has God been quietly working? Write down three areas where you see His life producing fruit in you.",declaration:`"I am growing. Not to earn God's love, but because His life is already within me. I rest in His finished work."`}},{id:5,title:"Prayer and Learning to Walk in What Christ Has Given",subtitle:"Prayer is God's invitation into fellowship",content:`
         <p><strong>Prayer and Learning to Walk in What Christ Has Given</strong></p>
         
         <p>So now, my brother,</p>
@@ -696,22 +617,7 @@ export const LESSONS = [
         <p>And perhaps that is where we should go next.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">With love and reflection.</p>
-    `,
-    meditation: {
-        text: `"Am I praying to persuade God, or am I praying to know Him more deeply?"`,
-        instruction: `Spend time in prayer with a different focus. Not rushing to a list of requests. But simply spending time with the Lord. Listening. Reflecting. Allowing Him to shape your heart.`
-    },
-    exercise: {
-        text: `Set aside 10 minutes. Don't ask for anything. Simply sit in God's presence. Read a psalm slowly. Let His words wash over you. Notice what happens in your heart.`,
-        declaration: `"I come to You not to persuade You, but to know You. You have already given me everything I need in Christ. I rest in Your love."`
-    },
-},
-    // === LESSON 6 ===
-    {
-    id: 6,
-    title: "Seeing What Has Been Freely Given",
-    subtitle: "Lord, help me see",
-    content: `
+    `,meditation:{text:'"Am I praying to persuade God, or am I praying to know Him more deeply?"',instruction:"Spend time in prayer with a different focus. Not rushing to a list of requests. But simply spending time with the Lord. Listening. Reflecting. Allowing Him to shape your heart."},exercise:{text:"Set aside 10 minutes. Don't ask for anything. Simply sit in God's presence. Read a psalm slowly. Let His words wash over you. Notice what happens in your heart.",declaration:'"I come to You not to persuade You, but to know You. You have already given me everything I need in Christ. I rest in Your love."'}},{id:6,title:"Seeing What Has Been Freely Given",subtitle:"Lord, help me see",content:`
         <p><strong>Seeing What Has Been Freely Given</strong></p>
         
         <p>Beloved,</p>
@@ -853,23 +759,7 @@ export const LESSONS = [
         <p>And perhaps that is where we should go next.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">With love and reflection.</p>
-    `,
-    meditation: {
-        text: `"What have I been asking God to give me that He has already provided in Christ?"`,
-        instruction: `Ask the Lord to open your eyes afresh. Spend time in Ephesians 1. Allow Paul's prayer to become your prayer.`
-    },
-    exercise: {
-        text: `Read Ephesians 1:3-23 slowly. Each time you see a truth about what you already have in Christ, pause and thank Him. Write down three things you discovered.`,
-        declaration: `"Lord, open my eyes. Help me see what You have already given me in Christ. I receive Your provision by faith."`
-    },
-},
-
-    // === LESSON 7 ===
-    {
-    id: 7,
-    title: "The Great Unveiling",
-    subtitle: "The thread that runs through all of Scripture",
-    content: `
+    `,meditation:{text:'"What have I been asking God to give me that He has already provided in Christ?"',instruction:"Ask the Lord to open your eyes afresh. Spend time in Ephesians 1. Allow Paul's prayer to become your prayer."},exercise:{text:"Read Ephesians 1:3-23 slowly. Each time you see a truth about what you already have in Christ, pause and thank Him. Write down three things you discovered.",declaration:'"Lord, open my eyes. Help me see what You have already given me in Christ. I receive Your provision by faith."'}},{id:7,title:"The Great Unveiling",subtitle:"The thread that runs through all of Scripture",content:`
         <p>As I reflected on Paul's prayer for spiritual sight, I found myself noticing something I had seen many times before but perhaps never fully appreciated.</p>
         
         <p>The Bible is an unusual book. It was written by many people. Across many generations. In different places. Under different circumstances.</p>
@@ -1008,23 +898,7 @@ export const LESSONS = [
         <p style="font-weight:600; color:var(--accent-gold);">And I believe that journey will continue for the rest of our lives.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">With love and reflection.</p>
-    `,
-    meditation: {
-        text: `"Where in Scripture do I see Christ more clearly now than I used to?"`,
-        instruction: `Consider the Old Testament stories. The Passover lamb. The bronze serpent. The tabernacle. The sacrifices. Each one was a shadow pointing to Christ. Ask the Lord to help you see Him everywhere.`
-    },
-    exercise: {
-        text: `Read Luke 24:13-35 slowly. Notice how Jesus opened the Scriptures to the disciples on the road to Emmaus. Ask the Lord to open the Scriptures to you in the same way.`,
-        declaration: `"Jesus, open my eyes to see You in all of Scripture. From Genesis to Revelation, let me see Your glory."`
-    },
-},
-
-    // === LESSON 8 ===
-    {
-        id: 8,
-        title: "Living from Inheritance",
-        subtitle: "You are not a beggar at the King's table",
-        content: `
+    `,meditation:{text:'"Where in Scripture do I see Christ more clearly now than I used to?"',instruction:"Consider the Old Testament stories. The Passover lamb. The bronze serpent. The tabernacle. The sacrifices. Each one was a shadow pointing to Christ. Ask the Lord to help you see Him everywhere."},exercise:{text:"Read Luke 24:13-35 slowly. Notice how Jesus opened the Scriptures to the disciples on the road to Emmaus. Ask the Lord to open the Scriptures to you in the same way.",declaration:'"Jesus, open my eyes to see You in all of Scripture. From Genesis to Revelation, let me see Your glory."'}},{id:8,title:"Living from Inheritance",subtitle:"You are not a beggar at the King's table",content:`
             <p>
                 There is a profound difference between living like a servant and living like a son.
                 A servant works to earn. A son inherits.
@@ -1046,23 +920,7 @@ export const LESSONS = [
                     But because God, in His great love, has given it freely.
                 </span>
             </div>
-        `,
-        meditation: {
-            text: `"Where am I still living like a servant instead of a son?"`,
-            instruction: `Consider the ways you might be trying to earn God's approval instead of resting in His love.`
-        },
-        exercise: {
-            text: `Read Romans 8:12-17 slowly. Notice the contrast between slavery and sonship.`,
-            declaration: `"I am not a servant. I am a son. I am an heir of God through Christ. I live from inheritance, not from striving."`
-        },
-    },
-
-    // === LESSON 9 ===
-    {
-        id: 9,
-        title: "The Final Yes",
-        subtitle: "God's answer is already spoken in His Son",
-        content: `
+        `,meditation:{text:'"Where am I still living like a servant instead of a son?"',instruction:"Consider the ways you might be trying to earn God's approval instead of resting in His love."},exercise:{text:"Read Romans 8:12-17 slowly. Notice the contrast between slavery and sonship.",declaration:'"I am not a servant. I am a son. I am an heir of God through Christ. I live from inheritance, not from striving."'}},{id:9,title:"The Final Yes",subtitle:"God's answer is already spoken in His Son",content:`
             <div class="scripture-block">
                 <i class="fas fa-quote-left" style="color:var(--accent-gold); margin-right:8px;"></i>
                 <strong>"For all the promises of God in him are yea, and in him Amen, unto the glory of God by us."</strong>
@@ -1089,23 +947,7 @@ export const LESSONS = [
                 The foundation of the Christian life is therefore <strong>not our effort toward God,
                 but God's completed work toward us.</strong>
             </p>
-        `,
-        meditation: {
-            text: `"What would it look like to live today as though God's final answer is already 'yes' in Christ?"`,
-            instruction: `Rest in the finished work. Let go of striving. Trust that God has already spoken His final word in His Son.`
-        },
-        exercise: {
-            text: `Read 2 Corinthians 1:18-22 slowly. Meditate on the phrase "yea and Amen."`,
-            declaration: `"Every promise of God is 'yes' in Christ. I do not approach God wondering if He will answer. I approach Him knowing He already has. It is finished."`
-        },
-    },
-
-    // === LESSON 10 ===
-    {
-        id: 10,
-        title: "Beloved: The Journey Continues",
-        subtitle: "You are loved. You are His.",
-        content: `
+        `,meditation:{text:`"What would it look like to live today as though God's final answer is already 'yes' in Christ?"`,instruction:"Rest in the finished work. Let go of striving. Trust that God has already spoken His final word in His Son."},exercise:{text:'Read 2 Corinthians 1:18-22 slowly. Meditate on the phrase "yea and Amen."',declaration:`"Every promise of God is 'yes' in Christ. I do not approach God wondering if He will answer. I approach Him knowing He already has. It is finished."`}},{id:10,title:"Beloved: The Journey Continues",subtitle:"You are loved. You are His.",content:`
             <p>
                 My dear friend, we have come to the end of this series.
                 But in truth, <strong>the journey is only beginning.</strong>
@@ -1132,22 +974,7 @@ export const LESSONS = [
                     Walk in that truth today. And every day.
                 </span>
             </div>
-        `,
-        meditation: {
-            text: `"What does it mean to live today as one who is truly beloved?"`,
-            instruction: `Close your eyes. Imagine the Father speaking over you: "You are My beloved child."`
-        },
-        exercise: {
-            text: `Write a letter to yourself from God's perspective. Use Scripture to declare who you are in Christ.`,
-            declaration: `"I am beloved. I am a child of God. I am an heir with Christ. Nothing can separate me from His love."`
-        },
-    },
-
-    {
-    id: 11,
-    title: "Accomplishment and Manifestation",
-    subtitle: "God calls things finished before they become visible",
-    content: `
+        `,meditation:{text:'"What does it mean to live today as one who is truly beloved?"',instruction:'Close your eyes. Imagine the Father speaking over you: "You are My beloved child."'},exercise:{text:"Write a letter to yourself from God's perspective. Use Scripture to declare who you are in Christ.",declaration:'"I am beloved. I am a child of God. I am an heir with Christ. Nothing can separate me from His love."'}},{id:11,title:"Accomplishment and Manifestation",subtitle:"God calls things finished before they become visible",content:`
         <p>The Christian life begins with an important distinction.</p>
         <p><strong>Not everything that has been accomplished has yet been manifested.</strong></p>
         
@@ -1277,22 +1104,7 @@ export const LESSONS = [
         </div>
         
         <p>The believer walks by faith and not by sight. And faith rests, not because everything is visible, but because God is trustworthy.</p>
-    `,
-    meditation: {
-        text: `"What if God's faithfulness is not determined by what I presently see, but by what He has already spoken?"`,
-        instruction: `Take your time. Allow the Holy Spirit to teach your heart. Remain there for a few moments. Let His promises speak.`
-    },
-    exercise: {
-        text: `Read Romans chapter 4 slowly and prayerfully. Observe how Abraham learned to trust God's promise before he saw its fulfillment. Each time you find a statement revealing God's faithfulness, pause and thank Him aloud.`,
-        declaration: `"I will not measure God's faithfulness by my circumstances. I choose to believe that what He has spoken is more certain than what I presently see. I walk by faith and not by sight."`
-    },
-},
-
-{
-    id: 12,
-    title: "Revelation Precedes Manifestation",
-    subtitle: "God reveals before He manifests",
-    content: `
+    `,meditation:{text:`"What if God's faithfulness is not determined by what I presently see, but by what He has already spoken?"`,instruction:"Take your time. Allow the Holy Spirit to teach your heart. Remain there for a few moments. Let His promises speak."},exercise:{text:"Read Romans chapter 4 slowly and prayerfully. Observe how Abraham learned to trust God's promise before he saw its fulfillment. Each time you find a statement revealing God's faithfulness, pause and thank Him aloud.",declaration:`"I will not measure God's faithfulness by my circumstances. I choose to believe that what He has spoken is more certain than what I presently see. I walk by faith and not by sight."`}},{id:12,title:"Revelation Precedes Manifestation",subtitle:"God reveals before He manifests",content:`
         <p>The Christian life is not governed merely by information. It is governed by <strong>revelation</strong>.</p>
         
         <p>Many people are waiting for God to do something new, when God is waiting to show them something that already exists.</p>
@@ -1448,22 +1260,7 @@ export const LESSONS = [
             <br />
             <strong style="font-size:18px;">Revelation precedes manifestation.</strong>
         </div>
-    `,
-    meditation: {
-        text: `"What if my greatest need is not for God to do something new, but for Him to open my eyes to what He has already done?"`,
-        instruction: `Sit quietly before the Lord. Do not rush to answer. Allow the Holy Spirit to illuminate your heart. Remain there for a few moments. Let His Word speak.`
-    },
-    exercise: {
-        text: `Read Ephesians 1:15-23 slowly and prayerfully. Notice Paul's prayer for spiritual sight. Every time you encounter a phrase describing what believers already possess in Christ, pause and thank God aloud.`,
-        declaration: `"Father, open the eyes of my understanding. Teach me to see what You have already accomplished in Christ. I choose to walk by revelation and not merely by appearances. Let Your Word become life within me."`
-    },
-},
-
-{
-    id: 13,
-    title: "The Battle of Consciousness",
-    subtitle: "Whatever consistently occupies your attention will eventually influence your direction",
-    content: `
+    `,meditation:{text:'"What if my greatest need is not for God to do something new, but for Him to open my eyes to what He has already done?"',instruction:"Sit quietly before the Lord. Do not rush to answer. Allow the Holy Spirit to illuminate your heart. Remain there for a few moments. Let His Word speak."},exercise:{text:"Read Ephesians 1:15-23 slowly and prayerfully. Notice Paul's prayer for spiritual sight. Every time you encounter a phrase describing what believers already possess in Christ, pause and thank God aloud.",declaration:'"Father, open the eyes of my understanding. Teach me to see what You have already accomplished in Christ. I choose to walk by revelation and not merely by appearances. Let Your Word become life within me."'}},{id:13,title:"The Battle of Consciousness",subtitle:"Whatever consistently occupies your attention will eventually influence your direction",content:`
         <p>One of the greatest battles in the Christian life is not the battle for resources.</p>
         
         <p>It is not even the battle for opportunities. It is the battle for <strong>attention</strong>.</p>
@@ -1635,22 +1432,7 @@ export const LESSONS = [
                 <br />And whatever becomes most real to you will ultimately influence how you live.
             </span>
         </div>
-    `,
-    meditation: {
-        text: `"What has occupied my attention more than Christ lately?"`,
-        instruction: `Sit quietly before the Lord. Do not answer quickly. Allow the Holy Spirit to gently search your heart. Remain there for a few moments. Let Him reveal what has been shaping your consciousness.`
-    },
-    exercise: {
-        text: `Read Philippians 4:4-9 slowly and prayerfully. Write down every instruction Paul gives regarding the believer's thoughts. Throughout the day, whenever you notice your attention drifting toward fear, anxiety, or discouragement, gently redirect it toward a promise of God.`,
-        declaration: `"Father, I choose to set my mind upon You. Let my attention be governed by Your truth and not by my fears. Teach me to behold Christ until His life becomes the dominant reality within me."`
-    },
-},
-
-{
-    id: 14,
-    title: "Learning the Ministry of the Holy Spirit",
-    subtitle: "The Christian life was never designed to be lived by human effort",
-    content: `
+    `,meditation:{text:'"What has occupied my attention more than Christ lately?"',instruction:"Sit quietly before the Lord. Do not answer quickly. Allow the Holy Spirit to gently search your heart. Remain there for a few moments. Let Him reveal what has been shaping your consciousness."},exercise:{text:"Read Philippians 4:4-9 slowly and prayerfully. Write down every instruction Paul gives regarding the believer's thoughts. Throughout the day, whenever you notice your attention drifting toward fear, anxiety, or discouragement, gently redirect it toward a promise of God.",declaration:'"Father, I choose to set my mind upon You. Let my attention be governed by Your truth and not by my fears. Teach me to behold Christ until His life becomes the dominant reality within me."'}},{id:14,title:"Learning the Ministry of the Holy Spirit",subtitle:"The Christian life was never designed to be lived by human effort",content:`
         <p>The Christian life was never designed to be lived by human effort.</p>
         
         <p>When you discover this, it sets you on your way to rest.</p>
@@ -1774,22 +1556,7 @@ export const LESSONS = [
         <p>The One who called you is also the One who walks with you.</p>
         
         <p>Even now. Even today. He delights to reveal Christ afresh to your heart.</p>
-    `,
-    meditation: {
-        text: `"Have I been trying to live the Christian life in my own strength, or have I been depending upon the Holy Spirit?"`,
-        instruction: `Sit quietly before the Lord. Remain still for a few moments. Invite Him to teach you afresh.`
-    },
-    exercise: {
-        text: `Read John 14:16-26 slowly and prayerfully. Write down everything Jesus says the Holy Spirit will do. Throughout the day, before making decisions or reading the Scriptures, pause briefly and pray: "Holy Spirit, teach me Christ."`,
-        declaration: `"Father, thank You for the gift of the Holy Spirit. I choose to depend upon Him rather than my own understanding. Open my eyes to know Christ more deeply, and teach me to follow Your leading with joy. Amen."`
-    },
-},
-
-{
-    id: 15,
-    title: "Abiding Beyond Transaction",
-    subtitle: "Not merely visits, but abiding",
-    content: `
+    `,meditation:{text:'"Have I been trying to live the Christian life in my own strength, or have I been depending upon the Holy Spirit?"',instruction:"Sit quietly before the Lord. Remain still for a few moments. Invite Him to teach you afresh."},exercise:{text:'Read John 14:16-26 slowly and prayerfully. Write down everything Jesus says the Holy Spirit will do. Throughout the day, before making decisions or reading the Scriptures, pause briefly and pray: "Holy Spirit, teach me Christ."',declaration:'"Father, thank You for the gift of the Holy Spirit. I choose to depend upon Him rather than my own understanding. Open my eyes to know Christ more deeply, and teach me to follow Your leading with joy. Amen."'}},{id:15,title:"Abiding Beyond Transaction",subtitle:"Not merely visits, but abiding",content:`
         <p>One of the greatest invitations in the Christian life is not an invitation to receive something from God.</p>
         
         <p>It is an invitation to <strong>remain with Him</strong>.</p>
@@ -1912,22 +1679,7 @@ export const LESSONS = [
                 <br /><strong>For in His presence, the soul discovers the home it has always been searching for.</strong>
             </span>
         </div>
-    `,
-    meditation: {
-        text: `"If God answered none of my prayers today, would I still delight to spend time with Him?"`,
-        instruction: `Sit quietly before the Lord without asking Him for anything. Simply remain with Him. Thank Him. Worship Him. Enjoy His presence. Allow the Holy Spirit to search your heart.`
-    },
-    exercise: {
-        text: `Read John 15:1–11 slowly. Underline every occurrence of the word abide or remain. Write down what Jesus promises to those who abide in Him. Then spend fifteen uninterrupted minutes with the Lord today. No agenda. No requests. Just fellowship.`,
-        declaration: `"Father, thank You for inviting me into fellowship with You. Teach me to delight in Your presence above every gift. Let my heart find its home in Christ, and may my life bear fruit simply because I remain in Him. Amen."`
-    },
-},
-
-{
-    id: 16,
-    title: "Bearing Fruit That Remains",
-    subtitle: "Fruit is not the reward of pressure — it is the evidence of abiding",
-    content: `
+    `,meditation:{text:'"If God answered none of my prayers today, would I still delight to spend time with Him?"',instruction:"Sit quietly before the Lord without asking Him for anything. Simply remain with Him. Thank Him. Worship Him. Enjoy His presence. Allow the Holy Spirit to search your heart."},exercise:{text:"Read John 15:1–11 slowly. Underline every occurrence of the word abide or remain. Write down what Jesus promises to those who abide in Him. Then spend fifteen uninterrupted minutes with the Lord today. No agenda. No requests. Just fellowship.",declaration:'"Father, thank You for inviting me into fellowship with You. Teach me to delight in Your presence above every gift. Let my heart find its home in Christ, and may my life bear fruit simply because I remain in Him. Amen."'}},{id:16,title:"Bearing Fruit That Remains",subtitle:"Fruit is not the reward of pressure — it is the evidence of abiding",content:`
         <p>When Jesus spoke of bearing fruit, He was not asking His disciples to become busy.</p>
         
         <p>He was inviting them to become <strong>fruitful</strong>.</p>
@@ -2102,22 +1854,7 @@ export const LESSONS = [
         <p>Fruit that remains. Fruit that springs from a life hidden in Christ. Fruit that survives changing seasons because its source is eternal.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">What a God!</p>
-    `,
-    meditation: {
-        text: `"What has been feeding my heart more than God's Word?"`,
-        instruction: `Sit quietly before the Lord. Do not answer quickly. Allow the Holy Spirit to gently reveal the sources from which your thoughts have been drawing life. Then ask Him to cultivate within you a deeper hunger for His Word. Remain there for a few moments. Let His life flow into you.`
-    },
-    exercise: {
-        text: `Read John 15:1–11 slowly. Each time Jesus mentions abiding, pause and ask: "What does abiding look like in this verse?" Then choose one promise of God and meditate on it for five minutes and carry it in your consciousness throughout the day. When fear, sickness, discouragement, or negative thoughts arise, gently return to that promise. Notice how your heart begins to respond differently—not because your circumstances have totally physically changed, but because your nourishment has changed.`,
-        declaration: `"Father, teach me to abide in Christ and to let His Word abide richly in me. Let Your truth become the nourishment of my soul until the life of Jesus is expressed through me. May every work of the flesh lose its strength as Your life grows stronger within me. Bear through me the fruit that remains, for Your glory alone. Amen."`
-    },
-},
-
-{
-    id: 17,
-    title: "Establishing the Heart",
-    subtitle: "Truth has not fully transformed us until it becomes inward conviction",
-    content: `
+    `,meditation:{text:`"What has been feeding my heart more than God's Word?"`,instruction:"Sit quietly before the Lord. Do not answer quickly. Allow the Holy Spirit to gently reveal the sources from which your thoughts have been drawing life. Then ask Him to cultivate within you a deeper hunger for His Word. Remain there for a few moments. Let His life flow into you."},exercise:{text:'Read John 15:1–11 slowly. Each time Jesus mentions abiding, pause and ask: "What does abiding look like in this verse?" Then choose one promise of God and meditate on it for five minutes and carry it in your consciousness throughout the day. When fear, sickness, discouragement, or negative thoughts arise, gently return to that promise. Notice how your heart begins to respond differently—not because your circumstances have totally physically changed, but because your nourishment has changed.',declaration:'"Father, teach me to abide in Christ and to let His Word abide richly in me. Let Your truth become the nourishment of my soul until the life of Jesus is expressed through me. May every work of the flesh lose its strength as Your life grows stronger within me. Bear through me the fruit that remains, for Your glory alone. Amen."'}},{id:17,title:"Establishing the Heart",subtitle:"Truth has not fully transformed us until it becomes inward conviction",content:`
         <p>One of the greatest differences between spiritual infancy and spiritual maturity is not how much a believer knows.</p>
         
         <p>It is how firmly his heart has become <strong>established</strong> in the truth.</p>
@@ -2297,22 +2034,7 @@ export const LESSONS = [
         </div>
         
         <p style="font-weight:600; color:var(--accent-gold);">What a God!</p>
-    `,
-    meditation: {
-        text: `"What truth has God been teaching me that I still struggle to fully believe?"`,
-        instruction: `Sit quietly before the Lord. Do not condemn yourself. Simply invite the Holy Spirit to move that truth from your mind into your heart. Remain there for a few moments. Let Him establish you in His grace.`
-    },
-    exercise: {
-        text: `Read Romans 4:13–25 slowly and prayerfully. Underline every phrase that describes Abraham's faith. Notice how his confidence rested, not in circumstances, but in God's promise. Then write down one or two promises from God's Word that you are choosing to become fully persuaded about today. Return to that promise throughout the day whenever doubt arises.`,
-        declaration: `"Father, establish my heart in Your grace. Let Your truth become more than information to me. Make it my settled persuasion, so that my confidence rests not in circumstances, but in Christ alone. Teach me to stand firm, fully persuaded that You are faithful to all You have promised. Amen."`
-    },
-},
-
-{
-    id: 18,
-    title: "Beholding Until Changed",
-    subtitle: "Transformation is not the reward of striving — it is the fruit of beholding",
-    content: `
+    `,meditation:{text:'"What truth has God been teaching me that I still struggle to fully believe?"',instruction:"Sit quietly before the Lord. Do not condemn yourself. Simply invite the Holy Spirit to move that truth from your mind into your heart. Remain there for a few moments. Let Him establish you in His grace."},exercise:{text:"Read Romans 4:13–25 slowly and prayerfully. Underline every phrase that describes Abraham's faith. Notice how his confidence rested, not in circumstances, but in God's promise. Then write down one or two promises from God's Word that you are choosing to become fully persuaded about today. Return to that promise throughout the day whenever doubt arises.",declaration:'"Father, establish my heart in Your grace. Let Your truth become more than information to me. Make it my settled persuasion, so that my confidence rests not in circumstances, but in Christ alone. Teach me to stand firm, fully persuaded that You are faithful to all You have promised. Amen."'}},{id:18,title:"Beholding Until Changed",subtitle:"Transformation is not the reward of striving — it is the fruit of beholding",content:`
         <p>One of the greatest discoveries a believer can make is that transformation is not the reward of striving.</p>
         
         <p>It is the <strong>fruit of beholding</strong>.</p>
@@ -2478,22 +2200,7 @@ export const LESSONS = [
             <br />
             <strong style="font-size:18px;">For those who continually behold Him will gradually become like Him.</strong>
         </div>
-    `,
-    meditation: {
-        text: `"What has occupied my gaze more than Christ?"`,
-        instruction: `Sit quietly before the Lord. Do not answer hastily. Ask the Holy Spirit to gently redirect the eyes of your heart. Remain there for a few moments. Simply behold Him.`
-    },
-    exercise: {
-        text: `Read 2 Corinthians 3 slowly and prayerfully. Underline every phrase that describes the glory of the New Covenant. Then spend ten uninterrupted minutes reading Matthew 8 accounts of Jesus - not to study, but simply to admire Him. Notice His words. His compassion. His gentleness. His strength. Allow your heart to behold Him.`,
-        declaration: `"Father, turn the eyes of my heart continually toward Your Son. Let me behold His beauty until His character is formed within me. Keep me from striving in my own strength, and teach me to abide in Christ until His life is revealed through mine. Amen."`
-    },
-},
-
-{
-    id: 19,
-    title: "The Mind of Christ",
-    subtitle: "A renewed way of thinking — not simply a changed behaviour",
-    content: `
+    `,meditation:{text:'"What has occupied my gaze more than Christ?"',instruction:"Sit quietly before the Lord. Do not answer hastily. Ask the Holy Spirit to gently redirect the eyes of your heart. Remain there for a few moments. Simply behold Him."},exercise:{text:"Read 2 Corinthians 3 slowly and prayerfully. Underline every phrase that describes the glory of the New Covenant. Then spend ten uninterrupted minutes reading Matthew 8 accounts of Jesus - not to study, but simply to admire Him. Notice His words. His compassion. His gentleness. His strength. Allow your heart to behold Him.",declaration:'"Father, turn the eyes of my heart continually toward Your Son. Let me behold His beauty until His character is formed within me. Keep me from striving in my own strength, and teach me to abide in Christ until His life is revealed through mine. Amen."'}},{id:19,title:"The Mind of Christ",subtitle:"A renewed way of thinking — not simply a changed behaviour",content:`
         <p>A sure evidence of spiritual maturity is not simply a changed behaviour.</p>
         
         <p>It is a <strong>renewed way of thinking</strong>.</p>
@@ -2646,22 +2353,7 @@ export const LESSONS = [
         </div>
         
         <p>For when the mind is renewed, the life is transformed. And when the life is transformed, Christ is revealed.</p>
-    `,
-    meditation: {
-        text: `"In what area of my life do I most need to exchange my way of thinking for the mind of Christ?"`,
-        instruction: `Sit quietly before the Lord. Do not rush. Invite the Holy Spirit to gently renew your perspective. Remain there for a few moments. Allow His thoughts to become more precious than your own.`
-    },
-    exercise: {
-        text: `Read Philippians 2:1–11 slowly and prayerfully. Underline every attitude you observe in the life of Christ. Throughout the day, whenever you face a decision, pause and quietly ask: "How would Christ think about this?" Then respond accordingly.`,
-        declaration: `"Father, renew my mind by Your Word and by Your Spirit. Teach me to see as Christ sees, to value what He values, and to respond as He responds. Let His mind increasingly shape my thoughts until my life becomes a true reflection of Him. Amen."`
-    },
-},
-
-{
-    id: 20,
-    title: "The Fullness of Christ",
-    subtitle: "Growing up into Him who is the Head — even Christ",
-    content: `
+    `,meditation:{text:'"In what area of my life do I most need to exchange my way of thinking for the mind of Christ?"',instruction:"Sit quietly before the Lord. Do not rush. Invite the Holy Spirit to gently renew your perspective. Remain there for a few moments. Allow His thoughts to become more precious than your own."},exercise:{text:'Read Philippians 2:1–11 slowly and prayerfully. Underline every attitude you observe in the life of Christ. Throughout the day, whenever you face a decision, pause and quietly ask: "How would Christ think about this?" Then respond accordingly.',declaration:'"Father, renew my mind by Your Word and by Your Spirit. Teach me to see as Christ sees, to value what He values, and to respond as He responds. Let His mind increasingly shape my thoughts until my life becomes a true reflection of Him. Amen."'}},{id:20,title:"The Fullness of Christ",subtitle:"Growing up into Him who is the Head — even Christ",content:`
         <p>We have journeyed through many truths together.</p>
         
         <p>We have seen that God is not withholding.</p>
@@ -2861,22 +2553,7 @@ export const LESSONS = [
         <p>From start to finish, it is all of Christ.</p>
         
         <p style="font-weight:600; color:var(--accent-gold);">Hallelujah!</p>
-    `,
-    meditation: {
-        text: `"If I am already complete in Christ, what am I still striving to obtain?"`,
-        instruction: `Sit quietly before the Lord. Allow this truth to settle deep within your heart. You lack nothing in Christ. Rest in His finished work. Let go of striving. Simply receive His fullness. Remain there for a few moments. Let the reality of your completeness in Christ wash over you.`
-    },
-    exercise: {
-        text: `Read Colossians 2:6–15 slowly and prayerfully. Write down every phrase that describes what you already possess in Christ. Thank God for each one. Then choose one area of your life where you have been striving, and consciously release it to God. Declare that you are complete in Christ and rest in His sufficiency.`,
-        declaration: `"Father, I thank You that I am complete in Christ. I lack nothing. I rest in Your finished work. I release every striving, every worry, and every fear. I receive Your fullness. I am accepted. I am loved. I am complete. In Jesus' name. Amen."`
-    },
-},
-
-{
-    id: 21,
-    title: "Christ Formed in You",
-    subtitle: "The Father's desire is that His Son would be revealed in you",
-    content: `
+    `,meditation:{text:'"If I am already complete in Christ, what am I still striving to obtain?"',instruction:"Sit quietly before the Lord. Allow this truth to settle deep within your heart. You lack nothing in Christ. Rest in His finished work. Let go of striving. Simply receive His fullness. Remain there for a few moments. Let the reality of your completeness in Christ wash over you."},exercise:{text:"Read Colossians 2:6–15 slowly and prayerfully. Write down every phrase that describes what you already possess in Christ. Thank God for each one. Then choose one area of your life where you have been striving, and consciously release it to God. Declare that you are complete in Christ and rest in His sufficiency.",declaration:`"Father, I thank You that I am complete in Christ. I lack nothing. I rest in Your finished work. I release every striving, every worry, and every fear. I receive Your fullness. I am accepted. I am loved. I am complete. In Jesus' name. Amen."`}},{id:21,title:"Christ Formed in You",subtitle:"The Father's desire is that His Son would be revealed in you",content:`
         <p>If you have walked carefully through these lessons, perhaps you have noticed something.</p>
         
         <p>At first, it may have seemed that we were learning many different subjects.</p>
@@ -3102,22 +2779,7 @@ export const LESSONS = [
         </div>
         
         <p style="font-weight:600; color:var(--accent-gold);">Glory to God!</p>
-    `,
-    meditation: {
-        text: `"Lord Jesus, in what areas of my life are You still forming Your character within me?"`,
-        instruction: `Sit quietly before the Lord. Don't rush. Simply remain with Him. This is not a moment for striving. It is a moment for surrender. Allow His love to remind you that He who began this good work in you will faithfully bring it to completion. Remain there for a few moments. Enjoy His presence.`
-    },
-    exercise: {
-        text: `Read Galatians 2:20, Romans 8:28–29, and John 15:1–11 slowly and prayerfully. Notice how each passage points to the same glorious reality: Christ is your life. Then take a sheet of paper and write this question at the top: "If Christ were to live through me today, what would that look like?" As you go through your day, don't try to manufacture the answers. Simply abide. Trust the Holy Spirit to express the life of Jesus through you in ordinary conversations, ordinary decisions, and ordinary moments. You may be surprised how extraordinary His life looks through simple obedience.`,
-        declaration: `"Father, thank You for every step You have walked with me through this journey. Thank You that Your desire has never merely been to improve me, but to reveal Your Son in me. I surrender myself afresh to the Holy Spirit. Continue forming Christ within me until my thoughts, my words, my actions, and my love increasingly reflect Him. May those who meet me encounter something of Jesus. To Him alone be all the glory. Amen."`
-    },
-},
-
-{
-    id: 22,
-    title: "The Journey Continues",
-    subtitle: "Not the end, but the beginning of something greater",
-    content: `
+    `,meditation:{text:'"Lord Jesus, in what areas of my life are You still forming Your character within me?"',instruction:"Sit quietly before the Lord. Don't rush. Simply remain with Him. This is not a moment for striving. It is a moment for surrender. Allow His love to remind you that He who began this good work in you will faithfully bring it to completion. Remain there for a few moments. Enjoy His presence."},exercise:{text:`Read Galatians 2:20, Romans 8:28–29, and John 15:1–11 slowly and prayerfully. Notice how each passage points to the same glorious reality: Christ is your life. Then take a sheet of paper and write this question at the top: "If Christ were to live through me today, what would that look like?" As you go through your day, don't try to manufacture the answers. Simply abide. Trust the Holy Spirit to express the life of Jesus through you in ordinary conversations, ordinary decisions, and ordinary moments. You may be surprised how extraordinary His life looks through simple obedience.`,declaration:'"Father, thank You for every step You have walked with me through this journey. Thank You that Your desire has never merely been to improve me, but to reveal Your Son in me. I surrender myself afresh to the Holy Spirit. Continue forming Christ within me until my thoughts, my words, my actions, and my love increasingly reflect Him. May those who meet me encounter something of Jesus. To Him alone be all the glory. Amen."'}},{id:22,title:"The Journey Continues",subtitle:"Not the end, but the beginning of something greater",content:`
         <p>My dear friend,</p>
         
         <p>We have come to the end of this series.</p>
@@ -3190,14 +2852,364 @@ export const LESSONS = [
         
         <p style="font-weight:600; color:var(--accent-gold);">With love and reflection,</p>
         <p style="font-family:var(--font-heading); font-size:20px; color:var(--accent-gold);">Grace Spring Family Church</p>
-    `,
-    meditation: {
-        text: `"What truth from this series do I need to carry with me most?"`,
-        instruction: `Sit quietly before the Lord. Review the lessons in your heart. Ask the Holy Spirit to highlight the one truth He wants you to carry forward. Let it sink deep into your spirit. This is your anchor for the journey ahead.`
-    },
-    exercise: {
-        text: `Go back through the series and review the declarations from each lesson. Write down the ones that speak most deeply to your heart. Create a page or a note with these declarations. Read them aloud every morning for the next 30 days. Let them become your settled persuasion.`,
-        declaration: `"I am complete in Christ. I am loved with an everlasting love. I am accepted in the Beloved. I am seated with Christ in heavenly places. I have the mind of Christ. I am an heir of God. I am a child of the King. I am complete. I am His. And He is mine. Forever. Amen."`
-    },
-    }
-];
+    `,meditation:{text:'"What truth from this series do I need to carry with me most?"',instruction:"Sit quietly before the Lord. Review the lessons in your heart. Ask the Holy Spirit to highlight the one truth He wants you to carry forward. Let it sink deep into your spirit. This is your anchor for the journey ahead."},exercise:{text:"Go back through the series and review the declarations from each lesson. Write down the ones that speak most deeply to your heart. Create a page or a note with these declarations. Read them aloud every morning for the next 30 days. Let them become your settled persuasion.",declaration:'"I am complete in Christ. I am loved with an everlasting love. I am accepted in the Beloved. I am seated with Christ in heavenly places. I have the mind of Christ. I am an heir of God. I am a child of the King. I am complete. I am His. And He is mine. Forever. Amen."'}}];function K(t,e){var H,r,h,d,g;const{showToast:o,updateStreak:i,userProfile:n,isLoggedIn:s,navigateTo:p}=e;G.filter(a=>!a.isWelcome).length;const v=((H=c.get("gsc-progress",{completedLessons:[]}).completedLessons)==null?void 0:H.length)||0;i&&i(),t.innerHTML=`
+        <div class="page active" id="homePage">
+            <div class="container">
+            <!-- Welcome Hero -->
+                <div class="welcome-hero">
+                    <h1 class="welcome-title">Welcome to <span>The Consciousness of the Son</span></h1>
+                    <p class="welcome-text">
+                        This is a journey into the depths of what Christ has already accomplished
+                        on your behalf. Over the coming lessons, we will explore what it truly
+                        means to live from the finished work of the Cross — not striving to earn
+                        what has already been freely given, but growing into the reality of our
+                        inheritance in Christ.
+                    </p>
+                    <p class="welcome-text">
+                        My prayer is that as you walk through these pages, the eyes of your
+                        understanding will be opened, your heart will be settled in God's love,
+                        and you will discover the freedom that comes from knowing — truly knowing —
+                        that He has already blessed us with every spiritual blessing in Christ.
+                    </p>
+                    <div class="welcome-scripture">
+                        <i class="fas fa-quote-left"></i>
+                        <span>"He that spared not his own Son, but delivered him up for us all,
+                        how shall he not with him also freely give us all things?"</span>
+                        <span class="welcome-ref">— Romans 8:32</span>
+                    </div>
+                    <div class="welcome-signoff">
+                        <i class="fas fa-heart"></i>
+                        With love and reflection,<br />
+                        <strong>Grace Spring Family Church</strong>
+                    </div>
+                </div>
+
+                <!-- Action Row -->
+                <div class="action-row">
+                    <button class="action-btn-primary" id="continueLearning">
+                        <i class="fas fa-book-open"></i> Continue Learning
+                    </button>
+                    <button class="action-btn-secondary" id="readBible">
+                        <i class="fas fa-bible"></i> Read Bible
+                    </button>
+                </div>
+
+                <!-- Greeting -->
+                <div class="greeting">
+                    Welcome back, <strong>${(n==null?void 0:n.name)||"Guest"}</strong>!
+                    ${v===0?"Start your journey today.":"Keep going! You're doing great. 🎉"}
+                </div>
+
+                <!-- Auth Prompt -->
+                ${s?`
+                    <div class="auth-prompt" style="border-color:var(--accent-green);">
+                        <div class="prompt-icon">✅</div>
+                        <div class="prompt-title">You're Signed In!</div>
+                        <div class="prompt-desc">Your progress is being saved to the cloud.</div>
+                    </div>
+                `:`
+                    <div class="auth-prompt">
+                        <div class="prompt-icon">✨</div>
+                        <div class="prompt-title">Create an Account</div>
+                        <div class="prompt-desc">Save your progress, notes, and favorites across all devices.</div>
+                        <div class="prompt-buttons">
+                            <button class="prompt-btn primary" id="signupPrompt">
+                                <i class="fas fa-user-plus"></i> Get Started
+                            </button>
+                            <button class="prompt-btn secondary" id="signinPrompt">
+                                <i class="fas fa-sign-in-alt"></i> Sign In
+                            </button>
+                        </div>
+                    </div>
+                `}
+            </div>
+        </div>
+    `,(r=document.getElementById("continueLearning"))==null||r.addEventListener("click",()=>{p&&p("lessons")}),(h=document.getElementById("readBible"))==null||h.addEventListener("click",()=>{p&&p("bible")}),(d=document.getElementById("signupPrompt"))==null||d.addEventListener("click",()=>{var a;(a=window.openAuthModal)==null||a.call(window,"signup")}),(g=document.getElementById("signinPrompt"))==null||g.addEventListener("click",()=>{var a;(a=window.openAuthModal)==null||a.call(window,"signin")})}let le=null;function he(t,e){le=e;const{showToast:o,updateStreak:i,navigateTo:n}=e,s=c.get("gsc-progress",{completedLessons:[]}),p=new Set(s.completedLessons||[]),x=G.filter(r=>!r.isWelcome);let v=`
+        <div class="page active" id="lessonsPage">
+            <div class="container">
+                <h2 class="card-title">📚 All Lessons</h2>
+                <div style="margin-bottom:16px;">
+                    <input type="text" id="lessonSearch" placeholder="🔍 Search lessons..." 
+                           style="width:100%; padding:10px 16px; border:1px solid rgba(0,0,0,0.08); 
+                                  border-radius:var(--radius-sm); background:var(--bg-primary); 
+                                  color:var(--text-primary); font-size:15px; outline:none;">
+                </div>
+                <div id="lessonList">
+    `;x.forEach((r,h)=>{const d=p.has(r.id);v+=`
+            <div class="lesson-list-item" data-lesson="${r.id}" data-index="${h}">
+                <div class="lesson-status-icon ${d?"completed":""}">
+                    ${d?'<i class="fas fa-check-circle"></i>':'<i class="fas fa-circle-o"></i>'}
+                </div>
+                <div class="lesson-info">
+                    <div class="lesson-title">${r.title}</div>
+                    ${r.subtitle?`<div class="lesson-sub">${r.subtitle}</div>`:""}
+                </div>
+                <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        `}),v+=`
+                </div>
+            </div>
+        </div>
+    `,t.innerHTML=v;const H=document.getElementById("lessonSearch");H&&H.addEventListener("input",function(){const r=this.value.toLowerCase().trim();document.querySelectorAll(".lesson-list-item").forEach(h=>{var a,b,y,k;const d=((b=(a=h.querySelector(".lesson-title"))==null?void 0:a.textContent)==null?void 0:b.toLowerCase())||"",g=((k=(y=h.querySelector(".lesson-sub"))==null?void 0:y.textContent)==null?void 0:k.toLowerCase())||"";h.style.display=d.includes(r)||g.includes(r)||!r?"flex":"none"})}),document.querySelectorAll(".lesson-list-item").forEach(r=>{r.addEventListener("click",function(){const h=parseInt(this.dataset.lesson);G.find(g=>g.id===h)&&ce(t,h,o,i)})})}function ce(t,e,o,i,n){var k,m,E,I,S;const s=G.find(u=>u.id===e);if(!s)return;const p=c.get("gsc-progress",{completedLessons:[]}),v=new Set(p.completedLessons||[]).has(e),r=c.get("gsc-notes",{})[e]||"";t.innerHTML=`
+        <div class="page active" id="lessonDetail">
+            <div class="container">
+                <button class="back-to-books-btn" id="backToLessons">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
+
+                <div class="card" style="padding:24px;">
+                    <div class="lesson-badge">Lesson ${e}</div>
+                    <h2 class="lesson-detail-title">${s.title}</h2>
+                    ${s.subtitle?`<p class="lesson-detail-sub">${s.subtitle}</p>`:""}
+                    <div class="lesson-detail-content">
+                        ${s.content}
+                    </div>
+
+                    <!-- Meditation -->
+                    ${s.meditation?`
+                        <div class="meditation-block">
+                            <strong>💭 Meditation</strong>
+                            <p style="margin-top:4px; font-style:italic;">"${s.meditation.text}"</p>
+                            <p style="font-size:14px; color:var(--text-light);">${s.meditation.instruction}</p>
+                        </div>
+                    `:""}
+
+                    <!-- Exercise -->
+                    ${s.exercise?`
+                        <div class="exercise-block">
+                            <strong>✍️ Exercise</strong>
+                            <p style="margin-top:4px;">${s.exercise.text}</p>
+                            ${s.exercise.declaration?`
+                                <div class="declaration">"${s.exercise.declaration}"</div>
+                            `:""}
+                            <button class="mark-complete-btn" data-lesson="${e}" 
+                                    style="margin-top:12px; padding:8px 24px; border-radius:var(--radius-full); 
+                                           background:${v?"var(--accent-green)":"var(--accent-gold)"}; 
+                                           color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;">
+                                ${v?"✅ Completed":"Mark Complete"}
+                            </button>
+                        </div>
+                    `:""}
+
+                    <!-- Read Aloud, Notes, Share -->
+                    <div class="read-aloud-block">
+                        <button class="read-aloud-btn" data-lesson="${e}">
+                            <i class="fas fa-volume-up"></i>
+                            <span>Read Aloud</span>
+                        </button>
+                        <button class="notes-toggle-btn ${r?"active":""}" data-lesson="${e}">
+                            <i class="fas fa-sticky-note"></i>
+                            <span>Notes</span>
+                            ${r?'<span class="notes-badge">📝</span>':""}
+                        </button>
+                        <button class="share-btn" data-lesson="${e}">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+
+                    <!-- Notes Block -->
+                    <div class="notes-block" id="notes-${e}" style="${r?"display:block;":"display:none;"}">
+                        <div class="notes-header">
+                            <div class="notes-title">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>My Notes</span>
+                            </div>
+                            <div class="notes-actions">
+                                <button class="save-btn" data-lesson="${e}">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                                <button class="clear-btn" data-lesson="${e}">
+                                    <i class="fas fa-trash-alt"></i> Clear
+                                </button>
+                            </div>
+                        </div>
+                        <textarea class="notes-textarea" data-lesson="${e}" 
+                                  placeholder="Write your thoughts, revelations, or key takeaways..."
+                                  maxlength="2000">${r}</textarea>
+                        <div class="notes-footer">
+                            <span class="char-count">${r.length} / 2000</span>
+                            <span class="saved-indicator ${r?"saved":"unsaved"}" id="savedIndicator-${e}">
+                                <i class="fas ${r?"fa-check-circle":"fa-circle"}"></i>
+                                ${r?"Saved":"Unsaved"}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,(k=document.getElementById("backToLessons"))==null||k.addEventListener("click",()=>{he(t,le)}),(m=document.querySelector(".mark-complete-btn"))==null||m.addEventListener("click",function(){const u=parseInt(this.dataset.lesson),l=c.get("gsc-progress",{completedLessons:[]}),f=new Set(l.completedLessons||[]);f.has(u)?f.delete(u):(f.add(u),i&&i()),l.completedLessons=Array.from(f),c.set("gsc-progress",l),o&&o(f.has(u)?"✅ Completed!":"Unmarked"),ce(t,u,o,i)});const h=document.querySelector(".read-aloud-btn");if(h){const u=document.createElement("div");u.innerHTML=s.content;const l=(u.textContent||u.innerText||"").replace(/\s+/g," ").trim();let f=!1;const w=window.speechSynthesis;h.addEventListener("click",function(){if(f){w.cancel(),f=!1,this.classList.remove("playing"),this.querySelector("i").className="fas fa-volume-up",this.querySelector("span").textContent="Read Aloud";return}if(!window.speechSynthesis){o&&o("🔊 Text-to-speech not supported");return}const T=new SpeechSynthesisUtterance(l);T.rate=1,T.pitch=1,this.classList.add("playing"),this.querySelector("i").className="fas fa-stop",this.querySelector("span").textContent="Stop",w.speak(T),f=!0,T.onend=()=>{f=!1,this.classList.remove("playing"),this.querySelector("i").className="fas fa-volume-up",this.querySelector("span").textContent="Read Aloud"}})}const d=document.querySelector(".notes-toggle-btn"),g=document.getElementById(`notes-${e}`);d&&g&&d.addEventListener("click",function(){var l;const u=g.style.display!=="none";g.style.display=u?"none":"block",this.classList.toggle("active"),u||(l=g.querySelector("textarea"))==null||l.focus()});const a=document.querySelector(".notes-textarea"),b=document.querySelector(".char-count"),y=document.getElementById(`savedIndicator-${e}`);a&&(a.addEventListener("input",function(){const u=this.value.length;b&&(b.textContent=`${u} / 2000`),y&&(y.className="saved-indicator unsaved",y.innerHTML='<i class="fas fa-circle"></i> Unsaved')}),a.addEventListener("blur",function(){Y(e,this.value,y,o)})),(E=document.querySelector(".save-btn"))==null||E.addEventListener("click",function(){const u=parseInt(this.dataset.lesson),l=document.querySelector(`.notes-textarea[data-lesson="${u}"]`);l&&Y(u,l.value,y,o)}),(I=document.querySelector(".clear-btn"))==null||I.addEventListener("click",function(){var f,w;const u=parseInt(this.dataset.lesson),l=document.querySelector(`.notes-textarea[data-lesson="${u}"]`);if(!(l&&l.value&&!confirm("Clear all notes for this lesson?"))&&l){l.value="";const T=l.value.length;b&&(b.textContent=`${T} / 2000`),Y(u,"",y,o),(f=document.querySelector(".notes-toggle-btn"))==null||f.classList.remove("active"),(w=document.querySelector(".notes-badge"))==null||w.remove()}}),(S=document.querySelector(".share-btn"))==null||S.addEventListener("click",function(){const u=`📖 ${s.title}
+
+${s.subtitle||""}
+
+Read more at The Consciousness of the Son 🕊️`;navigator.share?navigator.share({title:s.title,text:u}):navigator.clipboard.writeText(u).then(()=>{o&&o("📋 Lesson shared!")})})}function Y(t,e,o,i){const n=c.get("gsc-notes",{});if(e&&e.trim()?n[t]=e.trim():delete n[t],c.set("gsc-notes",n),o){const p=!!(e&&e.trim());o.className=`saved-indicator ${p?"saved":"unsaved"}`,o.innerHTML=`<i class="fas ${p?"fa-check-circle":"fa-circle"}"></i> ${p?"Saved":"Unsaved"}`}const s=document.querySelector(`.notes-toggle-btn[data-lesson="${t}"]`);if(s){const p=s.querySelector(".notes-badge");if(e&&e.trim()){if(!p){const x=document.createElement("span");x.className="notes-badge",x.textContent="📝",s.appendChild(x)}s.classList.add("active")}else p==null||p.remove(),s.classList.remove("active")}i&&i(e&&e.trim()?"📝 Notes saved!":"🗑️ Notes cleared")}const me={Genesis:"gen",Exodus:"exo",Leviticus:"lev",Numbers:"num",Deuteronomy:"deu",Joshua:"jos",Judges:"jdg",Ruth:"rut","1 Samuel":"1sa","2 Samuel":"2sa","1 Kings":"1ki","2 Kings":"2ki","1 Chronicles":"1ch","2 Chronicles":"2ch",Ezra:"ezr",Nehemiah:"neh",Esther:"est",Job:"job",Psalms:"psa",Proverbs:"pro",Ecclesiastes:"ecc","Song of Solomon":"sng",Isaiah:"isa",Jeremiah:"jer",Lamentations:"lam",Ezekiel:"ezk",Daniel:"dan",Hosea:"hos",Joel:"jol",Amos:"amo",Obadiah:"oba",Jonah:"jon",Micah:"mic",Nahum:"nam",Habakkuk:"hab",Zephaniah:"zep",Haggai:"hag",Zechariah:"zec",Malachi:"mal",Matthew:"mat",Mark:"mrk",Luke:"luk",John:"jhn",Acts:"act",Romans:"rom","1 Corinthians":"1co","2 Corinthians":"2co",Galatians:"gal",Ephesians:"eph",Philippians:"php",Colossians:"col","1 Thessalonians":"1th","2 Thessalonians":"2th","1 Timothy":"1ti","2 Timothy":"2ti",Titus:"tit",Philemon:"phm",Hebrews:"heb",James:"jas","1 Peter":"1pe","2 Peter":"2pe","1 John":"1jn","2 John":"2jn","3 John":"3jn",Jude:"jud",Revelation:"rev"},be={Genesis:50,Exodus:40,Leviticus:27,Numbers:36,Deuteronomy:34,Joshua:24,Judges:21,Ruth:4,"1 Samuel":31,"2 Samuel":24,"1 Kings":22,"2 Kings":25,"1 Chronicles":29,"2 Chronicles":36,Ezra:10,Nehemiah:13,Esther:10,Job:42,Psalms:150,Proverbs:31,Ecclesiastes:12,"Song of Solomon":8,Isaiah:66,Jeremiah:52,Lamentations:5,Ezekiel:48,Daniel:12,Hosea:14,Joel:3,Amos:9,Obadiah:1,Jonah:4,Micah:7,Nahum:3,Habakkuk:3,Zephaniah:3,Haggai:2,Zechariah:14,Malachi:4,Matthew:28,Mark:16,Luke:24,John:21,Acts:28,Romans:16,"1 Corinthians":16,"2 Corinthians":13,Galatians:6,Ephesians:6,Philippians:4,Colossians:4,"1 Thessalonians":5,"2 Thessalonians":3,"1 Timothy":6,"2 Timothy":4,Titus:3,Philemon:1,Hebrews:13,James:5,"1 Peter":5,"2 Peter":3,"1 John":5,"2 John":1,"3 John":1,Jude:1,Revelation:22};function Z(t){return be[t]||30}async function ve(t,e){const o=me[t];if(!o)return console.error("Book not found:",t),[];try{const i=`https://bible-api.com/${o}+${e}?translation=kjv`,n=await fetch(i);if(!n.ok)return console.error("API Error:",n.status),[];const s=await n.json();return s&&s.verses&&s.verses.length>0?s.verses.map(p=>({verse:p.verse,text:p.text.trim()})):[]}catch(i){return console.error("Error fetching verses:",i),[]}}const pe=["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"],de=["Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"],we=[...pe,...de];function ge(t,e){var H;const{showToast:o}=e,i=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"});t.innerHTML=`
+        <div class="page active" id="biblePage">
+            <div class="container">
+                <!-- Tabs -->
+                <div class="bible-tabs">
+                    <button class="tab-btn ${i.tab==="all"?"active":""}" data-tab="all">All</button>
+                    <button class="tab-btn ${i.tab==="ot"?"active":""}" data-tab="ot">OT</button>
+                    <button class="tab-btn ${i.tab==="nt"?"active":""}" data-tab="nt">NT</button>
+                </div>
+
+                <!-- Book Grid -->
+                <div id="bibleBooks" class="bible-book-grid"></div>
+
+                <!-- Chapters -->
+                <div id="bibleChapters" class="bible-chapter-container" style="display:none;"></div>
+
+                <!-- Content -->
+                <div id="bibleContent">
+                    <div class="bible-welcome">
+                        <i class="fas fa-bible"></i>
+                        <p>Select a book to read</p>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div id="bibleActions" class="bible-actions" style="display:none;">
+                    <button class="action-btn" id="bibleReadAloud">
+                        <i class="fas fa-volume-up"></i> Read Aloud
+                    </button>
+                    <button class="action-btn" id="bibleFavorite">
+                        <i class="fas fa-star"></i> Favorite
+                    </button>
+                    <button class="action-btn" id="bibleShare">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
+
+                <!-- Back -->
+                <div id="bibleBackBtn" style="display:none; margin-top:12px;">
+                    <button class="back-to-books-btn" id="backToBooks">
+                        <i class="fas fa-arrow-left"></i> Back to Books
+                    </button>
+                </div>
+            </div>
+        </div>
+    `,(H=document.getElementById("backToBooks"))==null||H.addEventListener("click",function(){const r=c.get("gsc-bible-state",{});r.book=null,r.chapter=1,c.set("gsc-bible-state",r),ge(t,e)});function n(r){const h=document.getElementById("bibleBooks"),d=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"});let g=we;r==="ot"&&(g=pe),r==="nt"&&(g=de),h.innerHTML=g.map(a=>`
+            <div class="book-item ${a===d.book?"active":""}" data-book="${a}">
+                <span class="book-name">${a}</span>
+                <span class="book-chapters">${Z(a)}</span>
+            </div>
+        `).join(""),h.querySelectorAll(".book-item").forEach(a=>{a.addEventListener("click",async function(){const b=this.dataset.book,y=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"});y.book=b,y.chapter=1,c.set("gsc-bible-state",y),document.getElementById("bibleBooks").style.display="none",document.getElementById("bibleActions").style.display="flex",document.getElementById("bibleBackBtn").style.display="block",document.querySelectorAll(".book-item").forEach(k=>k.classList.remove("active")),this.classList.add("active"),await s(b),await p(b,1)})})}async function s(r){const h=document.getElementById("bibleChapters"),d=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"}),g=Z(r);h.style.display="block",h.innerHTML=`
+            <div class="chapter-list-horizontal">
+                ${Array.from({length:Math.min(g,50)},(a,b)=>b+1).map(a=>`
+                    <button class="chapter-btn ${a===d.chapter?"active":""}" data-chapter="${a}">${a}</button>
+                `).join("")}
+            </div>
+        `,h.querySelectorAll(".chapter-btn").forEach(a=>{a.addEventListener("click",async function(){const b=parseInt(this.dataset.chapter),y=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"});y.chapter=b,c.set("gsc-bible-state",y),h.querySelectorAll(".chapter-btn").forEach(k=>k.classList.remove("active")),this.classList.add("active"),await p(r,b)})})}async function p(r,h){const d=document.getElementById("bibleContent");d.innerHTML=`
+            <div style="text-align:center; padding:20px;">
+                <i class="fas fa-spinner fa-spin"></i> Loading...
+            </div>
+        `;try{const g=await ve(r,h);g&&g.length>0?(d.innerHTML=`
+                    <div class="verses-container">
+                        <h3 class="verses-title">${r} ${h}</h3>
+                        <div class="verses-list">
+                            ${g.map(a=>`
+                                <div class="verse-item">
+                                    <span class="verse-number">${a.verse}</span>
+                                    <span class="verse-text">${a.text}</span>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                `,document.getElementById("bibleActions").style.display="flex",document.getElementById("bibleBackBtn").style.display="block",x(r,h,g)):d.innerHTML='<div class="bible-welcome"><p>No verses found</p></div>'}catch{d.innerHTML='<div class="bible-welcome"><p>⚠️ Error loading verses</p></div>'}}function x(r,h,d){var b,y,k;const g=d.map(m=>`${m.verse}. ${m.text}`).join(`
+`),a=`${r} ${h}`;(b=document.getElementById("bibleReadAloud"))==null||b.addEventListener("click",function(){if(!window.speechSynthesis){o&&o("🔊 Text-to-speech not supported");return}const m=new SpeechSynthesisUtterance(g);m.rate=1,m.pitch=1,window.speechSynthesis.speak(m),o&&o("🔊 Reading aloud...")}),(y=document.getElementById("bibleFavorite"))==null||y.addEventListener("click",function(){const m=JSON.parse(localStorage.getItem("bible-favorites")||"[]");if(m.some(I=>I.reference===a)){const I=m.findIndex(S=>S.reference===a);m.splice(I,1),localStorage.setItem("bible-favorites",JSON.stringify(m)),o&&o("⭐ Removed from favorites")}else m.push({reference:a,text:g.slice(0,200)+"..."}),localStorage.setItem("bible-favorites",JSON.stringify(m)),o&&o("⭐ Added to favorites!")}),(k=document.getElementById("bibleShare"))==null||k.addEventListener("click",function(){const m=`${a}
+
+${g}`;navigator.share?navigator.share({title:a,text:m}).catch(()=>{}):navigator.clipboard.writeText(m).then(()=>{o&&o("📋 Copied to clipboard!")})})}document.querySelectorAll(".tab-btn").forEach(r=>{r.addEventListener("click",function(){const h=this.dataset.tab,d=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"});d.tab=h,d.book=null,d.chapter=1,c.set("gsc-bible-state",d),document.querySelectorAll(".tab-btn").forEach(g=>g.classList.remove("active")),this.classList.add("active"),document.getElementById("bibleBooks").style.display="grid",document.getElementById("bibleActions").style.display="none",document.getElementById("bibleBackBtn").style.display="none",document.getElementById("bibleChapters").style.display="none",document.getElementById("bibleContent").innerHTML=`
+                <div class="bible-welcome">
+                    <i class="fas fa-bible"></i>
+                    <p>Select a book to read</p>
+                </div>
+            `,n(h)})});const v=c.get("gsc-bible-state",{book:null,chapter:1,tab:"all"});n(v.tab||"all"),v.book&&v.chapter&&(document.getElementById("bibleBooks").style.display="none",document.getElementById("bibleActions").style.display="flex",document.getElementById("bibleBackBtn").style.display="block",setTimeout(async()=>{await s(v.book),await p(v.book,v.chapter)},100))}function ke(t,e){var k,m,E,I,S,u;const{user:o,showToast:i,navigateTo:n}=e,s=c.get("gsc-progress",{completedLessons:[]}),p=new Set(s.completedLessons||[]),x=G.filter(l=>!l.isWelcome),v=x.length,H=p.size,r=v>0?Math.round(H/v*100):0,h=c.get("gsc-streak",{count:0}).count||0,d=c.get("gsc-notes",{}),g=Object.keys(d).filter(l=>d[l]&&d[l].trim()).length,a=JSON.parse(localStorage.getItem("bible-favorites")||"[]"),b=((k=o==null?void 0:o.name)==null?void 0:k.split(" ").map(l=>l[0]).join("").toUpperCase().slice(0,2))||"GU",y=Array.from(p).slice(-5).reverse();t.innerHTML=`
+        <div class="page active" id="profilePage">
+            <div class="container">
+                <!-- Profile Header -->
+                <div class="card profile-header-card">
+                    <div class="profile-avatar">${b}</div>
+                    <div class="profile-name">${(o==null?void 0:o.name)||"Guest"}</div>
+                    <div class="profile-email">${(o==null?void 0:o.email)||"guest@example.com"}</div>
+                    <div class="profile-joined">${(o==null?void 0:o.joined)||"Guest"}</div>
+                    <button class="edit-profile-btn" style="margin-top:12px; padding:6px 20px; border-radius:var(--radius-full); background:var(--accent-gold); color:#1a1210; font-weight:600; font-size:13px; border:none; cursor:pointer;">
+                        <i class="fas fa-pen"></i> Edit Profile
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="card">
+                    <h3 style="font-family:var(--font-heading); font-size:18px; margin-bottom:12px;">📊 Stats</h3>
+                    <div class="profile-stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">${H}/${v}</span>
+                            <span class="stat-label">Lessons</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">${h}</span>
+                            <span class="stat-label">🔥 Streak</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">${g}</span>
+                            <span class="stat-label">📝 Notes</span>
+                        </div>
+                    </div>
+                    <div class="profile-progress-bar">
+                        <div class="profile-progress-track">
+                            <div class="profile-progress-fill" style="width:${r}%;"></div>
+                        </div>
+                        <div class="profile-progress-info">
+                            <span>${r}% Complete</span>
+                            <span>${H} of ${v}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h3 style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">📋 Recent Activity</h3>
+                    ${y.length===0?'<p style="color:var(--text-light); font-size:14px;">No lessons completed yet. Start your journey!</p>':y.map(l=>{const f=x.find(w=>w.id===l);return f?`
+                                <div style="display:flex; align-items:center; gap:10px; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.03);">
+                                    <i class="fas fa-check-circle" style="color:var(--accent-green);"></i>
+                                    <span style="font-size:14px;">${f.title}</span>
+                                </div>
+                            `:""}).join("")}
+                </div>
+
+                <!-- Actions -->
+                <div class="card">
+                    <h3 style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">⚙️ Account</h3>
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        <button class="profile-action-btn" id="exportNotesBtn">
+                            <i class="fas fa-file-export"></i> Export All Notes
+                        </button>
+                        <button class="profile-action-btn" id="shareProgressBtn">
+                            <i class="fas fa-share-alt"></i> Share Progress
+                        </button>
+                        <button class="profile-action-btn" id="viewFavoritesBtn">
+                            <i class="fas fa-star"></i> Bible Favorites (${a.length})
+                        </button>
+                        <button class="profile-action-btn danger" id="signOutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </button>
+                    </div>
+                </div>
+
+                <div style="text-align:center; padding:8px 0; color:var(--text-light); font-size:12px;">
+                    Version 2.0
+                </div>
+            </div>
+        </div>
+    `,(m=document.querySelector(".edit-profile-btn"))==null||m.addEventListener("click",function(){const l=(o==null?void 0:o.name)||"Guest",f=prompt("Enter your name:",l);if(f&&f.trim()){const w=c.get("gsc-profile",{name:"Guest User",email:"guest@example.com",joined:"Guest"});w.name=f.trim(),c.set("gsc-profile",w),i&&i("✅ Profile updated!"),n&&n("profile")}}),(E=document.getElementById("exportNotesBtn"))==null||E.addEventListener("click",function(){const l=c.get("gsc-notes",{}),f=Object.entries(l);if(f.length===0){i&&i("📝 No notes to export");return}let w=`📖 The Consciousness of the Son - Notes
+
+`;f.forEach(([F,fe])=>{const D=G.find(ye=>ye.id===parseInt(F)),U=D?D.title:`Lesson ${F}`;w+=`📘 ${U}
+${"-".repeat(U.length+4)}
+${fe}
+
+`});const T=new Blob([w],{type:"text/plain"}),W=URL.createObjectURL(T),N=document.createElement("a");N.href=W,N.download=`notes-${new Date().toISOString().slice(0,10)}.txt`,N.click(),URL.revokeObjectURL(W),i&&i("📥 Notes exported!")}),(I=document.getElementById("shareProgressBtn"))==null||I.addEventListener("click",function(){var N;const l=G.filter(F=>!F.isWelcome).length,w=((N=c.get("gsc-progress",{completedLessons:[]}).completedLessons)==null?void 0:N.length)||0,T=l>0?Math.round(w/l*100):0,W=`📖 I've completed ${w}/${l} lessons (${T}%) in "The Consciousness of the Son"! 🕊️
+
+Join me at Grace Spring Family Church.`;navigator.share?navigator.share({title:"My Progress",text:W}):navigator.clipboard.writeText(W).then(()=>{i&&i("📋 Copied to clipboard!")})}),(S=document.getElementById("viewFavoritesBtn"))==null||S.addEventListener("click",function(){const l=JSON.parse(localStorage.getItem("bible-favorites")||"[]");if(l.length===0){i&&i("⭐ No favorites yet");return}let f=`⭐ Bible Favorites
+
+`;l.forEach(w=>{f+=`${w.reference}
+${w.text}
+
+`}),navigator.share?navigator.share({title:"My Bible Favorites",text:f}):navigator.clipboard.writeText(f).then(()=>{i&&i("📋 Favorites copied!")})}),(u=document.getElementById("signOutBtn"))==null||u.addEventListener("click",function(){if(confirm("Are you sure you want to sign out?")){const l={name:"Guest User",email:"guest@example.com",joined:"Guest"};c.set("gsc-profile",l),i&&i("👋 Signed out"),n&&n("home")}})}const J=document.getElementById("authModal"),He=document.getElementById("authClose"),j=document.querySelectorAll(".auth-tab"),L={signin:document.getElementById("authSignIn"),signup:document.getElementById("authSignUp"),forgot:document.getElementById("authForgot")},xe=document.getElementById("authForgotLink"),Te=document.getElementById("authBackToSignIn"),Ie=document.querySelectorAll(".auth-toggle-password");function Ce(t="signin"){J.classList.add("active"),R(t),document.body.style.overflow="hidden"}function M(){J.classList.remove("active"),document.body.style.overflow=""}He.addEventListener("click",M);J.addEventListener("click",t=>{t.target===J&&M()});document.addEventListener("keydown",t=>{t.key==="Escape"&&M()});function R(t){j.forEach(e=>e.classList.toggle("active",e.dataset.tab===t)),Object.keys(L).forEach(e=>{L[e].classList.toggle("active",e===t)}),t!=="forgot"&&(L.forgot.style.display="none")}j.forEach(t=>{t.addEventListener("click",()=>{R(t.dataset.tab)})});document.querySelectorAll("[data-tab]").forEach(t=>{t.addEventListener("click",()=>{R(t.dataset.tab)})});xe.addEventListener("click",()=>{L.signin.classList.remove("active"),L.signup.classList.remove("active"),L.forgot.style.display="block",j.forEach(t=>t.classList.remove("active"))});Te.addEventListener("click",()=>{L.forgot.style.display="none",R("signin")});Ie.forEach(t=>{t.addEventListener("click",function(){const e=this.dataset.target,o=document.getElementById(e);if(o){const i=o.type==="password"?"text":"password";o.type=i,this.querySelector("i").className=i==="password"?"fas fa-eye":"fas fa-eye-slash"}})});const _=document.getElementById("signupPassword"),Se=document.querySelectorAll("#authStrength .auth-strength-bar span"),V=document.querySelector("#authStrength .auth-strength-text");_&&_.addEventListener("input",function(){const t=this.value,e=Ae(t);Se.forEach((o,i)=>{o.className="",i<e.level&&o.classList.add("active",e.class)}),V.textContent=e.label,V.className="auth-strength-text "+e.class});function Ae(t){let e=0;return t.length>=8&&e++,t.length>=12&&e++,/[a-z]/.test(t)&&/[A-Z]/.test(t)&&e++,/\d/.test(t)&&e++,/[^a-zA-Z0-9]/.test(t)&&e++,e<=1?{level:1,class:"weak",label:"Weak — add more characters"}:e<=3?{level:2,class:"medium",label:"Medium — add symbols"}:e<=4?{level:3,class:"strong",label:"Strong! 💪"}:{level:4,class:"strong",label:"Very Strong! 🎉"}}var ee;(ee=document.getElementById("signinForm"))==null||ee.addEventListener("submit",t=>{t.preventDefault();const e=document.getElementById("signinEmail").value,o=document.getElementById("signinPassword").value;console.log("🔐 Sign In:",{email:e,password:o}),alert("✅ Sign In - Connect to Supabase")});var te;(te=document.getElementById("signupForm"))==null||te.addEventListener("submit",t=>{t.preventDefault();const e=document.getElementById("signupName").value,o=document.getElementById("signupEmail").value,i=document.getElementById("signupPassword").value,n=document.getElementById("signupConfirm").value,s=document.getElementById("authTerms").checked;if(i!==n){alert("❌ Passwords do not match");return}if(!s){alert("❌ Please agree to Terms & Conditions");return}console.log("📝 Sign Up:",{name:e,email:o,password:i}),alert("✅ Sign Up - Connect to Supabase")});var oe;(oe=document.getElementById("forgotForm"))==null||oe.addEventListener("submit",t=>{t.preventDefault();const e=document.getElementById("forgotEmail").value;console.log("🔑 Forgot Password:",{email:e}),alert("📧 Password reset link sent to "+e)});var se;(se=document.getElementById("authGoogle"))==null||se.addEventListener("click",()=>{alert("🔐 Google Sign In - Connect to Supabase")});var ie;(ie=document.getElementById("authGoogleUp"))==null||ie.addEventListener("click",()=>{alert("📝 Google Sign Up - Connect to Supabase")});var re;(re=document.getElementById("authGitHub"))==null||re.addEventListener("click",()=>{alert("🔐 GitHub Sign In - Connect to Supabase")});var ne;(ne=document.getElementById("authGitHubUp"))==null||ne.addEventListener("click",()=>{alert("📝 GitHub Sign Up - Connect to Supabase")});window.openAuthModal=Ce;window.closeAuthModal=M;console.log("🚀 App initialized");const B={name:"The Consciousness of the Son",version:"2.0.0",storageKeys:{theme:"gsc-theme",profile:"gsc-profile",streak:"gsc-streak"}};let z=c.get(B.storageKeys.theme,!1),C=c.get(B.storageKeys.profile,{name:"Guest User",email:"guest@example.com",joined:"Guest"});const q=document.getElementById("mainContent"),O=document.getElementById("themeToggle"),Q=document.getElementById("toast"),Ge=document.getElementById("toastMessage");function ue(){z?(document.documentElement.setAttribute("data-theme","dark"),O.innerHTML='<i class="fas fa-sun"></i>'):(document.documentElement.removeAttribute("data-theme"),O.innerHTML='<i class="fas fa-moon"></i>'),c.set(B.storageKeys.theme,z)}O.addEventListener("click",()=>{z=!z,ue()});let X;function P(t){Ge.textContent=t,Q.classList.add("show"),clearTimeout(X),X=setTimeout(()=>{Q.classList.remove("show")},3e3)}function $(){const t=new Date().toDateString(),e=c.get(B.storageKeys.streak,{count:0,lastActive:null});if(e.lastActive===t)return e.count;const o=new Date;o.setDate(o.getDate()-1);const i=o.toDateString();return e.lastActive===i?e.count+=1:e.lastActive!==t&&(e.count=1),e.lastActive=t,c.set(B.storageKeys.streak,e),e.count}function A(t){switch(console.log("🔀 Navigating to:",t),document.querySelectorAll(".nav-item").forEach(e=>{e.classList.toggle("active",e.dataset.page===t)}),t){case"home":K(q,{showToast:P,updateStreak:$,userProfile:C,isLoggedIn:(C==null?void 0:C.name)!=="Guest User",navigateTo:A});break;case"lessons":he(q,{showToast:P,updateStreak:$,navigateTo:A});break;case"bible":ge(q,{showToast:P});break;case"profile":ke(q,{user:C,showToast:P,navigateTo:A});break;default:K(q,{showToast:P,updateStreak:$,userProfile:C,isLoggedIn:(C==null?void 0:C.name)!=="Guest User",navigateTo:A})}window.scrollTo({top:0,behavior:"smooth"})}document.querySelectorAll(".nav-item").forEach(t=>{t.addEventListener("click",()=>{const e=t.dataset.page;e&&A(e)})});var ae;(ae=document.getElementById("brandHome"))==null||ae.addEventListener("click",()=>{A("home")});function Le(){console.log("🚀 Starting app..."),ue(),A("home"),console.log(`📖 ${B.name} v${B.version}`),console.log("✅ App ready!")}Le();
