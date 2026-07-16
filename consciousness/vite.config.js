@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/gsfc/',  // Important for GitHub Pages subpath
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['@supabase/supabase-js']
+        manualChunks(id) {  // ← Must be a function
+          if (id.includes('@supabase')) {
+            return 'vendor';
+          }
         }
       }
     },
