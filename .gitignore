@@ -1,0 +1,23 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+.venv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Node.js
+node_modules/
+npm-debug.log*
+package-lock.json
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

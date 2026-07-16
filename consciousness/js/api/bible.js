@@ -1,26 +1,4 @@
-// ============================================
-// BIBLE API - Working with bible-api.com
-// ============================================
-
-const BIBLE_BOOKS = {
-    'Genesis': 50, 'Exodus': 40, 'Leviticus': 27, 'Numbers': 36, 'Deuteronomy': 34,
-    'Joshua': 24, 'Judges': 21, 'Ruth': 4, '1 Samuel': 31, '2 Samuel': 24,
-    '1 Kings': 22, '2 Kings': 25, '1 Chronicles': 29, '2 Chronicles': 36,
-    'Ezra': 10, 'Nehemiah': 13, 'Esther': 10, 'Job': 42, 'Psalms': 150,
-    'Proverbs': 31, 'Ecclesiastes': 12, 'Song of Solomon': 8, 'Isaiah': 66,
-    'Jeremiah': 52, 'Lamentations': 5, 'Ezekiel': 48, 'Daniel': 12,
-    'Hosea': 14, 'Joel': 3, 'Amos': 9, 'Obadiah': 1, 'Jonah': 4,
-    'Micah': 7, 'Nahum': 3, 'Habakkuk': 3, 'Zephaniah': 3, 'Haggai': 2,
-    'Zechariah': 14, 'Malachi': 4,
-    'Matthew': 28, 'Mark': 16, 'Luke': 24, 'John': 21,
-    'Acts': 28, 'Romans': 16, '1 Corinthians': 16, '2 Corinthians': 13,
-    'Galatians': 6, 'Ephesians': 6, 'Philippians': 4, 'Colossians': 4,
-    '1 Thessalonians': 5, '2 Thessalonians': 3, '1 Timothy': 6, '2 Timothy': 4,
-    'Titus': 3, 'Philemon': 1, 'Hebrews': 13, 'James': 5,
-    '1 Peter': 5, '2 Peter': 3, '1 John': 5, '2 John': 1, '3 John': 1,
-    'Jude': 1, 'Revelation': 22
-};
-
+// Bible API - KJV Only
 const BOOK_IDS = {
     'Genesis': 'gen', 'Exodus': 'exo', 'Leviticus': 'lev', 'Numbers': 'num',
     'Deuteronomy': 'deu', 'Joshua': 'jos', 'Judges': 'jdg', 'Ruth': 'rut',
@@ -41,30 +19,38 @@ const BOOK_IDS = {
     '3 John': '3jn', 'Jude': 'jud', 'Revelation': 'rev'
 };
 
-export function getBibleBooks() {
-    return Object.keys(BIBLE_BOOKS).map(name => ({
-        name,
-        chapters: BIBLE_BOOKS[name]
-    }));
-}
+const CHAPTER_COUNTS = {
+    'Genesis': 50, 'Exodus': 40, 'Leviticus': 27, 'Numbers': 36, 'Deuteronomy': 34,
+    'Joshua': 24, 'Judges': 21, 'Ruth': 4, '1 Samuel': 31, '2 Samuel': 24,
+    '1 Kings': 22, '2 Kings': 25, '1 Chronicles': 29, '2 Chronicles': 36,
+    'Ezra': 10, 'Nehemiah': 13, 'Esther': 10, 'Job': 42, 'Psalms': 150,
+    'Proverbs': 31, 'Ecclesiastes': 12, 'Song of Solomon': 8, 'Isaiah': 66,
+    'Jeremiah': 52, 'Lamentations': 5, 'Ezekiel': 48, 'Daniel': 12,
+    'Hosea': 14, 'Joel': 3, 'Amos': 9, 'Obadiah': 1, 'Jonah': 4,
+    'Micah': 7, 'Nahum': 3, 'Habakkuk': 3, 'Zephaniah': 3, 'Haggai': 2,
+    'Zechariah': 14, 'Malachi': 4,
+    'Matthew': 28, 'Mark': 16, 'Luke': 24, 'John': 21,
+    'Acts': 28, 'Romans': 16, '1 Corinthians': 16, '2 Corinthians': 13,
+    'Galatians': 6, 'Ephesians': 6, 'Philippians': 4, 'Colossians': 4,
+    '1 Thessalonians': 5, '2 Thessalonians': 3, '1 Timothy': 6, '2 Timothy': 4,
+    'Titus': 3, 'Philemon': 1, 'Hebrews': 13, 'James': 5,
+    '1 Peter': 5, '2 Peter': 3, '1 John': 5, '2 John': 1, '3 John': 1,
+    'Jude': 1, 'Revelation': 22
+};
 
 export function getTotalChapters(book) {
-    return BIBLE_BOOKS[book] || 30;
+    return CHAPTER_COUNTS[book] || 30;
 }
 
-export async function fetchChapterVerses(book, chapter, version = 'KJV') {
+export async function fetchChapterVerses(book, chapter) {
     const bookId = BOOK_IDS[book];
-    
     if (!bookId) {
         console.error('Book not found:', book);
         return [];
     }
 
     try {
-        // Build the API URL
-        const url = `https://bible-api.com/${bookId}+${chapter}?translation=${version.toLowerCase()}`;
-        console.log('📡 Fetching:', url);
-
+        const url = `https://bible-api.com/${bookId}+${chapter}?translation=kjv`;
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -73,20 +59,13 @@ export async function fetchChapterVerses(book, chapter, version = 'KJV') {
         }
 
         const data = await response.json();
-        console.log('📡 Data received:', data);
 
-        // ✅ FIX: Check if verses exist and return ALL of them
         if (data && data.verses && data.verses.length > 0) {
-            // Map all verses, not just the first one
-            const allVerses = data.verses.map(v => ({
+            return data.verses.map(v => ({
                 verse: v.verse,
                 text: v.text.trim()
             }));
-            console.log(`✅ Loaded ${allVerses.length} verses for ${book} ${chapter}`);
-            return allVerses;
         }
-
-        // If no verses found, return empty array
         return [];
     } catch (error) {
         console.error('Error fetching verses:', error);
@@ -94,11 +73,11 @@ export async function fetchChapterVerses(book, chapter, version = 'KJV') {
     }
 }
 
-export async function searchBible(query, version = 'KJV') {
+export async function searchBible(query) {
     if (!query || query.trim().length < 2) return [];
 
     try {
-        const url = `https://bible-api.com/search?query=${encodeURIComponent(query)}&translation=${version.toLowerCase()}`;
+        const url = `https://bible-api.com/search?query=${encodeURIComponent(query)}&translation=kjv`;
         const response = await fetch(url);
 
         if (!response.ok) return [];
@@ -117,10 +96,3 @@ export async function searchBible(query, version = 'KJV') {
         return [];
     }
 }
-
-export default {
-    getBibleBooks,
-    getTotalChapters,
-    fetchChapterVerses,
-    searchBible
-};

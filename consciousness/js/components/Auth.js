@@ -1,10 +1,5 @@
-// ============================================
-// AUTH UI - Modal Controller
-// ============================================
+import { Storage } from '../utils/storage.js';
 
-import { Storage } from './utils/storage.js';
-
-// DOM refs
 const modal = document.getElementById('authModal');
 const closeBtn = document.getElementById('authClose');
 const tabs = document.querySelectorAll('.auth-tab');
@@ -17,12 +12,9 @@ const forgotLink = document.getElementById('authForgotLink');
 const backToSignIn = document.getElementById('authBackToSignIn');
 const toggleBtns = document.querySelectorAll('.auth-toggle-password');
 
-// State
 let currentTab = 'signin';
 
-// ============================================
-// OPEN / CLOSE
-// ============================================
+// Open / Close
 export function openAuthModal(tab = 'signin') {
     modal.classList.add('active');
     switchTab(tab);
@@ -42,9 +34,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAuthModal();
 });
 
-// ============================================
-// TABS
-// ============================================
+// Tabs
 function switchTab(tab) {
     currentTab = tab;
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
@@ -80,9 +70,7 @@ backToSignIn.addEventListener('click', () => {
     switchTab('signin');
 });
 
-// ============================================
-// TOGGLE PASSWORD VISIBILITY
-// ============================================
+// Toggle Password
 toggleBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         const targetId = this.dataset.target;
@@ -95,9 +83,7 @@ toggleBtns.forEach(btn => {
     });
 });
 
-// ============================================
-// PASSWORD STRENGTH
-// ============================================
+// Password Strength
 const strengthInput = document.getElementById('signupPassword');
 const strengthBars = document.querySelectorAll('#authStrength .auth-strength-bar span');
 const strengthText = document.querySelector('#authStrength .auth-strength-text');
@@ -133,11 +119,8 @@ function getPasswordScore(password) {
     return { level: 4, class: 'strong', label: 'Very Strong! 🎉' };
 }
 
-// ============================================
-// FORM HANDLERS (Mock - UI only)
-// ============================================
-
-document.getElementById('signinForm').addEventListener('submit', (e) => {
+// Form Handlers (Mock)
+document.getElementById('signinForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('signinEmail').value;
     const password = document.getElementById('signinPassword').value;
@@ -145,7 +128,7 @@ document.getElementById('signinForm').addEventListener('submit', (e) => {
     alert('✅ Sign In - Connect to Supabase');
 });
 
-document.getElementById('signupForm').addEventListener('submit', (e) => {
+document.getElementById('signupForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('signupName').value;
     const email = document.getElementById('signupEmail').value;
@@ -166,7 +149,7 @@ document.getElementById('signupForm').addEventListener('submit', (e) => {
     alert('✅ Sign Up - Connect to Supabase');
 });
 
-document.getElementById('forgotForm').addEventListener('submit', (e) => {
+document.getElementById('forgotForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('forgotEmail').value;
     console.log('🔑 Forgot Password:', { email });
@@ -187,13 +170,6 @@ document.getElementById('authGitHubUp')?.addEventListener('click', () => {
     alert('📝 GitHub Sign Up - Connect to Supabase');
 });
 
-// ============================================
-// EXPOSE
-// ============================================
+// Expose
 window.openAuthModal = openAuthModal;
 window.closeAuthModal = closeAuthModal;
-
-export default {
-    openAuthModal,
-    closeAuthModal
-};
